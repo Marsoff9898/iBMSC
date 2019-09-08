@@ -172,6 +172,12 @@ Partial Class MainWindow
         Me.THStageFile = New System.Windows.Forms.TextBox()
         Me.THSubTitle = New System.Windows.Forms.TextBox()
         Me.THSubArtist = New System.Windows.Forms.TextBox()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.THLandMine = New System.Windows.Forms.TextBox()
+        Me.BHLandMine = New System.Windows.Forms.Button()
+        Me.BHMissBMP = New System.Windows.Forms.Button()
+        Me.THMissBMP = New System.Windows.Forms.TextBox()
         Me.POHeaderExpander = New System.Windows.Forms.CheckBox()
         Me.POHeaderPart1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -256,6 +262,7 @@ Partial Class MainWindow
         Me.mnErrorCheck = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnPreviewOnClick = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnShowFileName = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnChangePlaySide = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator20 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnGOptions = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnVOptions = New System.Windows.Forms.ToolStripMenuItem()
@@ -303,6 +310,7 @@ Partial Class MainWindow
         Me.TBErrorCheck = New System.Windows.Forms.ToolStripButton()
         Me.TBPreviewOnClick = New System.Windows.Forms.ToolStripButton()
         Me.TBShowFileName = New System.Windows.Forms.ToolStripButton()
+        Me.TBChangePlaySide = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         Me.TBNTInput = New System.Windows.Forms.ToolStripButton()
         Me.TBWavIncrease = New System.Windows.Forms.ToolStripButton()
@@ -2140,10 +2148,18 @@ Partial Class MainWindow
         Me.POHeaderPart2.Controls.Add(Me.THStageFile, 1, 2)
         Me.POHeaderPart2.Controls.Add(Me.THSubTitle, 1, 0)
         Me.POHeaderPart2.Controls.Add(Me.THSubArtist, 1, 1)
+        Me.POHeaderPart2.Controls.Add(Me.Label26, 0, 10)
+        Me.POHeaderPart2.Controls.Add(Me.Label27, 0, 11)
+        Me.POHeaderPart2.Controls.Add(Me.THLandMine, 1, 10)
+        Me.POHeaderPart2.Controls.Add(Me.BHLandMine, 2, 10)
+        Me.POHeaderPart2.Controls.Add(Me.THMissBMP, 1, 11)
+        Me.POHeaderPart2.Controls.Add(Me.BHMissBMP, 2, 11)
         Me.POHeaderPart2.Dock = System.Windows.Forms.DockStyle.Top
         Me.POHeaderPart2.Location = New System.Drawing.Point(0, 186)
         Me.POHeaderPart2.Name = "POHeaderPart2"
-        Me.POHeaderPart2.RowCount = 10
+        Me.POHeaderPart2.RowCount = 12
+        Me.POHeaderPart2.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.POHeaderPart2.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.POHeaderPart2.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.POHeaderPart2.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.POHeaderPart2.RowStyles.Add(New System.Windows.Forms.RowStyle())
@@ -2427,6 +2443,70 @@ Partial Class MainWindow
         Me.THSubArtist.Name = "THSubArtist"
         Me.THSubArtist.Size = New System.Drawing.Size(116, 23)
         Me.THSubArtist.TabIndex = 7
+        '
+        'Label26
+        '
+        Me.Label26.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(25, 214)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(39, 15)
+        Me.Label26.TabIndex = 29
+        Me.Label26.Text = "#WAV00"
+        Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label27
+        '
+        Me.Label27.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(25, 214)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(39, 15)
+        Me.Label27.TabIndex = 32
+        Me.Label27.Text = "#BMP00"
+        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'THLandMine
+        '
+        Me.THLandMine.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.THLandMine.Location = New System.Drawing.Point(67, 46)
+        Me.THLandMine.Margin = New System.Windows.Forms.Padding(0)
+        Me.THLandMine.Name = "THLandMine"
+        Me.THLandMine.Size = New System.Drawing.Size(88, 23)
+        Me.THLandMine.TabIndex = 30
+        '
+        'BHLandMine
+        '
+        Me.BHLandMine.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BHLandMine.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.BHLandMine.Location = New System.Drawing.Point(158, 94)
+        Me.BHLandMine.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
+        Me.BHLandMine.Name = "BHLandMine"
+        Me.BHLandMine.Size = New System.Drawing.Size(25, 24)
+        Me.BHLandMine.TabIndex = 31
+        Me.BHLandMine.Text = "..."
+        Me.BHLandMine.UseVisualStyleBackColor = True
+        '
+        'THMissBMP
+        '
+        Me.THMissBMP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.THMissBMP.Location = New System.Drawing.Point(67, 46)
+        Me.THMissBMP.Margin = New System.Windows.Forms.Padding(0)
+        Me.THMissBMP.Name = "THMissBMP"
+        Me.THMissBMP.Size = New System.Drawing.Size(88, 23)
+        Me.THMissBMP.TabIndex = 33
+        '
+        'BHMissBMP
+        '
+        Me.BHMissBMP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BHMissBMP.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.BHMissBMP.Location = New System.Drawing.Point(158, 94)
+        Me.BHMissBMP.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
+        Me.BHMissBMP.Name = "BMissBMP"
+        Me.BHMissBMP.Size = New System.Drawing.Size(25, 24)
+        Me.BHMissBMP.TabIndex = 34
+        Me.BHMissBMP.Text = "..."
+        Me.BHMissBMP.UseVisualStyleBackColor = True
         '
         'POHeaderExpander
         '
@@ -3124,7 +3204,7 @@ Partial Class MainWindow
         '
         'mnOptions
         '
-        Me.mnOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnNTInput, Me.mnErrorCheck, Me.mnPreviewOnClick, Me.mnShowFileName, Me.ToolStripSeparator20, Me.mnGOptions, Me.mnVOptions, Me.mnPOptions, Me.mnLanguage, Me.mnTheme})
+        Me.mnOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnNTInput, Me.mnErrorCheck, Me.mnPreviewOnClick, Me.mnShowFileName, Me.mnChangePlaySide, Me.ToolStripSeparator20, Me.mnGOptions, Me.mnVOptions, Me.mnPOptions, Me.mnLanguage, Me.mnTheme})
         Me.mnOptions.Name = "mnOptions"
         Me.mnOptions.Size = New System.Drawing.Size(61, 19)
         Me.mnOptions.Text = "&Options"
@@ -3167,6 +3247,14 @@ Partial Class MainWindow
         Me.mnShowFileName.Name = "mnShowFileName"
         Me.mnShowFileName.Size = New System.Drawing.Size(229, 22)
         Me.mnShowFileName.Text = "Show &File Name on Notes"
+        '
+        'mnChangePlaySide
+        '
+        Me.mnChangePlaySide.CheckOnClick = True
+        Me.mnChangePlaySide.Image = Global.iBMSC.My.Resources.Resources.x16ChangePlaySide
+        Me.mnChangePlaySide.Name = "mnChangePlaySide"
+        Me.mnChangePlaySide.Size = New System.Drawing.Size(229, 22)
+        Me.mnChangePlaySide.Text = "&RightScratch Mode"
         '
         'ToolStripSeparator20
         '
@@ -3322,7 +3410,7 @@ Partial Class MainWindow
         Me.TBMain.AccessibleRole = System.Windows.Forms.AccessibleRole.ToolBar
         Me.TBMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TBMain.Dock = System.Windows.Forms.DockStyle.None
-        Me.TBMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TBNew, Me.TBOpen, Me.TBSave, Me.ToolStripSeparator1, Me.TBCut, Me.TBCopy, Me.TBPaste, Me.TBFind, Me.ToolStripSeparator24, Me.TBStatistics, Me.POConvert, Me.TBMyO2, Me.ToolStripSeparator4, Me.TBErrorCheck, Me.TBPreviewOnClick, Me.TBShowFileName, Me.ToolStripSeparator8, Me.TBNTInput, Me.TBWavIncrease, Me.ToolStripSeparator2, Me.TBUndo, Me.TBRedo, Me.ToolStripSeparator5, Me.TBTimeSelect, Me.TBSelect, Me.TBWrite, Me.ToolStripSeparator3, Me.TBPlayB, Me.TBPlay, Me.TBStop, Me.TBPOptions, Me.ToolStripSeparator7, Me.TBVOptions, Me.TBGOptions, Me.TBLanguage, Me.TBTheme, Me.POBStorm})
+        Me.TBMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TBNew, Me.TBOpen, Me.TBSave, Me.ToolStripSeparator1, Me.TBCut, Me.TBCopy, Me.TBPaste, Me.TBFind, Me.ToolStripSeparator24, Me.TBStatistics, Me.POConvert, Me.TBMyO2, Me.ToolStripSeparator4, Me.TBErrorCheck, Me.TBPreviewOnClick, Me.TBShowFileName, Me.TBChangePlaySide, Me.ToolStripSeparator8, Me.TBNTInput, Me.TBWavIncrease, Me.ToolStripSeparator2, Me.TBUndo, Me.TBRedo, Me.ToolStripSeparator5, Me.TBTimeSelect, Me.TBSelect, Me.TBWrite, Me.ToolStripSeparator3, Me.TBPlayB, Me.TBPlay, Me.TBStop, Me.TBPOptions, Me.ToolStripSeparator7, Me.TBVOptions, Me.TBGOptions, Me.TBLanguage, Me.TBTheme, Me.POBStorm})
         Me.TBMain.Location = New System.Drawing.Point(3, 23)
         Me.TBMain.Name = "TBMain"
         Me.TBMain.Size = New System.Drawing.Size(805, 25)
@@ -3534,6 +3622,16 @@ Partial Class MainWindow
         Me.TBShowFileName.Name = "TBShowFileName"
         Me.TBShowFileName.Size = New System.Drawing.Size(23, 22)
         Me.TBShowFileName.Text = "Show File Name on Notes"
+        '
+        'TBChangePlaySide
+        '
+        Me.TBChangePlaySide.CheckOnClick = True
+        Me.TBChangePlaySide.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TBChangePlaySide.Image = Global.iBMSC.My.Resources.Resources.x16ChangePlaySide
+        Me.TBChangePlaySide.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TBChangePlaySide.Name = "TBChangePlaySide"
+        Me.TBChangePlaySide.Size = New System.Drawing.Size(23, 22)
+        Me.TBChangePlaySide.Text = "RightScratch Mode"
         '
         'ToolStripSeparator8
         '
@@ -4347,6 +4445,7 @@ Partial Class MainWindow
     Friend WithEvents mnErrorCheck As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnPreviewOnClick As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnShowFileName As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnChangePlaySide As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator20 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents mnGOptions As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnVOptions As System.Windows.Forms.ToolStripMenuItem
@@ -4489,6 +4588,7 @@ Partial Class MainWindow
     Friend WithEvents TBErrorCheck As System.Windows.Forms.ToolStripButton
     Friend WithEvents TBPreviewOnClick As System.Windows.Forms.ToolStripButton
     Friend WithEvents TBShowFileName As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TBChangePlaySide As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents TBUndo As System.Windows.Forms.ToolStripButton
     Friend WithEvents TBRedo As System.Windows.Forms.ToolStripButton
@@ -4536,6 +4636,12 @@ Partial Class MainWindow
     Friend WithEvents THStageFile As System.Windows.Forms.TextBox
     Friend WithEvents THSubTitle As System.Windows.Forms.TextBox
     Friend WithEvents THSubArtist As System.Windows.Forms.TextBox
+    Friend WithEvents Label26 As System.Windows.Forms.Label
+    Friend WithEvents Label27 As System.Windows.Forms.Label
+    Friend WithEvents THLandMine As System.Windows.Forms.TextBox
+    Friend WithEvents BHLandMine As System.Windows.Forms.Button
+    Friend WithEvents THMissBMP As System.Windows.Forms.TextBox
+    Friend WithEvents BHMissBMP As System.Windows.Forms.Button
     Friend WithEvents POHeaderExpander As System.Windows.Forms.CheckBox
     Friend WithEvents POHeaderPart1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents Label3 As System.Windows.Forms.Label

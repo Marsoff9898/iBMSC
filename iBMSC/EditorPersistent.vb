@@ -83,6 +83,7 @@ Partial Public Class MainWindow
             .WriteAttributeString("AutoSaveInterval", AutoSaveInterval)
             .WriteAttributeString("PreviewOnClick", PreviewOnClick)
             '.WriteAttributeString("PreviewErrorCheck", PreviewErrorCheck)
+            .WriteAttributeString("ChangePlaySide", Rscratch)
             .WriteAttributeString("ClickStopPreview", ClickStopPreview)
             .WriteEndElement()
 
@@ -349,6 +350,10 @@ Partial Public Class MainWindow
                 XMLLoadAttribute(.GetAttribute("PreviewOnClick"), PreviewOnClick)
                 TBPreviewOnClick.Checked = PreviewOnClick
                 TBPreviewOnClick_Click(TBPreviewOnClick, New System.EventArgs)
+
+                XMLLoadAttribute(.GetAttribute("ChangePlaySide"), Rscratch)
+                TBChangePlaySide.Checked = Rscratch
+                TBChangePlaySide_Click(TBChangePlaySide, New System.EventArgs)
 
                 XMLLoadAttribute(.GetAttribute("ClickStopPreview"), ClickStopPreview)
             End With
@@ -678,6 +683,7 @@ EndOfSub:
                     XMLLoadLocaleMenu(eOptions.Item("ErrorCheck"), mnErrorCheck.Text)
                     XMLLoadLocaleMenu(eOptions.Item("PreviewOnClick"), mnPreviewOnClick.Text)
                     XMLLoadLocaleMenu(eOptions.Item("ShowFileName"), mnShowFileName.Text)
+                    XMLLoadLocaleMenu(eOptions.Item("ChangePlaySide"), mnChangePlaySide.Text)
                     XMLLoadLocaleMenu(eOptions.Item("GeneralOptions"), mnGOptions.Text)
                     XMLLoadLocaleMenu(eOptions.Item("VisualOptions"), mnVOptions.Text)
                     XMLLoadLocaleMenu(eOptions.Item("PlayerOptions"), mnPOptions.Text)
@@ -859,6 +865,8 @@ EndOfSub:
                     XMLLoadLocale(eHeader.Item("Comment"), Label19.Text)
                     'XMLLoadLocale(eHeader.Item("LnType"), Label13.Text)
                     XMLLoadLocale(eHeader.Item("LnObj"), Label24.Text)
+                    XMLLoadLocale(eHeader.Item("LandMine"), Label26.Text)
+                    XMLLoadLocale(eHeader.Item("MissBMP"), Label27.Text)
 
                     RemoveHandler CHPlayer.SelectedIndexChanged, AddressOf CHPlayer_SelectedIndexChanged
                     XMLLoadLocale(eHeader.Item("Player1"), CHPlayer.Items.Item(0))
@@ -1286,6 +1294,7 @@ EndOfSub:
         'SaveTheme = True
         'LoadCFF(My.Computer.FileSystem.ReadAllText(My.Application.Info.DirectoryPath & "\Theme\" & sender.Text, System.Text.Encoding.Unicode))
         LoadSettings(My.Application.Info.DirectoryPath & "\Data\" & sender.Text)
+        ChangePlaySideSkin(False)
         RefreshPanelAll()
     End Sub
 End Class

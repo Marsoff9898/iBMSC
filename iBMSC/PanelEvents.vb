@@ -501,8 +501,12 @@ Partial Public Class MainWindow
         'My.Computer.Audio.Stop()
         If NoteIndex > 0 And PreviewOnClick AndAlso IsColumnSound(Notes(NoteIndex).ColumnIndex) Then
             Dim xI2 As Integer = Notes(NoteIndex).Value \ 10000
-            If xI2 <= 0 Then xI2 = 1
-            If xI2 >= 1296 Then xI2 = 1295
+            If Notes(NoteIndex).Landmine Then
+                xI2 = 0
+            Else
+                If xI2 <= 0 Then xI2 = 1
+                If xI2 >= 1296 Then xI2 = 1295
+            End If
 
             If Not hWAV(xI2) = "" Then ' AndAlso Path.GetExtension(hWAV(xI2)).ToLower = ".wav" Then
                 Dim xFileLocation As String = IIf(ExcludeFileName(FileName) = "", InitPath, ExcludeFileName(FileName)) & "\" & hWAV(xI2)

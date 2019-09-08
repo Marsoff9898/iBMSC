@@ -217,6 +217,9 @@
   <data name="x16Associate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ImageButtonsSmall\x16Associate.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="x16ChangePlaySide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ImageButtonsSmall\x16ChangePlaySide.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="x16CheckError" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ImageButtonsSmall\x16CheckError.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

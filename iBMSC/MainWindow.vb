@@ -220,6 +220,7 @@ Public Class MainWindow
     Public CurrentPlayer As Integer = 0
     Dim PreviewOnClick As Boolean = True
     Dim PreviewErrorCheck As Boolean = False
+    Dim Rscratch As Boolean = False
     Dim ClickStopPreview As Boolean = True
     Dim pTempFileNames() As String = {}
 
@@ -883,6 +884,8 @@ Public Class MainWindow
         'THLnType.Text = "1"
         CHLnObj.SelectedIndex = 0
 
+        THLandMine.Text = ""
+        THMissBMP.Text = ""
         TExpansion.Text = ""
 
         LBeat.Items.Clear()
@@ -1943,6 +1946,16 @@ EndSearch:
         mnPreviewOnClick.Image = IIf(PreviewOnClick, My.Resources.x16PreviewOnClick, My.Resources.x16PreviewOnClickN)
     End Sub
 
+    Private Sub TBChangePlaySide_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TBChangePlaySide.Click, mnChangePlaySide.Click
+        Rscratch = sender.Checked
+        ChangePlaySide(True)
+        TBChangePlaySide.Checked = Rscratch
+        mnChangePlaySide.Checked = Rscratch
+        TBChangePlaySide.Image = My.Resources.x16ChangePlaySide
+        mnChangePlaySide.Image = My.Resources.x16ChangePlaySide
+        RefreshPanelAll()
+    End Sub
+
     'Private Sub TBPreviewErrorCheck_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     '    PreviewErrorCheck = TBPreviewErrorCheck.Checked
     '    TBPreviewErrorCheck.Image = IIf(PreviewErrorCheck, My.Resources.x16PreviewCheck, My.Resources.x16PreviewCheckN)
@@ -2747,6 +2760,12 @@ StartCount:     If Not NTInput Then
     THSubTitle.TextChanged, THSubArtist.TextChanged, THStageFile.TextChanged, THBanner.TextChanged, THBackBMP.TextChanged,
     CHDifficulty.SelectedIndexChanged, THExRank.TextChanged, THTotal.TextChanged, THComment.TextChanged
         If IsSaved Then SetIsSaved(False)
+
+        If [Object].ReferenceEquals(sender, THLandMine) Then
+            hWAV(0) = THLandMine.Text
+        ElseIf [Object].ReferenceEquals(sender, THMissBMP) Then
+            hBMP(0) = THMissBMP.Text
+        End If
     End Sub
 
     Private Sub CHLnObj_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CHLnObj.SelectedIndexChanged
@@ -3622,6 +3641,7 @@ Jump2:
         Dim xTempFileName As String = My.Application.Info.DirectoryPath & "\____TempFile.Theme.xml"
         My.Computer.FileSystem.WriteAllText(xTempFileName, My.Resources.O2Mania_Theme, False, System.Text.Encoding.Unicode)
         LoadSettings(xTempFileName)
+        ChangePlaySideSkin(False)
         System.IO.File.Delete(xTempFileName)
 
         RefreshPanelAll()
@@ -4481,7 +4501,7 @@ case2:              Dim xI0 As Integer
     End Sub
 
 
-    Private Sub BHStageFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BHStageFile.Click, BHBanner.Click, BHBackBMP.Click
+    Private Sub BHStageFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BHStageFile.Click, BHBanner.Click, BHBackBMP.Click, BHMissBMP.Click
         Dim xDiag As New OpenFileDialog
         xDiag.Filter = Strings.FileType._image & "|*.bmp;*.png;*.jpeg;*.jpg;*.gif|" &
                        Strings.FileType._all & "|*.*"
@@ -4497,7 +4517,27 @@ case2:              Dim xI0 As Integer
             THBanner.Text = GetFileName(xDiag.FileName)
         ElseIf [Object].ReferenceEquals(sender, BHBackBMP) Then
             THBackBMP.Text = GetFileName(xDiag.FileName)
+        ElseIf [Object].ReferenceEquals(sender, BHMissBMP) Then
+            THMissBMP.Text = GetFileName(xDiag.FileName)
+            hBMP(0) = THMissBMP.Text
         End If
+    End Sub
+
+    Private Sub BHWavFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BHLandMine.Click
+        Dim xDiag As New OpenFileDialog
+        xDiag.Filter = Strings.FileType._wave & "|*.wav;*.ogg;*.mp3|" &
+                       Strings.FileType.WAV & "|*.wav|" &
+                       Strings.FileType.OGG & "|*.ogg|" &
+                       Strings.FileType.MP3 & "|*.mp3|" &
+                       Strings.FileType._all & "|*.*"
+        xDiag.InitialDirectory = IIf(ExcludeFileName(FileName) = "", InitPath, ExcludeFileName(FileName))
+        xDiag.DefaultExt = "wav"
+
+        If xDiag.ShowDialog = Windows.Forms.DialogResult.Cancel Then Exit Sub
+
+        InitPath = ExcludeFileName(xDiag.FileName)
+        THLandMine.Text = GetFileName(xDiag.FileName)
+        hWAV(0) = THLandMine.Text
     End Sub
 
     Private Sub Switches_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles _

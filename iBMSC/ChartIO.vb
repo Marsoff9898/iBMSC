@@ -222,6 +222,8 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
         LWAV.Visible = True
         LBMP.SelectedIndex = 0
         LBMP.Visible = True
+        THLandMine.Text = hWAV(0)
+        THMissBMP.Text = hBMP(0)
 
         TExpansion.Text = xExpansion
 
@@ -379,11 +381,11 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
     Private Function GenerateHeaderIndexedData() As String
         Dim xStrHeader As String = ""
 
-        For i = 1 To UBound(hWAV)
+        For i = 0 To UBound(hWAV)
             If Not hWAV(i) = "" Then xStrHeader &= "#WAV" & C10to36(i) &
                                                     " " & hWAV(i) & vbCrLf
         Next
-        For i = 1 To UBound(hBMP)
+        For i = 0 To UBound(hBMP)
             If Not hBMP(i) = "" Then xStrHeader &= "#BMP" & C10to36(i) &
                                                     " " & hBMP(i) & vbCrLf
         Next
@@ -793,6 +795,7 @@ Jump1:
         Me.InitializeNewBMS()
         Me.InitializeOpenBMS()
 
+        Notes(0) = New Note
         With Notes(0)
             .ColumnIndex = niBPM
             .VPosition = -1
@@ -934,6 +937,7 @@ Jump1:
                     Dim xNoteUbound As Integer = br.ReadInt32
                     ReDim Preserve Notes(xNoteUbound)
                     For i As Integer = 1 To UBound(Notes)
+                        Notes(i) = New Note
                         Notes(i).FromBinReader(br)
                     Next
 
@@ -990,6 +994,9 @@ EndOfSub:
         LWAV.Visible = True
         LBMP.SelectedIndex = 0
         LBMP.Visible = True
+
+        THLandMine.Text = hWAV(0)
+        THMissBMP.Text = hBMP(0)
 
         THBPM.Value = Notes(0).Value / 10000
         SortByVPositionQuick(0, UBound(Notes))
@@ -1092,12 +1099,12 @@ EndOfSub:
             bw.Write(CByte(xWAVOptions))
 
             Dim xWAVCount As Integer = 0
-            For i As Integer = 1 To UBound(hWAV)
+            For i As Integer = 0 To UBound(hWAV)
                 If hWAV(i) <> "" Then xWAVCount += 1
             Next
             bw.Write(xWAVCount)
 
-            For i As Integer = 1 To UBound(hWAV)
+            For i As Integer = 0 To UBound(hWAV)
                 If hWAV(i) = "" Then Continue For
                 bw.Write(CShort(i))
                 bw.Write(hWAV(i))
@@ -1108,12 +1115,12 @@ EndOfSub:
             bw.Write(&H504D42)
 
             Dim xBMPCount As Integer = 0
-            For i As Integer = 1 To UBound(hBMP)
+            For i As Integer = 0 To UBound(hBMP)
                 If hBMP(i) <> "" Then xBMPCount += 1
             Next
             bw.Write(xBMPCount)
 
-            For i As Integer = 1 To UBound(hBMP)
+            For i As Integer = 0 To UBound(hBMP)
                 If hBMP(i) = "" Then Continue For
                 bw.Write(CShort(i))
                 bw.Write(hBMP(i))

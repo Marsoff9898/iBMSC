@@ -128,7 +128,102 @@ Partial Public Class MainWindow
         If iCol < niB Then Return column(iCol).isSound Else Return column(niB).isSound
     End Function
 
+    Private Sub ChangePlaySide(ByVal swap As Boolean)
+        If Rscratch Then
+            column(niA1).Identifier = 11
+            column(niA2).Identifier = 12
+            column(niA3).Identifier = 13
+            column(niA4).Identifier = 14
+            column(niA5).Identifier = 15
+            column(niA6).Identifier = 18
+            column(niA7).Identifier = 19
+            column(niA8).Identifier = 16
 
+            For i = 0 To UBound(Notes) Step 1
+                If Notes(i).ColumnIndex = niA1 Then
+                    Notes(i).ColumnIndex = niA8
+                ElseIf Notes(i).ColumnIndex >= niA2 AndAlso Notes(i).ColumnIndex <= niA8 Then
+                    Notes(i).ColumnIndex -= 1
+                End If
+            Next
+        ElseIf swap Then
+            column(niA1).Identifier = 16
+            column(niA2).Identifier = 11
+            column(niA3).Identifier = 12
+            column(niA4).Identifier = 13
+            column(niA5).Identifier = 14
+            column(niA6).Identifier = 15
+            column(niA7).Identifier = 18
+            column(niA8).Identifier = 19
+            For i = 0 To UBound(Notes) Step 1
+                If Notes(i).ColumnIndex = niA8 Then
+                    Notes(i).ColumnIndex = niA1
+                ElseIf Notes(i).ColumnIndex >= niA1 AndAlso Notes(i).ColumnIndex <= niA7 Then
+                    Notes(i).ColumnIndex += 1
+                End If
+            Next
+        End If
+        ChangePlaySideSkin(swap)
+    End Sub
+
+    Private Sub ChangePlaySideSkin(ByVal swap As Boolean)
+        Dim tLeft(8)
+        For i = 0 To 7 Step 1
+            tLeft(i) = column(niA1 + i + 1).Left - column(niA1 + i).Left
+        Next
+        If Rscratch Then
+            Dim tcBG = column(niA1).cBG
+            Dim tcNote = column(niA1).cNote
+            Dim tcLNote = column(niA1).cLNote
+            Dim tcText = column(niA1).cText
+            Dim tcLText = column(niA1).cLText
+            Dim tWidth = column(niA1).Width
+            tLeft(8) = tLeft(0)
+            For i = 0 To 6 Step 1
+                column(niA1 + i).cBG = column(niA1 + i + 1).cBG
+                column(niA1 + i).cText = column(niA1 + i + 1).cText
+                column(niA1 + i).cLText = column(niA1 + i + 1).cLText
+                column(niA1 + i).setNoteColor(column(niA1 + i + 1).cNote)
+                column(niA1 + i).setLNoteColor(column(niA1 + i + 1).cLNote)
+                column(niA1 + i).Width = column(niA1 + i + 1).Width
+                tLeft(i) = tLeft(i + 1)
+            Next
+            column(niA8).cBG = tcBG
+            column(niA8).cText = tcText
+            column(niA8).cLText = tcLText
+            column(niA8).setNoteColor(tcNote)
+            column(niA8).setLNoteColor(tcLNote)
+            column(niA8).Width = tWidth
+            tLeft(7) = tLeft(8)
+        ElseIf swap Then
+            Dim tcBG = column(niA8).cBG
+            Dim tcNote = column(niA8).cNote
+            Dim tcLNote = column(niA8).cLNote
+            Dim tcText = column(niA8).cText
+            Dim tcLText = column(niA8).cLText
+            Dim tWidth = column(niA8).Width
+            tLeft(8) = tLeft(7)
+            For i = 7 To 1 Step -1
+                column(niA1 + i).cBG = column(niA1 + i - 1).cBG
+                column(niA1 + i).cText = column(niA1 + i - 1).cText
+                column(niA1 + i).cLText = column(niA1 + i - 1).cLText
+                column(niA1 + i).setNoteColor(column(niA1 + i - 1).cNote)
+                column(niA1 + i).setLNoteColor(column(niA1 + i - 1).cLNote)
+                column(niA1 + i).Width = column(niA1 + i - 1).Width
+                tLeft(i) = tLeft(i - 1)
+            Next
+            column(niA1).cBG = tcBG
+            column(niA1).cText = tcText
+            column(niA1).cLText = tcLText
+            column(niA1).setNoteColor(tcNote)
+            column(niA1).setLNoteColor(tcLNote)
+            column(niA1).Width = tWidth
+            tLeft(0) = tLeft(8)
+        End If
+        For i = 0 To 7 Step 1
+            column(niA1 + i + 1).Left = column(niA1 + i).Left + tLeft(i)
+        Next
+    End Sub
 
     Private Function GetColumn(ByVal iCol As Integer) As Column
         If iCol < niB Then Return column(iCol) Else Return column(niB)
@@ -145,6 +240,7 @@ Partial Public Class MainWindow
     End Function
 
     Private Function BMSChannelToColumn(ByVal I As String) As Integer
+        Dim result As Integer = 0
         Select Case I
             Case "01" : Return niB
             Case "03", "08" : Return niBPM
@@ -154,26 +250,32 @@ Partial Public Class MainWindow
             Case "07" : Return niLAYER
             Case "06" : Return niPOOR
 
-            Case "16", "36", "56", "76", "D6" : Return niA1
-            Case "11", "31", "51", "71", "D1" : Return niA2
-            Case "12", "32", "52", "72", "D2" : Return niA3
-            Case "13", "33", "53", "73", "D3" : Return niA4
-            Case "14", "34", "54", "74", "D4" : Return niA5
-            Case "15", "35", "55", "75", "D5" : Return niA6
-            Case "18", "38", "58", "78", "D8" : Return niA7
-            Case "19", "39", "59", "79", "D9" : Return niA8
+            Case "16", "36", "56", "76", "D6" : result = niA1
+            Case "11", "31", "51", "71", "D1" : result = niA2
+            Case "12", "32", "52", "72", "D2" : result = niA3
+            Case "13", "33", "53", "73", "D3" : result = niA4
+            Case "14", "34", "54", "74", "D4" : result = niA5
+            Case "15", "35", "55", "75", "D5" : result = niA6
+            Case "18", "38", "58", "78", "D8" : result = niA7
+            Case "19", "39", "59", "79", "D9" : result = niA8
 
-            Case "21", "41", "61", "81", "E1" : Return niD1
-            Case "22", "42", "62", "82", "E2" : Return niD2
-            Case "23", "43", "63", "83", "E3" : Return niD3
-            Case "24", "44", "64", "84", "E4" : Return niD4
-            Case "25", "45", "65", "85", "E5" : Return niD5
-            Case "28", "48", "68", "88", "E8" : Return niD6
-            Case "29", "49", "69", "89", "E9" : Return niD7
-            Case "26", "46", "66", "86", "E6" : Return niD8
-
-            Case Else : Return 0
+            Case "21", "41", "61", "81", "E1" : result = niD1
+            Case "22", "42", "62", "82", "E2" : result = niD2
+            Case "23", "43", "63", "83", "E3" : result = niD3
+            Case "24", "44", "64", "84", "E4" : result = niD4
+            Case "25", "45", "65", "85", "E5" : result = niD5
+            Case "28", "48", "68", "88", "E8" : result = niD6
+            Case "29", "49", "69", "89", "E9" : result = niD7
+            Case "26", "46", "66", "86", "E6" : result = niD8
         End Select
+        If Rscratch Then
+            If result = niA1 Then
+                result = niA8
+            ElseIf result >= niA2 AndAlso result <= niA8 Then
+                result -= 1
+            End If
+        End If
+        Return result
     End Function
 
 End Class
