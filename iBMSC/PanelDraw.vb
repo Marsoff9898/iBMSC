@@ -93,16 +93,18 @@ Partial Public Class MainWindow
     End Sub
 
     Private Sub DrawTempNote(e1 As BufferedGraphics, xTHeight As Integer, xHS As Integer, xVS As Integer)
-        Dim xValue As Integer = (LWAV.SelectedIndex + 1) * 10000
-
         Dim xAlpha As Single = 1.0F
         If ModifierHiddenActive() Then
             xAlpha = vo.kOpacity
         End If
 
-        Dim xText As String = C10to36(xValue \ 10000)
+        Dim xText As String
         If IsColumnNumeric(SelectedColumn) Then
             xText = GetColumn(SelectedColumn).Title
+        ElseIf IsColumnSound(SelectedColumn) Then
+            xText = C10to36(LWAV.SelectedIndex + 1)
+        Else
+            xText = C10to36(LBMP.SelectedIndex + 1)
         End If
 
         Dim xPen As Pen

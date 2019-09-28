@@ -531,8 +531,14 @@ Public Class MainWindow
         Dim xI2 As Integer
 
         If TBWavIncrease.Checked Then
-            If Notes(I).Value = LWAV.SelectedIndex * 10000 Then
-                DecreaseCurrentWav()
+            If IsColumnSound(Notes(I).ColumnIndex) Then
+                If Notes(I).Value = LWAV.SelectedIndex * 10000 Then
+                    DecreaseCurrentWav()
+                End If
+            Else
+                If Notes(I).Value = LBMP.SelectedIndex * 10000 Then
+                    DecreaseCurrentBmp()
+                End If
             End If
         End If
 
@@ -1854,6 +1860,14 @@ EndSearch:
         Try
             Dim xRect As Rectangle = LWAV.GetItemRectangle(LWAV.SelectedIndex)
             If xRect.Top + xRect.Height > LWAV.DisplayRectangle.Height Then SendMessage(LWAV.Handle, &H115, 1, 0)
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub ValidateBmpListView()
+        Try
+            Dim xRect As Rectangle = LBMP.GetItemRectangle(LBMP.SelectedIndex)
+            If xRect.Top + xRect.Height > LBMP.DisplayRectangle.Height Then SendMessage(LBMP.Handle, &H115, 1, 0)
         Catch ex As Exception
         End Try
     End Sub

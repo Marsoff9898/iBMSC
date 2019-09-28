@@ -277,6 +277,29 @@ Partial Public Class MainWindow
         End If
     End Sub
 
+    Private Sub DecreaseCurrentBmp()
+        If LBMP.SelectedIndex = -1 Then
+            LBMP.SelectedIndex = 0
+        Else
+            Dim newIndex As Integer = LBMP.SelectedIndex - 1
+            If newIndex < 0 Then newIndex = 0
+            LBMP.SelectedIndices.Clear()
+            LBMP.SelectedIndex = newIndex
+        End If
+    End Sub
+
+    Private Sub IncreaseCurrentBmp()
+        If LBMP.SelectedIndex = -1 Then
+            LBMP.SelectedIndex = 0
+        Else
+            Dim newIndex As Integer = LBMP.SelectedIndex + 1
+            If newIndex > LBMP.Items.Count - 1 Then newIndex = LBMP.Items.Count - 1
+            LBMP.SelectedIndices.Clear()
+            LBMP.SelectedIndex = newIndex
+            ValidateWavListView()
+        End If
+    End Sub
+
     Private Sub MoveToBGM(xUndo As UndoRedo.LinkedURCmd, xRedo As UndoRedo.LinkedURCmd)
         Dim xBaseRedo As UndoRedo.LinkedURCmd = xRedo
 
@@ -450,10 +473,17 @@ Partial Public Class MainWindow
                 If MouseInNote(e, xHS, xVS, xHeight, Notes(xI1)) Then
 
                     If My.Computer.Keyboard.ShiftKeyDown Then
-                        LWAV.SelectedIndices.Clear()
-                        LWAV.SelectedIndex = C36to10(C10to36(Notes(xI1).Value \ 10000)) - 1
-                        ValidateWavListView()
-
+                        If Not IsColumnNumeric(Notes(xI1).ColumnIndex) Then
+                            If IsColumnSound(Notes(xI1).ColumnIndex) Then
+                                LWAV.SelectedIndices.Clear()
+                                LWAV.SelectedIndex = C36to10(C10to36(Notes(xI1).Value \ 10000)) - 1
+                                ValidateWavListView()
+                            Else
+                                LBMP.SelectedIndices.Clear()
+                                LBMP.SelectedIndex = C36to10(C10to36(Notes(xI1).Value \ 10000)) - 1
+                                ValidateBmpListView()
+                            End If
+                        End If
                     Else
                         Dim xUndo As UndoRedo.LinkedURCmd = Nothing
                         Dim xRedo As UndoRedo.LinkedURCmd = Nothing
@@ -591,7 +621,12 @@ Partial Public Class MainWindow
                 ShouldDrawTempNote = True
 
             Else
-                Dim xLbl As Integer = (LWAV.SelectedIndex + 1) * 10000
+                Dim xLbl As Integer
+                If IsColumnSound(xColumn) Then
+                    xLbl = (LWAV.SelectedIndex + 1) * 10000
+                Else
+                    xLbl = (LBMP.SelectedIndex + 1) * 10000
+                End If
 
                 Dim Landmine As Boolean = ModifierLandmineActive()
 
@@ -610,7 +645,11 @@ Partial Public Class MainWindow
                 SelectedNotes(0).LNPair = -1
 
                 If TBWavIncrease.Checked Then
-                    IncreaseCurrentWav()
+                    If IsColumnSound(xColumn) Then
+                        IncreaseCurrentWav()
+                    Else
+                        IncreaseCurrentBmp()
+                    End If
                 End If
 
                 'KMouseDown = 1
@@ -1661,7 +1700,12 @@ Partial Public Class MainWindow
                         End If
 
                     Else
-                        Dim xValue As Integer = (LWAV.SelectedIndex + 1) * 10000
+                        Dim xValue As Integer
+                        If IsColumnSound(xColumn) Then
+                            xValue = (LWAV.SelectedIndex + 1) * 10000
+                        Else
+                            xValue = (LBMP.SelectedIndex + 1) * 10000
+                        End If
 
                         For xI1 = 1 To UBound(Notes)
                             If Notes(xI1).VPosition = xVPosition AndAlso Notes(xI1).ColumnIndex = xColumn Then _
