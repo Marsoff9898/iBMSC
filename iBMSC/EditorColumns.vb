@@ -127,6 +127,9 @@ Partial Public Class MainWindow
     Private Function IsColumnSound(ByVal iCol As Integer) As Boolean
         If iCol < niB Then Return column(iCol).isSound Else Return column(niB).isSound
     End Function
+    Private Function IsColumnImage(ByVal iCol As Integer) As Boolean
+        If iCol < niB Then Return Not (column(iCol).isNumeric Or column(iCol).isSound) Else Return Not (column(niB).isNumeric Or column(niB).isSound)
+    End Function
 
     Private Sub ChangePlaySide(ByVal swap As Boolean)
         If Rscratch Then

@@ -3816,7 +3816,7 @@ Jump2:
                 Dim xL1 As String = C10to36(xI1)
                 Dim xL2 As String = C10to36(xI1 + 1)
                 For xI2 As Integer = 1 To UBound(Notes)
-                    If IsColumnNumeric(Notes(xI2).ColumnIndex) Then Continue For
+                    If Not IsColumnSound(Notes(xI2).ColumnIndex) Then Continue For
 
                     If C10to36(Notes(xI2).Value \ 10000) = xL1 Then
                         Me.RedoRelabelNote(Notes(xI2), xI1 * 10000 + 10000, xUndo, xRedo)
@@ -3875,7 +3875,7 @@ Jump2:
                 Dim xL1 As String = C10to36(xI1 + 2)
                 Dim xL2 As String = C10to36(xI1 + 1)
                 For xI2 As Integer = 1 To UBound(Notes)
-                    If IsColumnNumeric(Notes(xI2).ColumnIndex) Then Continue For
+                    If Not IsColumnSound(Notes(xI2).ColumnIndex) Then Continue For
 
                     If C10to36(Notes(xI2).Value \ 10000) = xL1 Then
                         Me.RedoRelabelNote(Notes(xI2), xI1 * 10000 + 10000, xUndo, xRedo)
@@ -3964,12 +3964,12 @@ Jump2:
                 LBMP.Items.Item(xI1) = C10to36(xI1 + 1) & ": " & hBMP(xI1 + 1)
                 LBMP.Items.Item(xI1 - 1) = C10to36(xI1) & ": " & hBMP(xI1)
 
-                If Not WAVChangeLabel Then GoTo 1100
+                If Not WAVChangeLabel Then GoTo 1101
 
                 Dim xL1 As String = C10to36(xI1)
                 Dim xL2 As String = C10to36(xI1 + 1)
                 For xI2 As Integer = 1 To UBound(Notes)
-                    If IsColumnNumeric(Notes(xI2).ColumnIndex) Then Continue For
+                    If Not IsColumnImage(Notes(xI2).ColumnIndex) Then Continue For
 
                     If C10to36(Notes(xI2).Value \ 10000) = xL1 Then
                         Me.RedoRelabelNote(Notes(xI2), xI1 * 10000 + 10000, xUndo, xRedo)
@@ -3982,7 +3982,7 @@ Jump2:
                     End If
                 Next
 
-1100:           xIndices(xIndex) += -1
+1101:           xIndices(xIndex) += -1
             End If
         Next
 
@@ -4028,7 +4028,7 @@ Jump2:
                 Dim xL1 As String = C10to36(xI1 + 2)
                 Dim xL2 As String = C10to36(xI1 + 1)
                 For xI2 As Integer = 1 To UBound(Notes)
-                    If IsColumnNumeric(Notes(xI2).ColumnIndex) Then Continue For
+                    If Not IsColumnImage(Notes(xI2).ColumnIndex) Then Continue For
 
                     If C10to36(Notes(xI2).Value \ 10000) = xL1 Then
                         Me.RedoRelabelNote(Notes(xI2), xI1 * 10000 + 10000, xUndo, xRedo)
