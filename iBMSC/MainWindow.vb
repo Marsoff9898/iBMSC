@@ -1201,77 +1201,77 @@ Public Class MainWindow
             Next
 
             For i = 1 To UBound(Notes)
+                If IsColumnSound(Notes(i).ColumnIndex) AndAlso Notes(i).ColumnIndex < niB Then
+                    If Notes(i).LongNote Then
+                        'LongNote: If overlapping a note, then error.
+                        '          Else if already matched by a LongNote below, then match it.
+                        '          Otherwise match anything above.
+                        '              If ShortNote above then error on above.
+                        '          If nothing above then error.
+                        For j = i - 1 To 1 Step -1
+                            If Notes(j).ColumnIndex <> Notes(i).ColumnIndex Then Continue For
+                            If Notes(j).VPosition = Notes(i).VPosition Then
+                                Notes(i).HasError = True
+                                GoTo EndSearch
+                            ElseIf Notes(j).LongNote And Notes(j).LNPair = i Then
+                                Notes(i).LNPair = j
+                                GoTo EndSearch
+                            Else
+                                Exit For
+                            End If
+                        Next
 
-                If Notes(i).LongNote Then
-                    'LongNote: If overlapping a note, then error.
-                    '          Else if already matched by a LongNote below, then match it.
-                    '          Otherwise match anything above.
-                    '              If ShortNote above then error on above.
-                    '          If nothing above then error.
-                    For j = i - 1 To 1 Step -1
-                        If Notes(j).ColumnIndex <> Notes(i).ColumnIndex Then Continue For
-                        If Notes(j).VPosition = Notes(i).VPosition Then
-                            Notes(i).HasError = True
-                            GoTo EndSearch
-                        ElseIf Notes(j).LongNote And Notes(j).LNPair = i Then
+                        For j = i + 1 To UBound(Notes)
+                            If Notes(j).ColumnIndex <> Notes(i).ColumnIndex Then Continue For
                             Notes(i).LNPair = j
-                            GoTo EndSearch
-                        Else
+                            Notes(j).LNPair = i
+                            If Not Notes(j).LongNote AndAlso Notes(j).Value \ 10000 <> LnObj Then
+                                Notes(j).HasError = True
+                            End If
                             Exit For
-                        End If
-                    Next
+                        Next
 
-                    For j = i + 1 To UBound(Notes)
-                        If Notes(j).ColumnIndex <> Notes(i).ColumnIndex Then Continue For
-                        Notes(i).LNPair = j
-                        Notes(j).LNPair = i
-                        If Not Notes(j).LongNote AndAlso Notes(j).Value \ 10000 <> LnObj Then
-                            Notes(j).HasError = True
+                        If j = UBound(Notes) + 1 Then
+                            Notes(i).HasError = True
                         End If
-                        Exit For
-                    Next
-
-                    If j = UBound(Notes) + 1 Then
-                        Notes(i).HasError = True
-                    End If
 EndSearch:
 
-                ElseIf Notes(i).Value \ 10000 = LnObj And
-                    Not IsColumnNumeric(Notes(i).ColumnIndex) Then
-                    'LnObj: Match anything below.
-                    '           If matching a LongNote not matching back, then error on below.
-                    '           If overlapping a note, then error.
-                    '           If mathcing a LnObj below, then error on below.
-                    '       If nothing below, then error.
-                    For j = i - 1 To 1 Step -1
-                        If Notes(i).ColumnIndex <> Notes(j).ColumnIndex Then Continue For
-                        If Notes(j).LNPair <> 0 And Notes(j).LNPair <> i Then
-                            Notes(j).HasError = True
-                        End If
-                        Notes(i).LNPair = j
-                        Notes(j).LNPair = i
-                        If Notes(i).VPosition = Notes(j).VPosition Then
+                    ElseIf Notes(i).Value \ 10000 = LnObj Then
+                        'LnObj: Match anything below.
+                        '           If matching a LongNote not matching back, then error on below.
+                        '           If overlapping a note, then error.
+                        '           If mathcing a LnObj below, then error on below.
+                        '       If nothing below, then error.
+                        For j = i - 1 To 1 Step -1
+                            If Notes(i).ColumnIndex <> Notes(j).ColumnIndex Then Continue For
+                            If Notes(j).LNPair <> 0 And Notes(j).LNPair <> i Then
+                                Notes(j).HasError = True
+                            End If
+                            Notes(i).LNPair = j
+                            Notes(j).LNPair = i
+                            If Notes(i).VPosition = Notes(j).VPosition Then
+                                Notes(i).HasError = True
+                            End If
+                            If Notes(j).Value \ 10000 = LnObj Then
+                                Notes(j).HasError = True
+                            End If
+                            Exit For
+                        Next
+
+                        If j = 0 Then
                             Notes(i).HasError = True
                         End If
-                        If Notes(j).Value \ 10000 = LnObj Then
-                            Notes(j).HasError = True
-                        End If
-                        Exit For
-                    Next
 
-                    If j = 0 Then
-                        Notes(i).HasError = True
+                    Else
+                        'ShortNote: If overlapping a note, then error.
+                        For j = i - 1 To 1 Step -1
+                            If Notes(j).VPosition < Notes(i).VPosition Then Exit For
+                            If Notes(j).ColumnIndex <> Notes(i).ColumnIndex Then Continue For
+                            Notes(i).HasError = True
+                            Exit For
+                        Next
+
                     End If
-
-                Else
-                    'ShortNote: If overlapping a note, then error.
-                    For j = i - 1 To 1 Step -1
-                        If Notes(j).VPosition < Notes(i).VPosition Then Exit For
-                        If Notes(j).ColumnIndex <> Notes(i).ColumnIndex Then Continue For
-                        Notes(i).HasError = True
-                        Exit For
-                    Next
-
                 End If
             Next
 
