@@ -33,6 +33,7 @@ Partial Class diagFind
         Me.vr1 = New System.Windows.Forms.NumericUpDown
         Me.cb1 = New System.Windows.Forms.CheckBox
         Me.cb2 = New System.Windows.Forms.CheckBox
+        Me.cb3 = New System.Windows.Forms.CheckBox
         Me.cba1 = New System.Windows.Forms.CheckBox
         Me.cba2 = New System.Windows.Forms.CheckBox
         Me.cba3 = New System.Windows.Forms.CheckBox
@@ -49,9 +50,9 @@ Partial Class diagFind
         Me.cbd6 = New System.Windows.Forms.CheckBox
         Me.cbd7 = New System.Windows.Forms.CheckBox
         Me.cbd8 = New System.Windows.Forms.CheckBox
-        Me.cb3 = New System.Windows.Forms.CheckBox
         Me.cb4 = New System.Windows.Forms.CheckBox
         Me.cb5 = New System.Windows.Forms.CheckBox
+        Me.cb6 = New System.Windows.Forms.CheckBox
         Me.cbb1 = New System.Windows.Forms.CheckBox
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.BSAll = New System.Windows.Forms.Button
@@ -177,7 +178,7 @@ Partial Class diagFind
         Me.cb1.Name = "cb1"
         Me.cb1.Size = New System.Drawing.Size(50, 25)
         Me.cb1.TabIndex = 0
-        Me.cb1.Tag = "1"
+        Me.cb1.Tag = "2"
         Me.cb1.Text = "BPM"
         Me.cb1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cb1.UseVisualStyleBackColor = False
@@ -192,10 +193,25 @@ Partial Class diagFind
         Me.cb2.Name = "cb2"
         Me.cb2.Size = New System.Drawing.Size(50, 25)
         Me.cb2.TabIndex = 1
-        Me.cb2.Tag = "2"
+        Me.cb2.Tag = "3"
         Me.cb2.Text = "STOP"
         Me.cb2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cb2.UseVisualStyleBackColor = True
+        '
+        'cb3
+        '
+        Me.cb3.Appearance = System.Windows.Forms.Appearance.Button
+        Me.cb3.Checked = True
+        Me.cb3.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cb3.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.cb3.Location = New System.Drawing.Point(103, 2)
+        Me.cb3.Name = "cb3"
+        Me.cb3.Size = New System.Drawing.Size(50, 25)
+        Me.cb3.TabIndex = 2
+        Me.cb3.Tag = "1"
+        Me.cb3.Text = "SCROLL"
+        Me.cb3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.cb3.UseVisualStyleBackColor = True
         '
         'cba1
         '
@@ -206,8 +222,8 @@ Partial Class diagFind
         Me.cba1.Location = New System.Drawing.Point(3, 27)
         Me.cba1.Name = "cba1"
         Me.cba1.Size = New System.Drawing.Size(35, 25)
-        Me.cba1.TabIndex = 2
-        Me.cba1.Tag = "4"
+        Me.cba1.TabIndex = 3
+        Me.cba1.Tag = "5"
         Me.cba1.Text = "A1"
         Me.cba1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cba1.UseVisualStyleBackColor = True
@@ -221,8 +237,8 @@ Partial Class diagFind
         Me.cba2.Location = New System.Drawing.Point(38, 27)
         Me.cba2.Name = "cba2"
         Me.cba2.Size = New System.Drawing.Size(35, 25)
-        Me.cba2.TabIndex = 3
-        Me.cba2.Tag = "5"
+        Me.cba2.TabIndex = 4
+        Me.cba2.Tag = "6"
         Me.cba2.Text = "A2"
         Me.cba2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cba2.UseVisualStyleBackColor = True
@@ -236,8 +252,8 @@ Partial Class diagFind
         Me.cba3.Location = New System.Drawing.Point(73, 27)
         Me.cba3.Name = "cba3"
         Me.cba3.Size = New System.Drawing.Size(35, 25)
-        Me.cba3.TabIndex = 4
-        Me.cba3.Tag = "6"
+        Me.cba3.TabIndex = 5
+        Me.cba3.Tag = "7"
         Me.cba3.Text = "A3"
         Me.cba3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cba3.UseVisualStyleBackColor = True
@@ -251,8 +267,8 @@ Partial Class diagFind
         Me.cba4.Location = New System.Drawing.Point(108, 27)
         Me.cba4.Name = "cba4"
         Me.cba4.Size = New System.Drawing.Size(35, 25)
-        Me.cba4.TabIndex = 5
-        Me.cba4.Tag = "7"
+        Me.cba4.TabIndex = 6
+        Me.cba4.Tag = "8"
         Me.cba4.Text = "A4"
         Me.cba4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cba4.UseVisualStyleBackColor = True
@@ -266,8 +282,8 @@ Partial Class diagFind
         Me.cba5.Location = New System.Drawing.Point(143, 27)
         Me.cba5.Name = "cba5"
         Me.cba5.Size = New System.Drawing.Size(35, 25)
-        Me.cba5.TabIndex = 6
-        Me.cba5.Tag = "8"
+        Me.cba5.TabIndex = 7
+        Me.cba5.Tag = "9"
         Me.cba5.Text = "A5"
         Me.cba5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cba5.UseVisualStyleBackColor = True
@@ -281,8 +297,8 @@ Partial Class diagFind
         Me.cba6.Location = New System.Drawing.Point(178, 27)
         Me.cba6.Name = "cba6"
         Me.cba6.Size = New System.Drawing.Size(35, 25)
-        Me.cba6.TabIndex = 7
-        Me.cba6.Tag = "9"
+        Me.cba6.TabIndex = 8
+        Me.cba6.Tag = "10"
         Me.cba6.Text = "A6"
         Me.cba6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cba6.UseVisualStyleBackColor = True
@@ -296,8 +312,8 @@ Partial Class diagFind
         Me.cba7.Location = New System.Drawing.Point(213, 27)
         Me.cba7.Name = "cba7"
         Me.cba7.Size = New System.Drawing.Size(35, 25)
-        Me.cba7.TabIndex = 8
-        Me.cba7.Tag = "10"
+        Me.cba7.TabIndex = 9
+        Me.cba7.Tag = "11"
         Me.cba7.Text = "A7"
         Me.cba7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cba7.UseVisualStyleBackColor = True
@@ -311,8 +327,8 @@ Partial Class diagFind
         Me.cba8.Location = New System.Drawing.Point(248, 27)
         Me.cba8.Name = "cba8"
         Me.cba8.Size = New System.Drawing.Size(35, 25)
-        Me.cba8.TabIndex = 9
-        Me.cba8.Tag = "11"
+        Me.cba8.TabIndex = 10
+        Me.cba8.Tag = "12"
         Me.cba8.Text = "A8"
         Me.cba8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cba8.UseVisualStyleBackColor = True
@@ -326,8 +342,8 @@ Partial Class diagFind
         Me.cbd1.Location = New System.Drawing.Point(3, 52)
         Me.cbd1.Name = "cbd1"
         Me.cbd1.Size = New System.Drawing.Size(35, 25)
-        Me.cbd1.TabIndex = 10
-        Me.cbd1.Tag = "13"
+        Me.cbd1.TabIndex = 11
+        Me.cbd1.Tag = "14"
         Me.cbd1.Text = "D1"
         Me.cbd1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cbd1.UseVisualStyleBackColor = True
@@ -341,8 +357,8 @@ Partial Class diagFind
         Me.cbd2.Location = New System.Drawing.Point(38, 52)
         Me.cbd2.Name = "cbd2"
         Me.cbd2.Size = New System.Drawing.Size(35, 25)
-        Me.cbd2.TabIndex = 11
-        Me.cbd2.Tag = "14"
+        Me.cbd2.TabIndex = 12
+        Me.cbd2.Tag = "15"
         Me.cbd2.Text = "D2"
         Me.cbd2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cbd2.UseVisualStyleBackColor = True
@@ -356,8 +372,8 @@ Partial Class diagFind
         Me.cbd3.Location = New System.Drawing.Point(73, 52)
         Me.cbd3.Name = "cbd3"
         Me.cbd3.Size = New System.Drawing.Size(35, 25)
-        Me.cbd3.TabIndex = 12
-        Me.cbd3.Tag = "15"
+        Me.cbd3.TabIndex = 13
+        Me.cbd3.Tag = "16"
         Me.cbd3.Text = "D3"
         Me.cbd3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cbd3.UseVisualStyleBackColor = True
@@ -371,8 +387,8 @@ Partial Class diagFind
         Me.cbd4.Location = New System.Drawing.Point(108, 52)
         Me.cbd4.Name = "cbd4"
         Me.cbd4.Size = New System.Drawing.Size(35, 25)
-        Me.cbd4.TabIndex = 13
-        Me.cbd4.Tag = "16"
+        Me.cbd4.TabIndex = 14
+        Me.cbd4.Tag = "17"
         Me.cbd4.Text = "D4"
         Me.cbd4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cbd4.UseVisualStyleBackColor = True
@@ -386,8 +402,8 @@ Partial Class diagFind
         Me.cbd5.Location = New System.Drawing.Point(143, 52)
         Me.cbd5.Name = "cbd5"
         Me.cbd5.Size = New System.Drawing.Size(35, 25)
-        Me.cbd5.TabIndex = 14
-        Me.cbd5.Tag = "17"
+        Me.cbd5.TabIndex = 15
+        Me.cbd5.Tag = "18"
         Me.cbd5.Text = "D5"
         Me.cbd5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cbd5.UseVisualStyleBackColor = True
@@ -401,8 +417,8 @@ Partial Class diagFind
         Me.cbd6.Location = New System.Drawing.Point(178, 52)
         Me.cbd6.Name = "cbd6"
         Me.cbd6.Size = New System.Drawing.Size(35, 25)
-        Me.cbd6.TabIndex = 15
-        Me.cbd6.Tag = "18"
+        Me.cbd6.TabIndex = 16
+        Me.cbd6.Tag = "19"
         Me.cbd6.Text = "D6"
         Me.cbd6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cbd6.UseVisualStyleBackColor = True
@@ -416,8 +432,8 @@ Partial Class diagFind
         Me.cbd7.Location = New System.Drawing.Point(213, 52)
         Me.cbd7.Name = "cbd7"
         Me.cbd7.Size = New System.Drawing.Size(35, 25)
-        Me.cbd7.TabIndex = 16
-        Me.cbd7.Tag = "19"
+        Me.cbd7.TabIndex = 17
+        Me.cbd7.Tag = "20"
         Me.cbd7.Text = "D7"
         Me.cbd7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cbd7.UseVisualStyleBackColor = True
@@ -431,26 +447,11 @@ Partial Class diagFind
         Me.cbd8.Location = New System.Drawing.Point(248, 52)
         Me.cbd8.Name = "cbd8"
         Me.cbd8.Size = New System.Drawing.Size(35, 25)
-        Me.cbd8.TabIndex = 17
-        Me.cbd8.Tag = "20"
+        Me.cbd8.TabIndex = 18
+        Me.cbd8.Tag = "21"
         Me.cbd8.Text = "D8"
         Me.cbd8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cbd8.UseVisualStyleBackColor = True
-        '
-        'cb3
-        '
-        Me.cb3.Appearance = System.Windows.Forms.Appearance.Button
-        Me.cb3.Checked = True
-        Me.cb3.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cb3.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.cb3.Location = New System.Drawing.Point(3, 77)
-        Me.cb3.Name = "cb3"
-        Me.cb3.Size = New System.Drawing.Size(55, 25)
-        Me.cb3.TabIndex = 18
-        Me.cb3.Tag = "22"
-        Me.cb3.Text = "BGA"
-        Me.cb3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.cb3.UseVisualStyleBackColor = True
         '
         'cb4
         '
@@ -458,29 +459,44 @@ Partial Class diagFind
         Me.cb4.Checked = True
         Me.cb4.CheckState = System.Windows.Forms.CheckState.Checked
         Me.cb4.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.cb4.Location = New System.Drawing.Point(58, 77)
+        Me.cb4.Location = New System.Drawing.Point(3, 77)
         Me.cb4.Name = "cb4"
         Me.cb4.Size = New System.Drawing.Size(55, 25)
         Me.cb4.TabIndex = 19
         Me.cb4.Tag = "23"
-        Me.cb4.Text = "LAYER"
+        Me.cb4.Text = "BGA"
         Me.cb4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cb4.UseVisualStyleBackColor = True
         '
-        'cb5
+        'cb4
         '
         Me.cb5.Appearance = System.Windows.Forms.Appearance.Button
         Me.cb5.Checked = True
         Me.cb5.CheckState = System.Windows.Forms.CheckState.Checked
         Me.cb5.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.cb5.Location = New System.Drawing.Point(113, 77)
+        Me.cb5.Location = New System.Drawing.Point(58, 77)
         Me.cb5.Name = "cb5"
         Me.cb5.Size = New System.Drawing.Size(55, 25)
         Me.cb5.TabIndex = 20
         Me.cb5.Tag = "24"
-        Me.cb5.Text = "POOR"
+        Me.cb5.Text = "LAYER"
         Me.cb5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cb5.UseVisualStyleBackColor = True
+        '
+        'cb6
+        '
+        Me.cb6.Appearance = System.Windows.Forms.Appearance.Button
+        Me.cb6.Checked = True
+        Me.cb6.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cb6.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.cb6.Location = New System.Drawing.Point(113, 77)
+        Me.cb6.Name = "cb6"
+        Me.cb6.Size = New System.Drawing.Size(55, 25)
+        Me.cb6.TabIndex = 21
+        Me.cb6.Tag = "25"
+        Me.cb6.Text = "POOR"
+        Me.cb6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.cb6.UseVisualStyleBackColor = True
         '
         'cbb1
         '
@@ -491,8 +507,8 @@ Partial Class diagFind
         Me.cbb1.Location = New System.Drawing.Point(3, 102)
         Me.cbb1.Name = "cbb1"
         Me.cbb1.Size = New System.Drawing.Size(35, 25)
-        Me.cbb1.TabIndex = 21
-        Me.cbb1.Tag = "26"
+        Me.cbb1.TabIndex = 22
+        Me.cbb1.Tag = "27"
         Me.cbb1.Text = "B1"
         Me.cbb1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.cbb1.UseVisualStyleBackColor = True
@@ -507,9 +523,10 @@ Partial Class diagFind
         Me.Panel1.Controls.Add(Me.cba1)
         Me.Panel1.Controls.Add(Me.cbd7)
         Me.Panel1.Controls.Add(Me.cb4)
+        Me.Panel1.Controls.Add(Me.cb5)
         Me.Panel1.Controls.Add(Me.cba2)
         Me.Panel1.Controls.Add(Me.cbd6)
-        Me.Panel1.Controls.Add(Me.cb5)
+        Me.Panel1.Controls.Add(Me.cb6)
         Me.Panel1.Controls.Add(Me.cba3)
         Me.Panel1.Controls.Add(Me.cbd5)
         Me.Panel1.Controls.Add(Me.cbb1)
@@ -885,6 +902,7 @@ Partial Class diagFind
     Friend WithEvents vr1 As System.Windows.Forms.NumericUpDown
     Friend WithEvents cb1 As System.Windows.Forms.CheckBox
     Friend WithEvents cb2 As System.Windows.Forms.CheckBox
+    Friend WithEvents cb3 As System.Windows.Forms.CheckBox
     Friend WithEvents cba1 As System.Windows.Forms.CheckBox
     Friend WithEvents cba2 As System.Windows.Forms.CheckBox
     Friend WithEvents cba3 As System.Windows.Forms.CheckBox
@@ -901,9 +919,9 @@ Partial Class diagFind
     Friend WithEvents cbd6 As System.Windows.Forms.CheckBox
     Friend WithEvents cbd7 As System.Windows.Forms.CheckBox
     Friend WithEvents cbd8 As System.Windows.Forms.CheckBox
-    Friend WithEvents cb3 As System.Windows.Forms.CheckBox
     Friend WithEvents cb4 As System.Windows.Forms.CheckBox
     Friend WithEvents cb5 As System.Windows.Forms.CheckBox
+    Friend WithEvents cb6 As System.Windows.Forms.CheckBox
     Friend WithEvents cbb1 As System.Windows.Forms.CheckBox
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents BSAll As System.Windows.Forms.Button

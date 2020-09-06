@@ -2202,7 +2202,8 @@ StartCount:     If Not NTInput Then
 
         If Not NTInput Then
             For xI1 = 1 To UBound(Notes)
-                If Notes(xI1).ColumnIndex >= niA1 And Notes(xI1).ColumnIndex <= niA8 Then xIAll += 1
+                If Notes(xI1).ColumnIndex >= niA1 AndAlso Notes(xI1).ColumnIndex <= niA8 Then xIAll += 1
+                If (Notes(xI1).ColumnIndex >= niD1 AndAlso Notes(xI1).ColumnIndex <= niD8) AndAlso column(Notes(xI1).ColumnIndex).isVisible Then xIAll += 1
             Next
 
         Else
@@ -2211,7 +2212,12 @@ StartCount:     If Not NTInput Then
                     xIAll += 1
                     If Notes(xI1).Length <> 0 Then xIAll += 1
                 End If
+                If (Notes(xI1).ColumnIndex >= niD1 And Notes(xI1).ColumnIndex <= niD8) AndAlso column(Notes(xI1).ColumnIndex).isVisible Then
+                    xIAll += 1
+                    If Notes(xI1).Length <> 0 Then xIAll += 1
+                End If
             Next
+
         End If
 
         TBStatistics.Text = xIAll
