@@ -250,7 +250,7 @@ Partial Class dgStatistics
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(56, 25)
         Me.Label14.TabIndex = 13
-        Me.Label14.Text = "LnObj"
+        Me.Label14.Text = "Hidden"
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label15
@@ -262,7 +262,7 @@ Partial Class dgStatistics
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(56, 25)
         Me.Label15.TabIndex = 13
-        Me.Label15.Text = "Hidden"
+        Me.Label15.Text = "LandMine"
         Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'dgStatistics

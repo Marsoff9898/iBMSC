@@ -1,5 +1,5 @@
 ﻿Namespace Editor
-    Public Structure Note
+    Public Class Note
         Public VPosition As Double
         Public ColumnIndex As Integer
         Public Value As Long 'x10000
@@ -12,27 +12,50 @@
         Public Selected As Boolean
         Public HasError As Boolean
 
-        'Public TempBoolean As Boolean
         Public TempSelected As Boolean
         Public TempMouseDown As Boolean
-        Public TempIndex As Integer
+
+        ' Temporary 'origin from where we are moving this note' variables
+        ' see EditorPanel.OnSelectModeMoveNotes
+        Public MoveStartVPos As Double
+        Public MoveStartColumnIndex As Integer
 
         Public Function equalsBMSE(note As Note) As Boolean
             Return VPosition = note.VPosition And
-               ColumnIndex = note.ColumnIndex And
-               Value = note.Value And
-               LongNote = note.LongNote And
-               Hidden = note.Hidden And
-               Landmine = note.Landmine
+                   ColumnIndex = note.ColumnIndex And
+                   Value = note.Value And
+                   LongNote = note.LongNote And
+                   Hidden = note.Hidden And
+                   Landmine = note.Landmine
         End Function
+
         Public Function equalsNT(note As Note) As Boolean
             Return VPosition = note.VPosition And
-               ColumnIndex = note.ColumnIndex And
-               Value = note.Value And
-               Hidden = note.Hidden And
-               Length = note.Length And
-               Landmine = note.Landmine
+                   ColumnIndex = note.ColumnIndex And
+                   Value = note.Value And
+                   Hidden = note.Hidden And
+                   Length = note.Length And
+                   Landmine = note.Landmine
         End Function
+
+        Public Function Clone() As Note
+            Return MemberwiseClone()
+        End Function
+
+        ''' <summary>
+        ''' Same as Clone() though using MoveStartVPos and MoveStartColumnIndex as the VPosition and ColumnIndex.
+        ''' </summary>
+        ''' <returns>Clone of this note with the VPos and ColumnIndex equal to the MoveStart position.</returns>
+        Public Function MoveStartClone() As Note
+            Dim ret = Clone()
+            ret.VPosition = MoveStartVPos
+            ret.ColumnIndex = MoveStartColumnIndex
+            Return ret
+        End Function
+
+        Public Sub New()
+            ' simple initializer
+        End Sub
 
         Public Sub New(nColumnIndex As Integer,
                        nVposition As Double,
@@ -82,5 +105,5 @@
             Dim br As New BinaryReader(New MemoryStream(bytes))
             FromBinReader(br)
         End Sub
-    End Structure
+    End Class
 End Namespace
