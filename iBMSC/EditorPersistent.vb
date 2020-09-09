@@ -79,11 +79,11 @@ Partial Public Class MainWindow
             .WriteAttributeString("AutoFocusMouseEnter", AutoFocusMouseEnter)
             .WriteAttributeString("FirstClickDisabled", FirstClickDisabled)
             .WriteAttributeString("ShowFileName", ShowFileName)
+            .WriteAttributeString("ChangePlaySide", Rscratch)
             .WriteAttributeString("MiddleButtonMoveMethod", MiddleButtonMoveMethod)
             .WriteAttributeString("AutoSaveInterval", AutoSaveInterval)
             .WriteAttributeString("PreviewOnClick", PreviewOnClick)
             '.WriteAttributeString("PreviewErrorCheck", PreviewErrorCheck)
-            .WriteAttributeString("ChangePlaySide", Rscratch)
             .WriteAttributeString("ClickStopPreview", ClickStopPreview)
             .WriteEndElement()
 
@@ -725,6 +725,7 @@ EndOfSub:
                 XMLLoadLocale(eToolBar.Item("ErrorCheck"), TBErrorCheck.Text)
                 XMLLoadLocale(eToolBar.Item("PreviewOnClick"), TBPreviewOnClick.Text)
                 XMLLoadLocale(eToolBar.Item("ShowFileName"), TBShowFileName.Text)
+                XMLLoadLocale(eToolBar.Item("ChangePlaySide"), TBChangePlaySide.Text)
                 XMLLoadLocale(eToolBar.Item("Undo"), TBUndo.Text)
                 XMLLoadLocale(eToolBar.Item("Redo"), TBRedo.Text)
                 XMLLoadLocale(eToolBar.Item("NT"), TBNTInput.Text)
@@ -754,6 +755,7 @@ EndOfSub:
                 XMLLoadLocale(eStatusBar.Item("Length"), Strings.StatusBar.Length)
                 XMLLoadLocale(eStatusBar.Item("LongNote"), Strings.StatusBar.LongNote)
                 XMLLoadLocale(eStatusBar.Item("Hidden"), Strings.StatusBar.Hidden)
+                XMLLoadLocale(eStatusBar.Item("LandMine"), Strings.StatusBar.LandMine)
                 XMLLoadLocale(eStatusBar.Item("Error"), Strings.StatusBar.Err)
                 XMLLoadLocale(eStatusBar.Item("SelStart"), FSSS.ToolTipText)
                 XMLLoadLocale(eStatusBar.Item("SelLength"), FSSL.ToolTipText)
@@ -1017,6 +1019,7 @@ EndOfSub:
                 XMLLoadLocale(eStatistics.Item("lLong"), Strings.fStatistics.lLong)
                 XMLLoadLocale(eStatistics.Item("lLnObj"), Strings.fStatistics.lLnObj)
                 XMLLoadLocale(eStatistics.Item("lHidden"), Strings.fStatistics.lHidden)
+                XMLLoadLocale(eStatistics.Item("lLandMine"), Strings.fStatistics.lLandMine)
                 XMLLoadLocale(eStatistics.Item("lErrors"), Strings.fStatistics.lErrors)
             End If
 

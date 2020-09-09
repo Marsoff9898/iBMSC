@@ -522,6 +522,15 @@ Public Class MainWindow
         note.Selected = note.Selected And nEnabled(note.ColumnIndex)
         Notes(UBound(Notes)) = note
 
+        If TBWavIncrease.Checked Then
+            If IsColumnSound(note.ColumnIndex) Then
+                IncreaseCurrentWav()
+            End If
+            If IsColumnImage(note.ColumnIndex) Then
+                IncreaseCurrentBmp()
+            End If
+        End If
+
         If SortAndUpdatePairing Then SortByVPositionInsertion() : UpdatePairing()
         CalculateTotalPlayableNotes()
     End Sub
@@ -2167,8 +2176,9 @@ EndSearch:
 StartCount:     If Not NTInput Then
                     If Not .LongNote Then data(row, 0) += 1
                     If .LongNote Then data(row, 1) += 1
-                    If .Value \ 10000 = LnObj Then data(row, 2) += 1
-                    If .Hidden Then data(row, 3) += 1
+                    If .Value \ 10000 = LnObj Then data(row, 1) += 1
+                    If .Hidden Then data(row, 2) += 1
+                    If .Landmine Then data(row, 3) += 1
                     If .HasError Then data(row, 4) += 1
                     data(row, 5) += 1
 
@@ -2177,8 +2187,9 @@ StartCount:     If Not NTInput Then
                     If .Length = 0 Then data(row, 0) += 1
                     If .Length <> 0 Then data(row, 1) += 2 : noteUnit = 2
 
-                    If .Value \ 10000 = LnObj Then data(row, 2) += noteUnit
-                    If .Hidden Then data(row, 3) += noteUnit
+                    If .Value \ 10000 = LnObj Then data(row, 1) += noteUnit
+                    If .Hidden Then data(row, 2) += noteUnit
+                    If .Landmine Then data(row, 3) += noteUnit
                     If .HasError Then data(row, 4) += noteUnit
                     data(row, 5) += noteUnit
 
@@ -2259,6 +2270,7 @@ StartCount:     If Not NTInput Then
                 FSM.Text = Add3Zeros(xMeasure)
                 FST.Text = ""
                 FSH.Text = ""
+                FSL.Text = ""
                 FSE.Text = ""
 
             Else
@@ -2279,6 +2291,7 @@ StartCount:     If Not NTInput Then
                 FSM.Text = Add3Zeros(xMeasure)
                 FST.Text = IIf(NTInput, Strings.StatusBar.Length & " = " & Notes(xI1).Length, IIf(Notes(xI1).LongNote, Strings.StatusBar.LongNote, ""))
                 FSH.Text = IIf(Notes(xI1).Hidden, Strings.StatusBar.Hidden, "")
+                FSL.Text = IIf(Notes(xI1).Landmine, Strings.StatusBar.LandMine, "")
                 FSE.Text = IIf(Notes(xI1).HasError, Strings.StatusBar.Err, "")
 
             End If
@@ -2297,10 +2310,17 @@ StartCount:     If Not NTInput Then
             FSP4.Text = TempVPosition.ToString() & "  "
             TimeStatusLabel.Text = GetTimeFromVPosition(TempVPosition).ToString("F4")
             FSC.Text = nTitle(SelectedColumn)
-            FSW.Text = C10to36(LWAV.SelectedIndex + 1)
+            If IsColumnSound(SelectedColumn) Then
+                FSW.Text = C10to36(LWAV.SelectedIndex + 1)
+            ElseIf IsColumnImage(SelectedColumn) Then
+                FSW.Text = C10to36(LBMP.SelectedIndex + 1)
+            Else
+                FSW.Text = ""
+            End If
             FSM.Text = Add3Zeros(xMeasure)
-            FST.Text = IIf(NTInput, TempLength, IIf(My.Computer.Keyboard.ShiftKeyDown, Strings.StatusBar.LongNote, ""))
-            FSH.Text = IIf(My.Computer.Keyboard.CtrlKeyDown, Strings.StatusBar.Hidden, "")
+            FST.Text = IIf(NTInput, TempLength, IIf(My.Computer.Keyboard.ShiftKeyDown And Not My.Computer.Keyboard.CtrlKeyDown, Strings.StatusBar.LongNote, ""))
+            FSH.Text = IIf(My.Computer.Keyboard.CtrlKeyDown And Not My.Computer.Keyboard.ShiftKeyDown, Strings.StatusBar.Hidden, "")
+            FSL.Text = IIf(My.Computer.Keyboard.ShiftKeyDown And My.Computer.Keyboard.CtrlKeyDown, Strings.StatusBar.LandMine, "")
 
         ElseIf TBTimeSelect.Checked Then
             FSSS.Text = vSelStart

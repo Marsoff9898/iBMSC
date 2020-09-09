@@ -355,6 +355,7 @@ Partial Class MainWindow
         Me.TimeStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FST = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FSH = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.FSL = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FSE = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TimerMiddle = New System.Windows.Forms.Timer(Me.components)
         Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
@@ -3933,7 +3934,7 @@ Partial Class MainWindow
         'FStatus
         '
         Me.FStatus.AccessibleRole = System.Windows.Forms.AccessibleRole.StatusBar
-        Me.FStatus.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FSC, Me.FSW, Me.FSM, Me.FSP1, Me.FSP3, Me.FSP2, Me.FSP4, Me.TimeStatusLabel, Me.FST, Me.FSH, Me.FSE})
+        Me.FStatus.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FSC, Me.FSW, Me.FSM, Me.FSP1, Me.FSP3, Me.FSP2, Me.FSP4, Me.TimeStatusLabel, Me.FST, Me.FSH, Me.FSL, Me.FSE})
         Me.FStatus.Location = New System.Drawing.Point(0, 0)
         Me.FStatus.Name = "FStatus"
         Me.FStatus.ShowItemToolTips = True
@@ -4025,6 +4026,13 @@ Partial Class MainWindow
         Me.FSH.Name = "FSH"
         Me.FSH.Size = New System.Drawing.Size(46, 17)
         Me.FSH.Text = "Hidden"
+        '
+        'FSL
+        '
+        Me.FSL.ForeColor = System.Drawing.Color.Orange
+        Me.FSL.Name = "FSL"
+        Me.FSL.Size = New System.Drawing.Size(46, 17)
+        Me.FSL.Text = "LandMine"
         '
         'FSE
         '
@@ -4534,6 +4542,7 @@ Partial Class MainWindow
     Friend WithEvents FSP4 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents FST As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents FSH As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents FSL As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents FSE As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents FStatus2 As System.Windows.Forms.StatusStrip
     Friend WithEvents BVCReverse As System.Windows.Forms.ToolStripButton

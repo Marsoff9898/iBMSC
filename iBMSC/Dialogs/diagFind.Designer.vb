@@ -176,7 +176,7 @@ Partial Class diagFind
         Me.cb1.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cb1.Location = New System.Drawing.Point(3, 2)
         Me.cb1.Name = "cb1"
-        Me.cb1.Size = New System.Drawing.Size(50, 25)
+        Me.cb1.Size = New System.Drawing.Size(60, 25)
         Me.cb1.TabIndex = 0
         Me.cb1.Tag = "2"
         Me.cb1.Text = "BPM"
@@ -191,7 +191,7 @@ Partial Class diagFind
         Me.cb2.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cb2.Location = New System.Drawing.Point(53, 2)
         Me.cb2.Name = "cb2"
-        Me.cb2.Size = New System.Drawing.Size(50, 25)
+        Me.cb2.Size = New System.Drawing.Size(60, 25)
         Me.cb2.TabIndex = 1
         Me.cb2.Tag = "3"
         Me.cb2.Text = "STOP"
@@ -206,7 +206,7 @@ Partial Class diagFind
         Me.cb3.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cb3.Location = New System.Drawing.Point(103, 2)
         Me.cb3.Name = "cb3"
-        Me.cb3.Size = New System.Drawing.Size(50, 25)
+        Me.cb3.Size = New System.Drawing.Size(60, 25)
         Me.cb3.TabIndex = 2
         Me.cb3.Tag = "1"
         Me.cb3.Text = "SCROLL"

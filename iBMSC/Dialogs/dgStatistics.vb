@@ -25,8 +25,8 @@ Public Class dgStatistics
         Label1.Text = Strings.fStatistics.lTotal
         Label12.Text = Strings.fStatistics.lShort
         Label13.Text = Strings.fStatistics.lLong
-        Label14.Text = Strings.fStatistics.lLnObj
-        Label15.Text = Strings.fStatistics.lHidden
+        Label14.Text = Strings.fStatistics.lHidden
+        Label15.Text = Strings.fStatistics.lLandMine
         Label16.Text = Strings.fStatistics.lErrors
         Label2.Text = Strings.fStatistics.lTotal
         OK_Button.Text = Strings.OK

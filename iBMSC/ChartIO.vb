@@ -830,6 +830,10 @@ Jump1:
                     TBShowFileName.Checked = ShowFileName
                     TBShowFileName_Click(TBShowFileName, New System.EventArgs)
 
+                    Rscratch = xPref And &H16
+                    TBChangePlaySide.Checked = Rscratch
+                    TBChangePlaySide_Click(TBChangePlaySide, New System.EventArgs)
+
                     mnSMenu.Checked = xPref And &H100
                     mnSTB.Checked = xPref And &H200
                     mnSOP.Checked = xPref And &H400
@@ -1032,6 +1036,7 @@ EndOfSub:
             If ErrorCheck Then xPref = xPref Or &H2
             If PreviewOnClick Then xPref = xPref Or &H4
             If ShowFileName Then xPref = xPref Or &H8
+            If Rscratch Then xPref = xPref Or &H16
             If mnSMenu.Checked Then xPref = xPref Or &H100
             If mnSTB.Checked Then xPref = xPref Or &H200
             If mnSOP.Checked Then xPref = xPref Or &H400

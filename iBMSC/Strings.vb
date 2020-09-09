@@ -8,6 +8,7 @@ Public Class Strings
         Public Shared Length As String = "Length"
         Public Shared LongNote As String = "LongNote"
         Public Shared Hidden As String = "Hidden"
+        Public Shared LandMine As String = "LandMine"
         Public Shared Err As String = "Error"
     End Class
 
@@ -95,6 +96,7 @@ Public Class Strings
         Public Shared lLong As String = "Long"
         Public Shared lLnObj As String = "LnObj"
         Public Shared lHidden As String = "Hidden"
+        Public Shared lLandMine As String = "LandMine"
         Public Shared lErrors As String = "Errors"
     End Class
 
@@ -188,6 +190,7 @@ Public Class Strings
         Public Shared ShortNote As String = "Short"
         Public Shared LongNote As String = "Long"
         Public Shared Hidden As String = "Hidden"
+        Public Shared LandMine As String = "LandMine"
         Public Shared Visible As String = "Visible"
         Public Shared Column As String = "Column"
         Public Shared SelectAll As String = "Select All"
