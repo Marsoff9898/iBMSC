@@ -1270,7 +1270,6 @@ EndSearch:
                         If j = 0 Then
                             Notes(i).HasError = True
                         End If
-
                     Else
                         'ShortNote: If overlapping a note, then error.
                         For j = i - 1 To 1 Step -1
@@ -1279,7 +1278,18 @@ EndSearch:
                             Notes(i).HasError = True
                             Exit For
                         Next
-
+                    End If
+                Else
+                    If Notes(i).Hidden Or Notes(i).Landmine Then
+                        Notes(i).HasError = True
+                    Else
+                        'ShortNote: If overlapping a note, then error.
+                        For j = i - 1 To 1 Step -1
+                            If Notes(j).VPosition < Notes(i).VPosition Then Exit For
+                            If Notes(j).ColumnIndex <> Notes(i).ColumnIndex Then Continue For
+                            Notes(i).HasError = True
+                            Exit For
+                        Next
                     End If
                 End If
             Next
