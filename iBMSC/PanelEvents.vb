@@ -418,7 +418,7 @@ Partial Public Class MainWindow
 
         If MiddleButtonClicked Then MiddleButtonClicked = False : Exit Sub
 
-        Dim xHS As Long = PanelHScroll(PanelFocus)
+        Dim xHS As Long = PanelhBMSCROLL(PanelFocus)
         Dim xVS As Long = PanelVScroll(PanelFocus)
         Dim xHeight As Integer = spMain(PanelFocus).Height
 
@@ -934,7 +934,7 @@ Partial Public Class MainWindow
 
         Dim iI As Integer = sender.Tag
 
-        Dim xHS As Long = PanelHScroll(iI)
+        Dim xHS As Long = PanelhBMSCROLL(iI)
         Dim xVS As Long = PanelVScroll(iI)
         Dim xHeight As Integer = spMain(iI).Height
         Dim xWidth As Integer = spMain(iI).Width
@@ -1667,7 +1667,7 @@ Partial Public Class MainWindow
                 xVPosition = (sender.Height - PanelVScroll(iI) * gxHeight - e.Y - 1) / gxHeight 'VPosition of the mouse
                 If gSnap Then xVPosition = SnapToGrid(xVPosition)
 
-                Dim xColumn = GetColumnAtEvent(e, PanelHScroll(iI))
+                Dim xColumn = GetColumnAtEvent(e, PanelhBMSCROLL(iI))
 
                 If e.Button = Windows.Forms.MouseButtons.Left Then
                     Dim HiddenNote As Boolean = ModifierHiddenActive()

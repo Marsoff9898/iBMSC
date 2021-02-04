@@ -16,7 +16,7 @@ Partial Public Class MainWindow
         ReDim hWAV(1295)
         ReDim hBPM(1295)    'x10000
         ReDim hSTOP(1295)
-        ReDim hSCROLL(1295)
+        ReDim hBMSCROLL(1295)
         Me.InitializeNewBMS()
         Me.InitializeOpenBMS()
 
@@ -64,7 +64,7 @@ Partial Public Class MainWindow
                 hSTOP(C36to10(Mid(sLineTrim, Len("#STOP") + 1, 2))) = Val(Mid(sLineTrim, Len("#STOP") + 4)) * 10000
 
             ElseIf sLineTrim.StartsWith("#SCROLL", StringComparison.CurrentCultureIgnoreCase) Then
-                hSCROLL(C36to10(Mid(sLineTrim, Len("#SCROLL") + 1, 2))) = Val(Mid(sLineTrim, Len("#SCROLL") + 4)) * 10000
+                hBMSCROLL(C36to10(Mid(sLineTrim, Len("#SCROLL") + 1, 2))) = Val(Mid(sLineTrim, Len("#SCROLL") + 4)) * 10000
 
 
             ElseIf sLineTrim.StartsWith("#TITLE", StringComparison.CurrentCultureIgnoreCase) Then
@@ -202,7 +202,7 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
                     If Channel = "03" Then .Value = Convert.ToInt32(Mid(sLineTrim, xI1, 2), 16) * 10000
                     If Channel = "08" Then .Value = hBPM(C36to10(Mid(sLineTrim, xI1, 2)))
                     If Channel = "09" Then .Value = hSTOP(C36to10(Mid(sLineTrim, xI1, 2)))
-                    If Channel = "SC" Then .Value = hSCROLL(C36to10(Mid(sLineTrim, xI1, 2)))
+                    If Channel = "SC" Then .Value = hBMSCROLL(C36to10(Mid(sLineTrim, xI1, 2)))
                 End With
 
             Next
@@ -262,7 +262,7 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
         ' We regenerate these when traversing the bms event list.
         ReDim hBPM(0)
         ReDim hSTOP(0)
-        ReDim hSCROLL(0)
+        ReDim hBMSCROLL(0)
 
         Dim xNTInput As Boolean = NTInput
         Dim xKBackUp() As Note = Notes
@@ -327,8 +327,8 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
         If UBound(hSTOP) > IIf(STOPx1296, 1295, 255) Then MsgBox(Strings.Messages.SaveWarning & vbCrLf &
                                                            Strings.Messages.STOPOverflowError & UBound(hSTOP) & " > " & IIf(STOPx1296, 1295, 255) & vbCrLf &
                                                   Strings.Messages.SavedFileWillContainErrors, MsgBoxStyle.Exclamation)
-        If UBound(hSCROLL) > 1295 Then MsgBox(Strings.Messages.SaveWarning & vbCrLf &
-                                           Strings.Messages.SCROLLOverflowError & UBound(hSCROLL) & " > " & 1295 & vbCrLf &
+        If UBound(hBMSCROLL) > 1295 Then MsgBox(Strings.Messages.SaveWarning & vbCrLf &
+                                           Strings.Messages.SCROLLOverflowError & UBound(hBMSCROLL) & " > " & 1295 & vbCrLf &
                                          Strings.Messages.SavedFileWillContainErrors, MsgBoxStyle.Exclamation)
 
         ' Add expansion text
@@ -399,9 +399,9 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
                 IIf(STOPx1296, C10to36(i), Mid("0" & Hex(i), Len(Hex(i)))) &
                 " " & WriteDecimalWithDot(hSTOP(i) / 10000) & vbCrLf
         Next
-        For i = 1 To UBound(hSCROLL)
+        For i = 1 To UBound(hBMSCROLL)
             xStrHeader &= "#SCROLL" &
-                C10to36(i) & " " & WriteDecimalWithDot(hSCROLL(i) / 10000) & vbCrLf
+                C10to36(i) & " " & WriteDecimalWithDot(hBMSCROLL(i) / 10000) & vbCrLf
         Next
 
         Return xStrHeader
@@ -477,13 +477,13 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
                         NoteStrings(UBound(NoteStrings)) = IIf(STOPx1296, C10to36(StopIndex), Mid("0" & Hex(StopIndex), Len(Hex(StopIndex))))
                     ElseIf CurrentBMSChannel = "SC" Then 'If SCROLL
                         Dim ScrollIndex
-                        For ScrollIndex = 1 To UBound(hSCROLL) ' find SCROLL value in existing array
-                            If currentNote.Value = hSCROLL(ScrollIndex) Then Exit For
+                        For ScrollIndex = 1 To UBound(hBMSCROLL) ' find SCROLL value in existing array
+                            If currentNote.Value = hBMSCROLL(ScrollIndex) Then Exit For
                         Next
 
-                        If ScrollIndex > UBound(hSCROLL) Then ' Didn't find it, add it
-                            ReDim Preserve hSCROLL(UBound(hSCROLL) + 1)
-                            hSCROLL(UBound(hSCROLL)) = currentNote.Value
+                        If ScrollIndex > UBound(hBMSCROLL) Then ' Didn't find it, add it
+                            ReDim Preserve hBMSCROLL(UBound(hBMSCROLL) + 1)
+                            hBMSCROLL(UBound(hBMSCROLL)) = currentNote.Value
                         End If
                         NoteStrings(UBound(NoteStrings)) = C10to36(ScrollIndex)
                     Else
@@ -520,7 +520,7 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
                     If BMSChannelList(CurrentBMSChannel) = "09" Then _
                         xprevNotes(UBound(xprevNotes)).Value = IIf(STOPx1296, hSTOP(C36to10(NoteStrings(i))), hSTOP(Convert.ToInt32(NoteStrings(i), 16)))
                     If BMSChannelList(CurrentBMSChannel) = "SC" Then _
-                        xprevNotes(UBound(xprevNotes)).Value = hSCROLL(C36to10(NoteStrings(i)))
+                        xprevNotes(UBound(xprevNotes)).Value = hBMSCROLL(C36to10(NoteStrings(i)))
                     Continue For
                 End If
                 If xStrKey(CInt(relativeMeasurePos(i) / xGCD)) <> "00" Then
@@ -629,7 +629,7 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
         ReDim hBMP(1295)
         ReDim hBPM(1295)    'x10000
         ReDim hSTOP(1295)
-        ReDim hSCROLL(1295)
+        ReDim hBMSCROLL(1295)
         Me.InitializeNewBMS()
 
         With Notes(0)

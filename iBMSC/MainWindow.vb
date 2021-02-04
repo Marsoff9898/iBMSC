@@ -161,7 +161,7 @@ Public Class MainWindow
     Dim hBMP(1295) As String
     Dim hBPM(1295) As Long   'x10000
     Dim hSTOP(1295) As Long
-    Dim hSCROLL(1295) As Long
+    Dim hBMSCROLL(1295) As Long
 
     '----Grid Options
     Dim gSnap As Boolean = True
@@ -226,7 +226,7 @@ Public Class MainWindow
 
     '----Split Panel Options
     Dim PanelWidth() As Single = {0, 100, 0}
-    Dim PanelHScroll() As Integer = {0, 0, 0}
+    Dim PanelhBMSCROLL() As Integer = {0, 0, 0}
     Dim PanelVScroll() As Integer = {0, 0, 0}
     Dim spLock() As Boolean = {False, False, False}
     Dim spDiff() As Integer = {0, 0, 0}
@@ -1368,7 +1368,7 @@ EndSearch:
         ReDim hBMP(1295)
         ReDim hBPM(1295)    'x10000
         ReDim hSTOP(1295)
-        ReDim hSCROLL(1295)
+        ReDim hBMSCROLL(1295)
         THGenre.Text = ""
         THTitle.Text = ""
         THArtist.Text = ""
@@ -1417,7 +1417,7 @@ EndSearch:
         ReDim hBMP(1295)
         ReDim hBPM(1295)    'x10000
         ReDim hSTOP(1295)
-        ReDim hSCROLL(1295)
+        ReDim hBMSCROLL(1295)
         THGenre.Text = ""
         THTitle.Text = ""
         THArtist.Text = ""
@@ -1643,7 +1643,7 @@ EndSearch:
     Private Sub HSValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles HS.ValueChanged, HSL.ValueChanged, HSR.ValueChanged
         Dim iI As Integer = sender.Tag
         If Not LastMouseDownLocation = New Point(-1, -1) And Not HSValue = -1 Then LastMouseDownLocation.X += (HSValue - sender.Value) * gxWidth
-        PanelHScroll(iI) = sender.Value
+        PanelhBMSCROLL(iI) = sender.Value
         HSValue = sender.Value
         RefreshPanel(iI, spMain(iI).DisplayRectangle)
     End Sub
@@ -2263,7 +2263,7 @@ StartCount:     If Not NTInput Then
 
                 TempVPosition = GetMouseVPosition(gSnap)
 
-                SelectedColumn = GetColumnAtX(MouseMoveStatus.X, PanelHScroll(PanelFocus))
+                SelectedColumn = GetColumnAtX(MouseMoveStatus.X, PanelhBMSCROLL(PanelFocus))
 
                 Dim xMeasure As Integer = MeasureAtDisplacement(TempVPosition)
                 Dim xMLength As Double = MeasureLength(xMeasure)
