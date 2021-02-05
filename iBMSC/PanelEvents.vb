@@ -488,8 +488,20 @@ Partial Public Class MainWindow
                         Dim xUndo As UndoRedo.LinkedURCmd = Nothing
                         Dim xRedo As UndoRedo.LinkedURCmd = Nothing
 
-                        Me.RedoRemoveNote(Notes(xI1), xUndo, xRedo)
-                        RemoveNote(xI1)
+                        If LNLinkSelect AndAlso Notes(xI1).LNPair > 0 Then
+                            Dim xIndexes = {xI1, Notes(xI1).LNPair}
+                            Me.RedoRemoveNote(xIndexes, xUndo, xRedo)
+                            If Notes(xI1).LNPair > xI1 Then
+                                RemoveNote(xIndexes(1))
+                                RemoveNote(xIndexes(0))
+                            Else
+                                RemoveNote(xIndexes(0))
+                                RemoveNote(xIndexes(1))
+                            End If
+                        Else
+                            Me.RedoRemoveNote(Notes(xI1), xUndo, xRedo)
+                            RemoveNote(xI1)
+                        End If
 
                         AddUndo(xUndo, xRedo)
                         RefreshPanelAll()
@@ -758,6 +770,11 @@ Partial Public Class MainWindow
                 Else
                     For xI2 As Integer = 1 To UBound(Notes)
                         Notes(xI2).Selected = Notes(xI2).VPosition >= xVLower And Notes(xI2).VPosition < xVUpper And nEnabled(Notes(xI2).ColumnIndex)
+                        If LNLinkSelect AndAlso Notes(xI2).LNPair > 0 AndAlso xI2 > Notes(xI2).LNPair Then
+                            Dim Selected = (Notes(Notes(xI2).LNPair).Selected Or Notes(xI2).Selected)
+                            Notes(xI2).Selected = Selected
+                            Notes(Notes(xI2).LNPair).Selected = Selected
+                        End If
                     Next
                 End If
             Else
@@ -800,6 +817,7 @@ Partial Public Class MainWindow
                         If Notes(xI1).Selected Then Notes(xI1).Selected = False
                     Next
                     Notes(NoteIndex).Selected = True
+                    If LNLinkSelect AndAlso Notes(NoteIndex).LNPair > 0 Then Notes(Notes(NoteIndex).LNPair).Selected = True
                 End If
 
                 Dim SelectedCount As Integer = 0
@@ -1249,6 +1267,11 @@ Partial Public Class MainWindow
             Else
                 For xI2 As Integer = 1 To UBound(Notes)
                     Notes(xI2).Selected = Notes(xI2).VPosition >= xVLower And Notes(xI2).VPosition < xVUpper And nEnabled(Notes(xI2).ColumnIndex)
+                    If LNLinkSelect AndAlso Notes(xI2).LNPair > 0 AndAlso xI2 > Notes(xI2).LNPair Then
+                        Dim Selected = (Notes(Notes(xI2).LNPair).Selected Or Notes(xI2).Selected)
+                        Notes(xI2).Selected = Selected
+                        Notes(Notes(xI2).LNPair).Selected = Selected
+                    End If
                 Next
             End If
         Else
@@ -1526,19 +1549,32 @@ Partial Public Class MainWindow
 
         Dim xI1 As Integer
         For xI1 = 1 To UBound(Notes)
-            NoteRect = New Rectangle(HorizontalPositiontoDisplay(nLeft(Notes(xI1).ColumnIndex), xHS) + 1,
-                                  NoteRowToPanelHeight(Notes(xI1).VPosition + IIf(NTInput, Notes(xI1).Length, 0), xVS, xHeight) - vo.kHeight,
-                                  GetColumnWidth(Notes(xI1).ColumnIndex) * gxWidth - 2,
-                                  vo.kHeight + IIf(NTInput, Notes(xI1).Length * gxHeight, 0))
-
+            NoteRect = GetNoteRect(xI1, xHS, xVS, xHeight)
 
             If NoteRect.IntersectsWith(SelectionBox) Then
                 Notes(xI1).Selected = Not Notes(xI1).TempSelected And nEnabled(Notes(xI1).ColumnIndex)
+                If LNLinkSelect AndAlso Notes(xI1).LNPair > 0 Then
+                    Notes(Notes(xI1).LNPair).Selected = Notes(xI1).Selected And nEnabled(Notes(Notes(xI1).LNPair).ColumnIndex)
+                End If
             Else
-                Notes(xI1).Selected = Notes(xI1).TempSelected And nEnabled(Notes(xI1).ColumnIndex)
+                If Not LNLinkSelect OrElse Notes(xI1).LNPair <= 0 Then
+                    Notes(xI1).Selected = Notes(xI1).TempSelected And nEnabled(Notes(xI1).ColumnIndex)
+                Else
+                    Dim PairRect = GetNoteRect(Notes(xI1).LNPair, xHS, xVS, xHeight)
+                    If Not PairRect.IntersectsWith(SelectionBox) Then
+                        Notes(xI1).Selected = Notes(xI1).TempSelected And nEnabled(Notes(xI1).ColumnIndex)
+                    End If
+                End If
             End If
         Next
     End Sub
+
+    Private Function GetNoteRect(index As Integer, xHS As Long, xVS As Long, xHeight As Integer) As Rectangle
+        Return New Rectangle(HorizontalPositiontoDisplay(nLeft(Notes(index).ColumnIndex), xHS) + 1,
+                                  NoteRowToPanelHeight(Notes(index).VPosition + IIf(NTInput, Notes(index).Length, 0), xVS, xHeight) - vo.kHeight,
+                                  GetColumnWidth(Notes(index).ColumnIndex) * gxWidth - 2,
+                                  vo.kHeight + IIf(NTInput, Notes(index).Length * gxHeight, 0))
+    End Function
 
     Private Sub DuplicateSelectedNotes(tempNoteIndex As Integer, dVPosition As Double, dColumn As Integer, mLeft As Integer, mVPosition As Double, muVPosition As Double)
         Dim xUndo As UndoRedo.LinkedURCmd = Nothing
@@ -1651,7 +1687,11 @@ Partial Public Class MainWindow
 
             If ctrlPressed And Not DuplicatedSelectedNotes And Not ModifierMultiselectActive() Then
                 For i As Integer = 1 To UBound(Notes)
-                    If Notes(i).TempMouseDown Then Notes(i).Selected = Not Notes(i).Selected : Exit For
+                    If Notes(i).TempMouseDown Then
+                        Notes(i).Selected = Not Notes(i).Selected
+                        If LNLinkSelect AndAlso Notes(i).LNPair > 0 Then Notes(Notes(i).LNPair).Selected = Notes(i).Selected
+                        Exit For
+                    End If
                 Next
             End If
 

@@ -846,6 +846,10 @@ Jump1:
                     TBChangePlaySide.Checked = Rscratch
                     TBChangePlaySide_Click(TBChangePlaySide, New System.EventArgs)
 
+                    LNLinkSelect = xPref And &H32
+                    TBLNLinkSelect.Checked = LNLinkSelect
+                    TBLNLinkSelect_Click(TBLNLinkSelect, New System.EventArgs)
+
                     mnSMenu.Checked = xPref And &H100
                     mnSTB.Checked = xPref And &H200
                     mnSOP.Checked = xPref And &H400

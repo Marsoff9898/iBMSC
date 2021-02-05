@@ -58,7 +58,7 @@ Public Class MainWindow
     Dim TextEncoding As System.Text.Encoding = System.Text.Encoding.UTF8
     Dim DispLang As String = ""     'Display Language
     Dim Recent() As String = {"", "", "", "", ""}
-    Dim NTInput As Boolean = True
+    Dim NTInput As Boolean = False
     Dim ShowFileName As Boolean = False
 
     Dim BeepWhileSaved As Boolean = True
@@ -222,6 +222,7 @@ Public Class MainWindow
     Dim PreviewOnClick As Boolean = True
     Dim PreviewErrorCheck As Boolean = False
     Dim Rscratch As Boolean = False
+    Dim LNLinkSelect As Boolean = True
     Dim ClickStopPreview As Boolean = True
     Dim pTempFileNames() As String = {}
 
@@ -2006,6 +2007,14 @@ EndSearch:
         TBChangePlaySide.Image = My.Resources.x16ChangePlaySide
         mnChangePlaySide.Image = My.Resources.x16ChangePlaySide
         RefreshPanelAll()
+    End Sub
+
+    Private Sub TBLNLinkSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TBLNLinkSelect.Click, mnLNLinkSelect.Click
+        LNLinkSelect = sender.Checked
+        TBLNLinkSelect.Checked = LNLinkSelect
+        mnLNLinkSelect.Checked = LNLinkSelect
+        TBLNLinkSelect.Image = My.Resources.x16LNLinkSelect
+        mnLNLinkSelect.Image = My.Resources.x16LNLinkSelect
     End Sub
 
     'Private Sub TBPreviewErrorCheck_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
