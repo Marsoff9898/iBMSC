@@ -83,6 +83,7 @@ Partial Class MainWindow
         Me.POWAVPart2 = New System.Windows.Forms.TableLayoutPanel()
         Me.CWAVMultiSelect = New System.Windows.Forms.CheckBox()
         Me.CWAVChangeLabel = New System.Windows.Forms.CheckBox()
+        Me.CWAVEmptyfill = New System.Windows.Forms.CheckBox()
         Me.POWAVSwitch = New System.Windows.Forms.CheckBox()
         Me.POWaveForm = New System.Windows.Forms.Panel()
         Me.POWaveFormInner = New System.Windows.Forms.Panel()
@@ -178,6 +179,11 @@ Partial Class MainWindow
         Me.BHLandMine = New System.Windows.Forms.Button()
         Me.BHMissBMP = New System.Windows.Forms.Button()
         Me.THMissBMP = New System.Windows.Forms.TextBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.THPreview = New System.Windows.Forms.TextBox()
+        Me.BHPreview = New System.Windows.Forms.Button()
+        Me.CHLnmode = New System.Windows.Forms.ComboBox()
         Me.POHeaderExpander = New System.Windows.Forms.CheckBox()
         Me.POHeaderPart1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -209,7 +215,8 @@ Partial Class MainWindow
         Me.ToolStripSeparator14 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnSave = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnSaveAs = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnExport = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnExportIBMSC = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnExportBMSON = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnOpenR0 = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnOpenR1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -297,7 +304,8 @@ Partial Class MainWindow
         Me.TBImportIBMSC = New System.Windows.Forms.ToolStripMenuItem()
         Me.TBSave = New System.Windows.Forms.ToolStripSplitButton()
         Me.TBSaveAs = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TBExport = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TBExportIBMSC = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TBExportBMSON = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.TBCut = New System.Windows.Forms.ToolStripButton()
         Me.TBCopy = New System.Windows.Forms.ToolStripButton()
@@ -1193,6 +1201,7 @@ Partial Class MainWindow
         Me.POWAVPart2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.POWAVPart2.Controls.Add(Me.CWAVMultiSelect, 0, 0)
         Me.POWAVPart2.Controls.Add(Me.CWAVChangeLabel, 0, 1)
+        Me.POWAVPart2.Controls.Add(Me.CWAVEmptyfill, 0, 2)
         Me.POWAVPart2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.POWAVPart2.Location = New System.Drawing.Point(0, 55)
         Me.POWAVPart2.Margin = New System.Windows.Forms.Padding(0)
@@ -1225,10 +1234,23 @@ Partial Class MainWindow
         Me.CWAVChangeLabel.Location = New System.Drawing.Point(3, 19)
         Me.CWAVChangeLabel.Margin = New System.Windows.Forms.Padding(3, 0, 3, 0)
         Me.CWAVChangeLabel.Name = "CWAVChangeLabel"
-        Me.CWAVChangeLabel.Size = New System.Drawing.Size(155, 19)
+        Me.CWAVChangeLabel.Size = New System.Drawing.Size(154, 19)
         Me.CWAVChangeLabel.TabIndex = 1
         Me.CWAVChangeLabel.Text = "Synchronize Note Labels"
         Me.CWAVChangeLabel.UseVisualStyleBackColor = True
+        '
+        'CWAVEmptyfill
+        '
+        Me.CWAVEmptyfill.AutoSize = True
+        Me.CWAVEmptyfill.Checked = True
+        Me.CWAVEmptyfill.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CWAVEmptyfill.Location = New System.Drawing.Point(3, 0)
+        Me.CWAVEmptyfill.Margin = New System.Windows.Forms.Padding(3, 0, 3, 0)
+        Me.CWAVEmptyfill.Name = "CWAVEmptyfill"
+        Me.CWAVEmptyfill.Size = New System.Drawing.Size(154, 19)
+        Me.CWAVEmptyfill.TabIndex = 0
+        Me.CWAVEmptyfill.Text = "Fill Empty Definition First"
+        Me.CWAVEmptyfill.UseVisualStyleBackColor = True
         '
         'POWAVSwitch
         '
@@ -2155,6 +2177,11 @@ Partial Class MainWindow
         Me.POHeaderPart2.Controls.Add(Me.BHLandMine, 2, 10)
         Me.POHeaderPart2.Controls.Add(Me.THMissBMP, 1, 11)
         Me.POHeaderPart2.Controls.Add(Me.BHMissBMP, 2, 11)
+        Me.POHeaderPart2.Controls.Add(Me.Label28, 0, 12)
+        Me.POHeaderPart2.Controls.Add(Me.Label29, 0, 13)
+        Me.POHeaderPart2.Controls.Add(Me.THPreview, 1, 12)
+        Me.POHeaderPart2.Controls.Add(Me.BHPreview, 2, 12)
+        Me.POHeaderPart2.Controls.Add(Me.CHLnmode, 1, 13)
         Me.POHeaderPart2.Dock = System.Windows.Forms.DockStyle.Top
         Me.POHeaderPart2.Location = New System.Drawing.Point(0, 186)
         Me.POHeaderPart2.Name = "POHeaderPart2"
@@ -2467,6 +2494,28 @@ Partial Class MainWindow
         Me.Label27.Text = "#BMP00"
         Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'Label28
+        '
+        Me.Label28.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(25, 214)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(39, 15)
+        Me.Label28.TabIndex = 35
+        Me.Label28.Text = "Preview"
+        Me.Label28.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label29
+        '
+        Me.Label29.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(25, 214)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(39, 15)
+        Me.Label29.TabIndex = 38
+        Me.Label29.Text = "LNmode"
+        Me.Label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'THLandMine
         '
         Me.THLandMine.Dock = System.Windows.Forms.DockStyle.Fill
@@ -2508,6 +2557,40 @@ Partial Class MainWindow
         Me.BHMissBMP.TabIndex = 34
         Me.BHMissBMP.Text = "..."
         Me.BHMissBMP.UseVisualStyleBackColor = True
+        '
+        'THLandMine
+        '
+        Me.THPreview.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.THPreview.Location = New System.Drawing.Point(67, 46)
+        Me.THPreview.Margin = New System.Windows.Forms.Padding(0)
+        Me.THPreview.Name = "THPreview"
+        Me.THPreview.Size = New System.Drawing.Size(88, 23)
+        Me.THPreview.TabIndex = 36
+        '
+        'BHLandMine
+        '
+        Me.BHPreview.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BHPreview.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.BHPreview.Location = New System.Drawing.Point(158, 94)
+        Me.BHPreview.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
+        Me.BHPreview.Name = "BHPreview"
+        Me.BHPreview.Size = New System.Drawing.Size(25, 24)
+        Me.BHPreview.TabIndex = 37
+        Me.BHPreview.Text = "..."
+        Me.BHPreview.UseVisualStyleBackColor = True
+        '
+        'CHLNmode
+        '
+        Me.POHeaderPart2.SetColumnSpan(Me.CHLnmode, 2)
+        Me.CHLnmode.Dock = System.Windows.Forms.DockStyle.Top
+        Me.CHLnmode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CHLnmode.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.CHLnmode.Items.AddRange(New Object() {"Selectable", "LN only", "CN only", "HN only"})
+        Me.CHLnmode.Location = New System.Drawing.Point(67, 210)
+        Me.CHLnmode.Margin = New System.Windows.Forms.Padding(0)
+        Me.CHLnmode.Name = "CHLnObj"
+        Me.CHLnmode.Size = New System.Drawing.Size(116, 23)
+        Me.CHLnmode.TabIndex = 39
         '
         'POHeaderExpander
         '
@@ -2776,7 +2859,7 @@ Partial Class MainWindow
         '
         'mnFile
         '
-        Me.mnFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnNew, Me.mnOpen, Me.mnImportSM, Me.mnImportIBMSC, Me.ToolStripSeparator14, Me.mnSave, Me.mnSaveAs, Me.mnExport, Me.ToolStripSeparator15, Me.mnOpenR0, Me.mnOpenR1, Me.mnOpenR2, Me.mnOpenR3, Me.mnOpenR4, Me.ToolStripSeparator16, Me.mnQuit})
+        Me.mnFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnNew, Me.mnOpen, Me.mnImportSM, Me.mnImportIBMSC, Me.ToolStripSeparator14, Me.mnSave, Me.mnSaveAs, Me.mnExportIBMSC, Me.mnExportBMSON, Me.ToolStripSeparator15, Me.mnOpenR0, Me.mnOpenR1, Me.mnOpenR2, Me.mnOpenR3, Me.mnOpenR4, Me.ToolStripSeparator16, Me.mnQuit})
         Me.mnFile.Name = "mnFile"
         Me.mnFile.Size = New System.Drawing.Size(37, 19)
         Me.mnFile.Text = "&File"
@@ -2831,12 +2914,19 @@ Partial Class MainWindow
         Me.mnSaveAs.Size = New System.Drawing.Size(199, 22)
         Me.mnSaveAs.Text = "Save &As..."
         '
-        'mnExport
+        'mnExportIBMSC
         '
-        Me.mnExport.Image = Global.iBMSC.My.Resources.Resources.x16Export
-        Me.mnExport.Name = "mnExport"
-        Me.mnExport.Size = New System.Drawing.Size(199, 22)
-        Me.mnExport.Text = "&Export .IBMSC file"
+        Me.mnExportIBMSC.Image = Global.iBMSC.My.Resources.Resources.x16Export
+        Me.mnExportIBMSC.Name = "mnExportIBMSC"
+        Me.mnExportIBMSC.Size = New System.Drawing.Size(199, 22)
+        Me.mnExportIBMSC.Text = "&Export .IBMSC file"
+        '
+        'mnExportBMSON
+        '
+        Me.mnExportBMSON.Image = Global.iBMSC.My.Resources.Resources.x16Export
+        Me.mnExportBMSON.Name = "mnExportBMSON"
+        Me.mnExportBMSON.Size = New System.Drawing.Size(199, 22)
+        Me.mnExportBMSON.Text = "Export .&BMSON file"
         '
         'ToolStripSeparator15
         '
@@ -3499,7 +3589,7 @@ Partial Class MainWindow
         'TBSave
         '
         Me.TBSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TBSave.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TBSaveAs, Me.TBExport})
+        Me.TBSave.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TBSaveAs, Me.TBExportIBMSC, Me.TBExportBMSON})
         Me.TBSave.Image = Global.iBMSC.My.Resources.Resources.x16Save
         Me.TBSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TBSave.Name = "TBSave"
@@ -3513,12 +3603,19 @@ Partial Class MainWindow
         Me.TBSaveAs.Size = New System.Drawing.Size(167, 22)
         Me.TBSaveAs.Text = "Save As..."
         '
-        'TBExport
+        'TBExportIBMSC
         '
-        Me.TBExport.Image = Global.iBMSC.My.Resources.Resources.x16Export
-        Me.TBExport.Name = "TBExport"
-        Me.TBExport.Size = New System.Drawing.Size(167, 22)
-        Me.TBExport.Text = "Export .IBMSC file"
+        Me.TBExportIBMSC.Image = Global.iBMSC.My.Resources.Resources.x16Export
+        Me.TBExportIBMSC.Name = "TBExportIBMSC"
+        Me.TBExportIBMSC.Size = New System.Drawing.Size(167, 22)
+        Me.TBExportIBMSC.Text = "Export .IBMSC file"
+        '
+        'TBExportBMSON
+        '
+        Me.TBExportBMSON.Image = Global.iBMSC.My.Resources.Resources.x16Export
+        Me.TBExportBMSON.Name = "TBExportBMSON"
+        Me.TBExportBMSON.Size = New System.Drawing.Size(167, 22)
+        Me.TBExportBMSON.Text = "Export .BMSON file"
         '
         'ToolStripSeparator1
         '
@@ -4417,7 +4514,8 @@ Partial Class MainWindow
     Friend WithEvents ToolStripSeparator14 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents mnSave As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnSaveAs As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents mnExport As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnExportIBMSC As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnExportBMSON As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator15 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents mnOpenR0 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnOpenR1 As System.Windows.Forms.ToolStripMenuItem
@@ -4526,7 +4624,8 @@ Partial Class MainWindow
     Friend WithEvents TBImportIBMSC As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TBSave As System.Windows.Forms.ToolStripSplitButton
     Friend WithEvents TBSaveAs As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TBExport As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TBExportIBMSC As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TBExportBMSON As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents TBCut As System.Windows.Forms.ToolStripButton
     Friend WithEvents TBCopy As System.Windows.Forms.ToolStripButton
@@ -4651,6 +4750,11 @@ Partial Class MainWindow
     Friend WithEvents BHLandMine As System.Windows.Forms.Button
     Friend WithEvents THMissBMP As System.Windows.Forms.TextBox
     Friend WithEvents BHMissBMP As System.Windows.Forms.Button
+    Friend WithEvents Label28 As System.Windows.Forms.Label
+    Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents THPreview As System.Windows.Forms.TextBox
+    Friend WithEvents BHPreview As System.Windows.Forms.Button
+    Friend WithEvents CHLnmode As System.Windows.Forms.ComboBox
     Friend WithEvents POHeaderExpander As System.Windows.Forms.CheckBox
     Friend WithEvents POHeaderPart1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -4734,6 +4838,7 @@ Partial Class MainWindow
     Friend WithEvents POWAVPart2 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents CWAVMultiSelect As System.Windows.Forms.CheckBox
     Friend WithEvents CWAVChangeLabel As System.Windows.Forms.CheckBox
+    Friend WithEvents CWAVEmptyfill As System.Windows.Forms.CheckBox
     Friend WithEvents nBeatD As System.Windows.Forms.NumericUpDown
     Friend WithEvents BBeatApplyV As System.Windows.Forms.Button
     Friend WithEvents tBeatValue As System.Windows.Forms.TextBox

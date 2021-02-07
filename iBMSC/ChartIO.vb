@@ -1,4 +1,5 @@
 ﻿Imports iBMSC.Editor
+Imports System.Text.Json
 
 Partial Public Class MainWindow
     Private Sub OpenBMS(ByVal xStrAll As String)
@@ -143,6 +144,14 @@ Partial Public Class MainWindow
                 '    CAdLNTYPE.Checked = True
                 '    If Mid(sLineTrim, 9) = "" Or Mid(sLineTrim, 9) = "1" Or Mid(sLineTrim, 9) = "01" Then CAdLNTYPEb.Text = "1"
                 '    CAdLNTYPEb.Text = Mid(sLineTrim, 9)
+
+            ElseIf sLineTrim.StartsWith("#PREVIEW", StringComparison.CurrentCultureIgnoreCase) Then
+                THPreview.Text = Mid(sLineTrim, Len("#PREVIEW") + 1).Trim
+
+            ElseIf sLineTrim.StartsWith("#LNMODE", StringComparison.CurrentCultureIgnoreCase) Then
+                Dim xInt As Integer = Val(Mid(sLineTrim, Len("#LNMODE") + 1).Trim)
+                If xInt >= 1 And xInt <= 3 Then _
+                    CHPlayer.SelectedIndex = xInt
 
             ElseIf sLineTrim.StartsWith("#") And Mid(sLineTrim, 7, 1) = ":" Then   'If the line contains Ks
                 Dim xIdentifier As String = Mid(sLineTrim, 5, 2)
@@ -369,11 +378,14 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
         xStrHeader &= vbCrLf
         If CHDifficulty.SelectedIndex Then xStrHeader &= "#DIFFICULTY " & CHDifficulty.SelectedIndex & vbCrLf
         If THExRank.Text <> "" Then xStrHeader &= "#DEFEXRANK " & THExRank.Text & vbCrLf
-        If THTotal.Text <> "" Then xStrHeader &= "#TOTAL " & THTotal.Text & vbCrLf
+        If THTotal.Text <> "" Then xStrHeader &= "#TOTAL " & THTotal.Text & vbCrLf _
+                                Else xStrHeader &= "#TOTAL " & CalcBMSTotal() & vbCrLf
         If THComment.Text <> "" Then xStrHeader &= "#COMMENT """ & THComment.Text & """" & vbCrLf
         'If THLnType.Text <> "" Then xStrHeader &= "#LNTYPE " & THLnType.Text & vbCrLf
         If CHLnObj.SelectedIndex > 0 Then xStrHeader &= "#LNOBJ " & C10to36(CHLnObj.SelectedIndex) & vbCrLf _
                                      Else xStrHeader &= "#LNTYPE 1" & vbCrLf
+        If THPreview.Text <> "" Then xStrHeader &= "#PREVIEW " & THPreview.Text & vbCrLf
+        If CHLnmode.SelectedIndex > 0 Then xStrHeader &= "#LNMODE " & CHLnObj.SelectedIndex & vbCrLf
         xStrHeader &= vbCrLf
         Return xStrHeader
     End Function
@@ -891,6 +903,8 @@ Jump1:
                     THComment.Text = br.ReadString
                     'THLnType.Text = br.ReadString
                     CHLnObj.SelectedIndex = br.ReadInt16
+                    THPreview.Text = br.ReadString
+                    CHLnmode.SelectedIndex = br.ReadByte
 
                 Case &H564157       'WAV List
                     Dim xWAVOptions As Integer = br.ReadByte
@@ -900,6 +914,9 @@ Jump1:
                     WAVChangeLabel = xWAVOptions And &H2
                     CWAVChangeLabel.Checked = WAVChangeLabel
                     CWAVChangeLabel_CheckedChanged(CWAVChangeLabel, New EventArgs)
+                    WAVEmptyfill = xWAVOptions And &H4
+                    CWAVEmptyfill.Checked = WAVEmptyfill
+                    CWAVEmptyfill_CheckedChanged(CWAVEmptyfill, New EventArgs)
 
                     Dim xWAVCount As Integer = br.ReadInt32
                     For xxi As Integer = 1 To xWAVCount
@@ -1093,6 +1110,8 @@ EndOfSub:
             bw.Write(THComment.Text)
             'bw.Write(THLnType.Text)
             bw.Write(CShort(CHLnObj.SelectedIndex))
+            bw.Write(THPreview.Text)
+            bw.Write(CShort(CHLnmode.SelectedIndex))
 
             'Wav List
             'bw.Write(("WAV" & vbNullChar).ToCharArray)
@@ -1101,6 +1120,7 @@ EndOfSub:
             Dim xWAVOptions As Integer = 0
             If WAVMultiSelect Then xWAVOptions = xWAVOptions Or &H1
             If WAVChangeLabel Then xWAVOptions = xWAVOptions Or &H2
+            If WAVEmptyfill Then xWAVOptions = xWAVOptions Or &H4
             bw.Write(CByte(xWAVOptions))
 
             Dim xWAVCount As Integer = 0
@@ -1219,5 +1239,195 @@ EndOfSub:
         End Try
 
     End Sub
+
+    Private Sub SaveBMSON(ByVal Path As String)
+        CalculateGreatestVPosition()
+        SortByVPositionInsertion()
+        UpdatePairing()
+        Dim i = 0
+        Try
+            Dim format = New Bmson
+            Dim options = New JsonSerializerOptions
+
+            Dim bar_list = New List(Of BarLine)()
+            Dim wav_list = New Dictionary(Of Integer, SoundChannel)()
+            Dim note_list = New Dictionary(Of Integer, List(Of BmsonNote))()
+            Dim mine_list = New List(Of MineNote)()
+            Dim hidden_list = New Dictionary(Of Integer, MineChannel)()
+            Dim hidden_note_list = New Dictionary(Of Integer, List(Of MineNote))()
+            Dim bmp_list = New List(Of BGAHeader)()
+            Dim bga_list = New List(Of BGAEvent)()
+            Dim layer_list = New List(Of BGAEvent)()
+            Dim miss_list = New List(Of BGAEvent)()
+            Dim bpm_list = New List(Of BpmEvent)()
+            Dim stop_list = New List(Of StopEvent)()
+            Dim scroll_list = New List(Of ScrollEvent)()
+
+            ' 必要な分解能を計算
+            Dim xGCD As Double = 192.0R
+            For i = 0 To UBound(Notes)
+                xGCD = GCD(xGCD, Notes(i).VPosition)
+            Next
+            Dim resolution = CInt(48.0R / xGCD)
+
+            ' ヘッダ情報
+            format.info.title = THTitle.Text
+            format.info.subtitle = THSubTitle.Text
+            format.info.artist = THArtist.Text
+            format.info.subartists(0) = THSubArtist.Text
+            format.info.genre = THGenre.Text
+            If CHPlayer.SelectedIndex = 0 Then
+                format.info.mode_hint = "beat-7k"
+            Else
+                format.info.mode_hint = "beat-14k"
+            End If
+            format.info.chart_name = ""
+            If THExRank.Text <> "" Then
+                format.info.judge_rank = CDbl(THExRank.Text)
+            Else
+                format.info.judge_rank = (CHRank.SelectedIndex + 1) * 25
+            End If
+            If THTotal.Text <> "" Then
+                format.info.total = CalcBMSONTotal(CDbl(THTotal.Text))
+            End If
+            format.info.init_bpm = CDbl(THBPM.Text)
+            If THPlayLevel.Text <> "" Then
+                format.info.level = CInt(THPlayLevel.Text)
+            Else
+                format.info.level = 0
+            End If
+            format.info.back_image = THBackBMP.Text
+            format.info.eyecatch_image = THStageFile.Text
+            format.info.banner_image = THBanner.Text
+            format.info.preview_music = THPreview.Text
+            format.info.ln_type = CHLnmode.SelectedIndex
+            format.info.resolution = resolution
+            ' 音定義
+            For i = 1 To UBound(hWAV)
+                If hWAV(i) <> "" Then
+                    wav_list.Add(i, New SoundChannel(hWAV(i)))
+                End If
+            Next
+            If hWAV(0) <> "" Then
+                ReDim format.mine_channels(1)
+                format.mine_channels(0) = New MineChannel(hWAV(0))
+            End If
+            For i = 1 To UBound(hBMP)
+                If hBMP(i) <> "" Then
+                    bmp_list.Add(New BGAHeader(i, hBMP(i)))
+                End If
+            Next
+
+            Dim len As Double = 0
+            For i = 0 To MeasureAtDisplacement(GreatestVPosition) + 1
+                len += MeasureLength(i) * resolution / 48.0R
+                bar_list.Add(New BarLine(len))
+            Next
+            ' Notes
+            For i = 1 To UBound(Notes)
+                Dim position = Notes(i).VPosition * resolution / 48.0R
+                If Notes(i).ColumnIndex = niSCROLL Then
+                    scroll_list.Add(New ScrollEvent(position, Notes(i).Value / 10000.0R))
+                ElseIf Notes(i).ColumnIndex = niBPM Then
+                    bpm_list.Add(New BpmEvent(position, Notes(i).Value / 10000.0R))
+                ElseIf Notes(i).ColumnIndex = niSTOP Then
+                    stop_list.Add(New StopEvent(position, Notes(i).Value))
+                ElseIf Notes(i).ColumnIndex = niBGA Then
+                    bga_list.Add(New BGAEvent(position, Notes(i).Value / 10000))
+                ElseIf Notes(i).ColumnIndex = niLAYER Then
+                    layer_list.Add(New BGAEvent(position, Notes(i).Value / 10000))
+                ElseIf Notes(i).ColumnIndex = niPOOR Then
+                    miss_list.Add(New BGAEvent(position, Notes(i).Value / 10000))
+                ElseIf Notes(i).ColumnIndex >= niB Then
+                    Dim value = Notes(i).Value / 10000
+                    If Not note_list.ContainsKey(value) Then
+                        note_list(value) = New List(Of BmsonNote)
+                    End If
+                    note_list(value).Add(New BmsonNote(position, 0))
+                Else
+                    Dim lane = GetColumn(Notes(i).ColumnIndex).Identifier - 10
+                    Dim value = Notes(i).Value / 10000
+                    ' 12345896 を 12345678 に変換
+                    If (lane Mod 10) = 6 Then
+                        lane += 2
+                    ElseIf (lane Mod 10) >= 8 Then
+                        lane -= 2
+                    End If
+                    If (lane >= 10) Then
+                        lane -= 2
+                    End If
+                    If Notes(i).Landmine Then
+                        mine_list.Add(New MineNote(position, lane, value))
+                    ElseIf Notes(i).Hidden Then
+                        If Not note_list.ContainsKey(value) Then
+                            hidden_note_list(value) = New List(Of MineNote)
+                        End If
+                        hidden_note_list(value).Add(New MineNote(position, lane, 0))
+                    ElseIf Notes(i).LNPair > 0 AndAlso i < Notes(i).LNPair Then
+                        If Not note_list.ContainsKey(value) Then
+                            note_list(value) = New List(Of BmsonNote)
+                        End If
+                        Dim length = (Notes(Notes(i).LNPair).VPosition - Notes(i).VPosition) * resolution / 48.0R
+                        note_list(value).Add(New BmsonNote(position, lane, length))
+                    Else
+                        If Not note_list.ContainsKey(value) Then
+                            note_list(value) = New List(Of BmsonNote)
+                        End If
+                        note_list(value).Add(New BmsonNote(position, lane))
+                    End If
+                End If
+            Next
+            ' 適用
+            format.lines = bar_list.ToArray()
+            format.bpm_events = bpm_list.ToArray()
+            format.stop_events = stop_list.ToArray()
+            format.scroll_events = scroll_list.ToArray()
+            format.bga.bga_header = bmp_list.ToArray()
+            format.bga.bga_events = bga_list.ToArray()
+            format.bga.layer_events = layer_list.ToArray()
+            format.bga.poor_events = miss_list.ToArray()
+
+            ReDim format.sound_channels(wav_list.Count() - 1)
+            ReDim format.key_channels(hidden_list.Count() - 1)
+
+            i = 0
+            For Each n In wav_list
+                format.sound_channels(i) = New SoundChannel(n.Value().name)
+                If note_list.ContainsKey(n.Key()) Then
+                    ReDim format.sound_channels(i).notes(note_list(n.Key()).Count() - 1)
+                    format.sound_channels(i).notes = note_list(n.Key()).ToArray()
+                End If
+                i += 1
+            Next
+
+            i = 0
+            For Each n In hidden_list
+                format.key_channels(i) = New MineChannel(n.Value().name)
+                If hidden_note_list.ContainsKey(n.Key()) Then
+                    ReDim format.key_channels(i).notes(hidden_note_list(n.Key()).Count() - 1)
+                    format.key_channels(i).notes = hidden_note_list(n.Key()).ToArray()
+                End If
+                i += 1
+            Next
+
+            options.IncludeFields = True
+            Dim bw As New BinaryWriter(New IO.FileStream(Path, FileMode.Create), System.Text.Encoding.UTF8)
+            Dim str = JsonSerializer.SerializeToUtf8Bytes(format, options)
+            bw.Write(str)
+            bw.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Function CalcBMSTotal() As Double
+        Dim notes = CInt(TBStatistics.Text)
+        Return System.Math.Max((720.0 / (800 + notes) * notes), 200.0)
+    End Function
+
+    Function CalcBMSONTotal(total As Double) As Double
+        Dim notes = CInt(TBStatistics.Text)
+        Return total / System.Math.Max((800.0 / (700 + notes) * notes), 250.0) * 100
+    End Function
 
 End Class

@@ -70,6 +70,7 @@ Public Class MainWindow
 
     Dim WAVMultiSelect As Boolean = True
     Dim WAVChangeLabel As Boolean = True
+    Dim WAVEmptyfill As Boolean = True
     Dim BeatChangeMode As Integer = 0
 
     'Dim FloatTolerance As Double = 0.0001R
@@ -903,6 +904,9 @@ Public Class MainWindow
         THMissBMP.Text = ""
         TExpansion.Text = ""
 
+        THPreview.Text = ""
+        CHLnmode.SelectedIndex = 0
+
         LBeat.Items.Clear()
         For xI1 As Integer = 0 To 999
             MeasureLength(xI1) = 192.0R
@@ -1559,7 +1563,7 @@ EndSearch:
         If BeepWhileSaved Then Beep()
     End Sub
 
-    Private Sub TBExport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TBExport.Click, mnExport.Click
+    Private Sub TBExportIBMSC_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TBExportIBMSC.Click, mnExportIBMSC.Click
         'KMouseDown = -1
         ReDim SelectedNotes(-1)
         KMouseOver = -1
@@ -1576,7 +1580,22 @@ EndSearch:
         If BeepWhileSaved Then Beep()
     End Sub
 
+    Private Sub TBExportBMSON_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TBExportBMSON.Click, mnExportBMSON.Click
+        'KMouseDown = -1
+        ReDim SelectedNotes(-1)
+        KMouseOver = -1
 
+        Dim xDSave As New SaveFileDialog
+        xDSave.Filter = Strings.FileType.IBMSC & "|*.bmson"
+        xDSave.DefaultExt = "bmson"
+        xDSave.InitialDirectory = IIf(ExcludeFileName(FileName) = "", InitPath, ExcludeFileName(FileName))
+        If xDSave.ShowDialog = Windows.Forms.DialogResult.Cancel Then Exit Sub
+
+        SaveBMSON(xDSave.FileName)
+        'My.Computer.FileSystem.WriteAllText(xDSave.FileName, xStrAll, False, TextEncoding)
+        NewRecent(FileName)
+        If BeepWhileSaved Then Beep()
+    End Sub
 
     Private Sub VSGotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles MainPanelScroll.GotFocus, LeftPanelScroll.GotFocus, RightPanelScroll.GotFocus
         PanelFocus = sender.Tag
@@ -2624,9 +2643,9 @@ StartCount:     If Not NTInput Then
         LWAV.SelectedIndices.CopyTo(xIndices, 0)
         If xIndices.Length = 0 Then Exit Sub
 
-        If xIndices.Length < xPath.Length Then
-            Dim i As Integer = xIndices.Length
-            Dim currWavIndex As Integer = xIndices(UBound(xIndices)) + 1
+        If WAVEmptyfill Then
+            Dim i As Integer = 0
+            Dim currWavIndex As Integer = xIndices(0)
             ReDim Preserve xIndices(UBound(xPath))
 
             Do While i < xIndices.Length And currWavIndex <= 1294
@@ -2643,6 +2662,28 @@ StartCount:     If Not NTInput Then
             If currWavIndex > 1294 Then
                 ReDim Preserve xPath(i - 1)
                 ReDim Preserve xIndices(i - 1)
+            End If
+        Else
+            If xIndices.Length < xPath.Length Then
+                Dim i As Integer = xIndices.Length
+                Dim currWavIndex As Integer = xIndices(UBound(xIndices)) + 1
+                ReDim Preserve xIndices(UBound(xPath))
+
+                Do While i < xIndices.Length And currWavIndex <= 1294
+                    Do While currWavIndex <= 1294 AndAlso hWAV(currWavIndex + 1) <> ""
+                        currWavIndex += 1
+                    Loop
+                    If currWavIndex > 1294 Then Exit Do
+
+                    xIndices(i) = currWavIndex
+                    currWavIndex += 1
+                    i += 1
+                Loop
+
+                If currWavIndex > 1294 Then
+                    ReDim Preserve xPath(i - 1)
+                    ReDim Preserve xIndices(i - 1)
+                End If
             End If
         End If
 
@@ -2704,9 +2745,9 @@ StartCount:     If Not NTInput Then
         LBMP.SelectedIndices.CopyTo(xIndices, 0)
         If xIndices.Length = 0 Then Exit Sub
 
-        If xIndices.Length < xPath.Length Then
-            Dim i As Integer = xIndices.Length
-            Dim currBmpIndex As Integer = xIndices(UBound(xIndices)) + 1
+        If WAVEmptyfill Then
+            Dim i As Integer = 0
+            Dim currBmpIndex As Integer = xIndices(0)
             ReDim Preserve xIndices(UBound(xPath))
 
             Do While i < xIndices.Length And currBmpIndex <= 1294
@@ -2723,6 +2764,28 @@ StartCount:     If Not NTInput Then
             If currBmpIndex > 1294 Then
                 ReDim Preserve xPath(i - 1)
                 ReDim Preserve xIndices(i - 1)
+            End If
+        Else
+            If xIndices.Length < xPath.Length Then
+                Dim i As Integer = xIndices.Length
+                Dim currBmpIndex As Integer = xIndices(UBound(xIndices)) + 1
+                ReDim Preserve xIndices(UBound(xPath))
+
+                Do While i < xIndices.Length And currBmpIndex <= 1294
+                    Do While currBmpIndex <= 1294 AndAlso hBMP(currBmpIndex + 1) <> ""
+                        currBmpIndex += 1
+                    Loop
+                    If currBmpIndex > 1294 Then Exit Do
+
+                    xIndices(i) = currBmpIndex
+                    currBmpIndex += 1
+                    i += 1
+                Loop
+
+                If currBmpIndex > 1294 Then
+                    ReDim Preserve xPath(i - 1)
+                    ReDim Preserve xIndices(i - 1)
+                End If
             End If
         End If
 
@@ -2808,7 +2871,7 @@ StartCount:     If Not NTInput Then
     Private Sub THGenre_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles _
     THGenre.TextChanged, THTitle.TextChanged, THArtist.TextChanged, THPlayLevel.TextChanged, CHRank.SelectedIndexChanged, TExpansion.TextChanged,
     THSubTitle.TextChanged, THSubArtist.TextChanged, THStageFile.TextChanged, THBanner.TextChanged, THBackBMP.TextChanged,
-    CHDifficulty.SelectedIndexChanged, THExRank.TextChanged, THTotal.TextChanged, THComment.TextChanged
+    CHDifficulty.SelectedIndexChanged, THExRank.TextChanged, THTotal.TextChanged, THComment.TextChanged, THPreview.TextChanged, CHLnmode.SelectedIndexChanged
         If IsSaved Then SetIsSaved(False)
 
         If [Object].ReferenceEquals(sender, THLandMine) Then
@@ -3819,6 +3882,9 @@ Jump2:
     Private Sub CWAVChangeLabel_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CWAVChangeLabel.CheckedChanged
         WAVChangeLabel = CWAVChangeLabel.Checked
     End Sub
+    Private Sub CWAVEmptyfill_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CWAVEmptyfill.CheckedChanged
+        WAVEmptyfill = CWAVEmptyfill.Checked
+    End Sub
 
     Private Sub BWAVUp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BWAVUp.Click
         If LWAV.SelectedIndex = -1 Then Return
@@ -4573,7 +4639,7 @@ case2:              Dim xI0 As Integer
         End If
     End Sub
 
-    Private Sub BHWavFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BHLandMine.Click
+    Private Sub BHWavFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BHLandMine.Click, BHPreview.Click
         Dim xDiag As New OpenFileDialog
         xDiag.Filter = Strings.FileType._wave & "|*.wav;*.ogg;*.mp3|" &
                        Strings.FileType.WAV & "|*.wav|" &
@@ -4585,9 +4651,14 @@ case2:              Dim xI0 As Integer
 
         If xDiag.ShowDialog = Windows.Forms.DialogResult.Cancel Then Exit Sub
 
-        InitPath = ExcludeFileName(xDiag.FileName)
-        THLandMine.Text = GetFileName(xDiag.FileName)
-        hWAV(0) = THLandMine.Text
+        If [Object].ReferenceEquals(sender, BHLandMine) Then
+            InitPath = ExcludeFileName(xDiag.FileName)
+            THLandMine.Text = GetFileName(xDiag.FileName)
+            hWAV(0) = THLandMine.Text
+        ElseIf [Object].ReferenceEquals(sender, BHPreview) Then
+            InitPath = ExcludeFileName(xDiag.FileName)
+            THPreview.Text = GetFileName(xDiag.FileName)
+        End If
     End Sub
 
     Private Sub Switches_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles _

@@ -98,6 +98,7 @@ Partial Public Class MainWindow
             .WriteStartElement("WAV")
             .WriteAttributeString("WAVMultiSelect", WAVMultiSelect)
             .WriteAttributeString("WAVChangeLabel", WAVChangeLabel)
+            .WriteAttributeString("WAVEmptyfill", WAVEmptyfill)
             .WriteAttributeString("BeatChangeMode", BeatChangeMode)
             .WriteEndElement()
 
@@ -396,6 +397,10 @@ Partial Public Class MainWindow
                 CWAVChangeLabel.Checked = WAVChangeLabel
                 CWAVChangeLabel_CheckedChanged(CWAVChangeLabel, New EventArgs)
 
+                XMLLoadAttribute(.GetAttribute("WAVEmptyfill"), WAVEmptyfill)
+                CWAVEmptyfill.Checked = WAVEmptyfill
+                CWAVEmptyfill_CheckedChanged(CWAVEmptyfill, New EventArgs)
+
                 Dim xInt As Integer = CInt(.GetAttribute("BeatChangeMode"))
                 Dim xBeatOpList As RadioButton() = {CBeatPreserve, CBeatMeasure, CBeatCut, CBeatScale}
                 If xInt >= 0 And xInt < xBeatOpList.Length Then
@@ -644,7 +649,8 @@ EndOfSub:
                     XMLLoadLocaleMenu(eFile.Item("ImportIBMSC"), mnImportIBMSC.Text)
                     XMLLoadLocaleMenu(eFile.Item("Save"), mnSave.Text)
                     XMLLoadLocaleMenu(eFile.Item("SaveAs"), mnSaveAs.Text)
-                    XMLLoadLocaleMenu(eFile.Item("ExportIBMSC"), mnExport.Text)
+                    XMLLoadLocaleMenu(eFile.Item("ExportIBMSC"), mnExportIBMSC.Text)
+                    XMLLoadLocaleMenu(eFile.Item("ExportBMSON"), mnExportBMSON.Text)
                     If Recent(0) = "" Then XMLLoadLocaleMenu(eFile.Item("Recent0"), mnOpenR0.Text)
                     If Recent(1) = "" Then XMLLoadLocaleMenu(eFile.Item("Recent1"), mnOpenR1.Text)
                     If Recent(2) = "" Then XMLLoadLocaleMenu(eFile.Item("Recent2"), mnOpenR2.Text)
@@ -829,6 +835,7 @@ EndOfSub:
                 If eWAV IsNot Nothing Then
                     XMLLoadLocaleMenu(eWAV.Item("MultiSelection"), CWAVMultiSelect.Text)
                     XMLLoadLocaleMenu(eWAV.Item("Synchronize"), CWAVChangeLabel.Text)
+                    XMLLoadLocaleMenu(eWAV.Item("Emptyfill"), CWAVEmptyfill.Text)
                 End If
 
                 Dim eBeat As XmlElement = eSubMenu.Item("Beat")
