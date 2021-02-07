@@ -1267,13 +1267,6 @@ EndOfSub:
             Dim stop_list = New List(Of StopEvent)()
             Dim scroll_list = New List(Of ScrollEvent)()
 
-            ' 必要な分解能を計算
-            Dim xGCD As Double = 192.0R
-            For i = 0 To UBound(Notes)
-                xGCD = GCD(xGCD, Notes(i).VPosition)
-            Next
-            Dim resolution = CInt(48.0R / xGCD)
-
             ' ヘッダ情報
             format.info.title = THTitle.Text
             format.info.subtitle = THSubTitle.Text
@@ -1281,9 +1274,9 @@ EndOfSub:
             format.info.subartists(0) = THSubArtist.Text
             format.info.genre = THGenre.Text
             If CHPlayer.SelectedIndex = 0 Then
-                format.info.mode_hint = "beat-7k"
+                format.info.mode_hint = "beat-5k"
             Else
-                format.info.mode_hint = "beat-14k"
+                format.info.mode_hint = "popn-9k"
             End If
             format.info.chart_name = ""
             If THExRank.Text <> "" Then
@@ -1305,6 +1298,34 @@ EndOfSub:
             format.info.banner_image = THBanner.Text
             format.info.preview_music = THPreview.Text
             format.info.ln_type = CHLnmode.SelectedIndex
+
+            ' 必要な分解能を計算
+            Dim xGCD As Double = 192.0R
+            For i = 0 To UBound(Notes)
+                xGCD = GCD(xGCD, Notes(i).VPosition)
+                ' ついでにプレイモードを検出
+                If format.info.mode_hint = "beat-5k" AndAlso
+                   GetColumn(Notes(i).ColumnIndex).Identifier >= 18 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= 19 Then
+                    format.info.mode_hint = "beat-7k"
+                End If
+                If format.info.mode_hint = "beat-5k" AndAlso
+                   GetColumn(Notes(i).ColumnIndex).Identifier >= 20 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= 25 Then
+                    format.info.mode_hint = "beat-10k"
+                End If
+                If format.info.mode_hint = "popn-9k" AndAlso
+                    (GetColumn(Notes(i).ColumnIndex).Identifier Mod 10 = 6 OrElse GetColumn(Notes(i).ColumnIndex).Identifier = 21) Then
+                    format.info.mode_hint = "beat-10k"
+                End If
+                If (format.info.mode_hint = "beat-10k" OrElse format.info.mode_hint = "popn-9k") AndAlso
+                   GetColumn(Notes(i).ColumnIndex).Identifier >= 18 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= 19 Then
+                    format.info.mode_hint = "beat-14k"
+                End If
+                If format.info.mode_hint <> "beat-14k" AndAlso
+                   GetColumn(Notes(i).ColumnIndex).Identifier >= 28 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= 29 Then
+                    format.info.mode_hint = "beat-14k"
+                End If
+            Next
+            Dim resolution = CInt(48.0R / xGCD)
             format.info.resolution = resolution
             ' 音定義
             For i = 1 To UBound(hWAV)
@@ -1335,7 +1356,7 @@ EndOfSub:
                 ElseIf Notes(i).ColumnIndex = niBPM Then
                     bpm_list.Add(New BpmEvent(position, Notes(i).Value / 10000.0R))
                 ElseIf Notes(i).ColumnIndex = niSTOP Then
-                    stop_list.Add(New StopEvent(position, Notes(i).Value))
+                    stop_list.Add(New StopEvent(position, Notes(i).Value / 10000))
                 ElseIf Notes(i).ColumnIndex = niBGA Then
                     bga_list.Add(New BGAEvent(position, Notes(i).Value / 10000))
                 ElseIf Notes(i).ColumnIndex = niLAYER Then
@@ -1351,15 +1372,22 @@ EndOfSub:
                 Else
                     Dim lane = GetColumn(Notes(i).ColumnIndex).Identifier - 10
                     Dim value = Notes(i).Value / 10000
-                    ' 12345896 を 12345678 に変換
-                    If (lane Mod 10) = 6 Then
-                        lane += 2
-                    ElseIf (lane Mod 10) >= 8 Then
-                        lane -= 2
+                    'ノート定義を変換
+                    If format.info.mode_hint = "popn-9k" Then
+                        If lane >= 10 Then
+                            lane -= 6
+                        End If
+                    Else
+                        If (lane Mod 10) = 6 Then
+                            lane += 2
+                        ElseIf (lane Mod 10) >= 8 Then
+                            lane -= 2
+                        End If
+                        If (lane >= 10) Then
+                            lane -= 2
+                        End If
                     End If
-                    If (lane >= 10) Then
-                        lane -= 2
-                    End If
+
                     If Notes(i).Landmine Then
                         mine_list.Add(New MineNote(position, lane, value))
                     ElseIf Notes(i).Hidden Then
@@ -1390,6 +1418,9 @@ EndOfSub:
             format.bga.bga_events = bga_list.ToArray()
             format.bga.layer_events = layer_list.ToArray()
             format.bga.poor_events = miss_list.ToArray()
+            If UBound(format.mine_channels) = 1 Then
+                format.mine_channels(0).notes = mine_list.ToArray()
+            End If
 
             ReDim format.sound_channels(wav_list.Count() - 1)
             ReDim format.key_channels(hidden_list.Count() - 1)
