@@ -378,8 +378,7 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
         xStrHeader &= vbCrLf
         If CHDifficulty.SelectedIndex Then xStrHeader &= "#DIFFICULTY " & CHDifficulty.SelectedIndex & vbCrLf
         If THExRank.Text <> "" Then xStrHeader &= "#DEFEXRANK " & THExRank.Text & vbCrLf
-        If THTotal.Text <> "" Then xStrHeader &= "#TOTAL " & THTotal.Text & vbCrLf _
-                                Else xStrHeader &= "#TOTAL " & CalcBMSTotal() & vbCrLf
+        If THTotal.Text <> "" Then xStrHeader &= "#TOTAL " & THTotal.Text & vbCrLf
         If THComment.Text <> "" Then xStrHeader &= "#COMMENT """ & THComment.Text & """" & vbCrLf
         'If THLnType.Text <> "" Then xStrHeader &= "#LNTYPE " & THLnType.Text & vbCrLf
         If CHLnObj.SelectedIndex > 0 Then xStrHeader &= "#LNOBJ " & C10to36(CHLnObj.SelectedIndex) & vbCrLf _
@@ -1286,6 +1285,8 @@ EndOfSub:
             End If
             If THTotal.Text <> "" Then
                 format.info.total = CalcBMSONTotal(CDbl(THTotal.Text))
+            Else
+                format.info.total = CalcBMSONTotal(CalcBMSTotal())
             End If
             format.info.init_bpm = CDbl(THBPM.Text)
             If THPlayLevel.Text <> "" Then
@@ -1395,7 +1396,13 @@ EndOfSub:
                             hidden_note_list(value) = New List(Of MineNote)
                         End If
                         hidden_note_list(value).Add(New MineNote(position, lane, 0))
-                    ElseIf Notes(i).LNPair > 0 AndAlso i < Notes(i).LNPair Then
+                    ElseIf NTInput AndAlso Notes(i).Longnote Then
+                        If Not note_list.ContainsKey(value) Then
+                            note_list(value) = New List(Of BmsonNote)
+                        End If
+                        Dim length = Notes(i).Length * resolution / 48.0R
+                        note_list(value).Add(New BmsonNote(position, lane, length))
+                    ElseIf Not NTInput AndAlso Notes(i).LNPair > 0 AndAlso i < Notes(i).LNPair Then
                         If Not note_list.ContainsKey(value) Then
                             note_list(value) = New List(Of BmsonNote)
                         End If

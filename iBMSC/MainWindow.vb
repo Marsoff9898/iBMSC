@@ -2039,10 +2039,13 @@ EndSearch:
         'Dim xRedo As String = sCmdKDs()
         'Dim xUndo As String = sCmdKs(True)
 
-        CopyNotes(False)
-        RemoveNotes(False)
-        AddUndo(xUndo, xBaseRedo.Next)
-
+        Try
+            CopyNotes(False)
+            RemoveNotes(False)
+            AddUndo(xUndo, xBaseRedo.Next)
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation, Strings.Messages.Err)
+        End Try
         SortByVPositionInsertion()
         UpdatePairing()
         CalculateTotalPlayableNotes()
@@ -2052,7 +2055,11 @@ EndSearch:
     End Sub
 
     Private Sub TBCopy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TBCopy.Click, mnCopy.Click
-        CopyNotes()
+        Try
+            CopyNotes()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation, Strings.Messages.Err)
+        End Try
         RefreshPanelAll()
         POStatusRefresh()
     End Sub
