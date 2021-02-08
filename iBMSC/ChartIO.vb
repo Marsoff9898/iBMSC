@@ -151,7 +151,7 @@ Partial Public Class MainWindow
             ElseIf sLineTrim.StartsWith("#LNMODE", StringComparison.CurrentCultureIgnoreCase) Then
                 Dim xInt As Integer = Val(Mid(sLineTrim, Len("#LNMODE") + 1).Trim)
                 If xInt >= 1 And xInt <= 3 Then _
-                    CHPlayer.SelectedIndex = xInt
+                    CHLnmode.SelectedIndex = xInt
 
             ElseIf sLineTrim.StartsWith("#") And Mid(sLineTrim, 7, 1) = ":" Then   'If the line contains Ks
                 Dim xIdentifier As String = Mid(sLineTrim, 5, 2)
@@ -384,7 +384,7 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
         If CHLnObj.SelectedIndex > 0 Then xStrHeader &= "#LNOBJ " & C10to36(CHLnObj.SelectedIndex) & vbCrLf _
                                      Else xStrHeader &= "#LNTYPE 1" & vbCrLf
         If THPreview.Text <> "" Then xStrHeader &= "#PREVIEW " & THPreview.Text & vbCrLf
-        If CHLnmode.SelectedIndex > 0 Then xStrHeader &= "#LNMODE " & CHLnObj.SelectedIndex & vbCrLf
+        If CHLnmode.SelectedIndex > 0 Then xStrHeader &= "#LNMODE " & CHLnmode.SelectedIndex & vbCrLf
         xStrHeader &= vbCrLf
         Return xStrHeader
     End Function
