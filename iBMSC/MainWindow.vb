@@ -1036,6 +1036,21 @@ Public Class MainWindow
         Loop
         GCD = xNMax
     End Function
+    Public Function GCD(ByVal NumA As Double, ByVal NumB As Double, res As Integer) As Double
+        Dim xNMax As Double = NumA
+        Dim xNMin As Double = NumB
+        Dim minLimit = (192.0R / res)
+        If NumA < NumB Then
+            xNMax = NumB
+            xNMin = NumA
+        End If
+        Do While xNMin >= minLimit
+            GCD = xNMax - Math.Floor(xNMax / xNMin) * xNMin
+            xNMax = xNMin
+            xNMin = GCD
+        Loop
+        GCD = xNMax
+    End Function
 
     <DllImport("user32.dll")> Private Shared Function LoadCursorFromFile(ByVal fileName As String) As IntPtr
     End Function

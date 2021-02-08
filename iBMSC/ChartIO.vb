@@ -1303,7 +1303,7 @@ EndOfSub:
             ' 必要な分解能を計算
             Dim xGCD As Double = 192.0R
             For i = 0 To UBound(Notes)
-                xGCD = GCD(xGCD, Notes(i).VPosition)
+                xGCD = GCD(xGCD, Notes(i).VPosition, 19200000)
                 ' ついでにプレイモードを検出
                 If format.info.mode_hint = "beat-5k" AndAlso
                    GetColumn(Notes(i).ColumnIndex).Identifier >= 18 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= 19 Then
@@ -1328,22 +1328,7 @@ EndOfSub:
             Next
             Dim resolution = CInt(48.0R / xGCD)
             format.info.resolution = resolution
-            ' 音定義
-            For i = 1 To UBound(hWAV)
-                If hWAV(i) <> "" Then
-                    wav_list.Add(i, New SoundChannel(hWAV(i)))
-                End If
-            Next
-            If hWAV(0) <> "" Then
-                ReDim format.mine_channels(1)
-                format.mine_channels(0) = New MineChannel(hWAV(0))
-            End If
-            For i = 1 To UBound(hBMP)
-                If hBMP(i) <> "" Then
-                    bmp_list.Add(New BGAHeader(i, hBMP(i)))
-                End If
-            Next
-
+            ' 小節線定義
             Dim len As Double = 0
             For i = 0 To MeasureAtDisplacement(GreatestVPosition) + 1
                 len += MeasureLength(i) * resolution / 48.0R
@@ -1392,11 +1377,11 @@ EndOfSub:
                     If Notes(i).Landmine Then
                         mine_list.Add(New MineNote(position, lane, value))
                     ElseIf Notes(i).Hidden Then
-                        If Not note_list.ContainsKey(value) Then
+                        If Not hidden_note_list.ContainsKey(value) Then
                             hidden_note_list(value) = New List(Of MineNote)
                         End If
                         hidden_note_list(value).Add(New MineNote(position, lane, 0))
-                    ElseIf NTInput AndAlso Notes(i).Longnote Then
+                    ElseIf NTInput AndAlso Notes(i).LongNote Then
                         If Not note_list.ContainsKey(value) Then
                             note_list(value) = New List(Of BmsonNote)
                         End If
@@ -1416,6 +1401,28 @@ EndOfSub:
                     End If
                 End If
             Next
+            ' 音定義
+            For i = 1 To UBound(hWAV)
+                If hWAV(i) <> "" Then
+                    If note_list.ContainsKey(i) Then
+                        wav_list.Add(i, New SoundChannel(hWAV(i)))
+                    End If
+                    If hidden_note_list.ContainsKey(i) Then
+                        hidden_list.Add(i, New MineChannel(hWAV(i)))
+                    End If
+                End If
+            Next
+            ReDim format.mine_channels(0)
+            If hWAV(0) <> "" Then
+                format.mine_channels(0) = New MineChannel(hWAV(0))
+            Else
+                format.mine_channels(0) = New MineChannel("")
+            End If
+            For i = 1 To UBound(hBMP)
+                If hBMP(i) <> "" Then
+                    bmp_list.Add(New BGAHeader(i, hBMP(i)))
+                End If
+            Next
             ' 適用
             format.lines = bar_list.ToArray()
             format.bpm_events = bpm_list.ToArray()
@@ -1425,9 +1432,7 @@ EndOfSub:
             format.bga.bga_events = bga_list.ToArray()
             format.bga.layer_events = layer_list.ToArray()
             format.bga.poor_events = miss_list.ToArray()
-            If UBound(format.mine_channels) = 1 Then
-                format.mine_channels(0).notes = mine_list.ToArray()
-            End If
+            format.mine_channels(0).notes = mine_list.ToArray()
 
             ReDim format.sound_channels(wav_list.Count() - 1)
             ReDim format.key_channels(hidden_list.Count() - 1)
@@ -1435,24 +1440,21 @@ EndOfSub:
             i = 0
             For Each n In wav_list
                 format.sound_channels(i) = New SoundChannel(n.Value().name)
-                If note_list.ContainsKey(n.Key()) Then
-                    ReDim format.sound_channels(i).notes(note_list(n.Key()).Count() - 1)
-                    format.sound_channels(i).notes = note_list(n.Key()).ToArray()
-                End If
+                ReDim format.sound_channels(i).notes(note_list(n.Key()).Count() - 1)
+                format.sound_channels(i).notes = note_list(n.Key()).ToArray()
                 i += 1
             Next
 
             i = 0
             For Each n In hidden_list
                 format.key_channels(i) = New MineChannel(n.Value().name)
-                If hidden_note_list.ContainsKey(n.Key()) Then
-                    ReDim format.key_channels(i).notes(hidden_note_list(n.Key()).Count() - 1)
-                    format.key_channels(i).notes = hidden_note_list(n.Key()).ToArray()
-                End If
+                ReDim format.key_channels(i).notes(hidden_note_list(n.Key()).Count() - 1)
+                format.key_channels(i).notes = hidden_note_list(n.Key()).ToArray()
                 i += 1
             Next
 
             options.IncludeFields = True
+            options.WriteIndented = True
             Dim bw As New BinaryWriter(New IO.FileStream(Path, FileMode.Create), System.Text.Encoding.UTF8)
             Dim str = JsonSerializer.SerializeToUtf8Bytes(format, options)
             bw.Write(str)
