@@ -245,14 +245,14 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
     End Sub
 
     ReadOnly BMSChannelList() As String = {"01", "03", "04", "06", "07", "08", "09",
-                                       "11", "12", "13", "14", "15", "16", "18", "19",
-                                       "21", "22", "23", "24", "25", "26", "28", "29",
-                                       "31", "32", "33", "34", "35", "36", "38", "39",
-                                       "41", "42", "43", "44", "45", "46", "48", "49",
-                                       "51", "52", "53", "54", "55", "56", "58", "59",
-                                       "61", "62", "63", "64", "65", "66", "68", "69",
-                                       "D1", "D2", "D3", "D4", "D5", "D6", "D8", "D9",
-                                       "E1", "E2", "E3", "E4", "E5", "E6", "E8", "E9",
+                                       "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D", "1E", "1F", "1G", "1H", "1I", "1J", "1K", "1L", "1M", "1N", "1O", "1P", "1Q",
+                                       "21", "22", "23", "24", "25", "26", "27", "28", "29", "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "2I", "2J", "2K", "2L", "2M", "2N", "2O", "2P", "2Q",
+                                       "31", "32", "33", "34", "35", "36", "37", "38", "39", "3A", "3B", "3C", "3D", "3E", "3F", "3G", "3H", "3I", "3J", "3K", "3L", "3M", "3N", "3O", "3P", "3Q",
+                                       "41", "42", "43", "44", "45", "46", "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "4G", "4H", "4I", "4J", "4K", "4L", "4M", "4N", "4O", "4P", "4Q",
+                                       "51", "52", "53", "54", "55", "56", "57", "58", "59", "5A", "5B", "5C", "5D", "5E", "5F", "5G", "5H", "5I", "5J", "5K", "5L", "5M", "5N", "5O", "5P", "5Q",
+                                       "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C", "6D", "6E", "6F", "6G", "6H", "6I", "6J", "6K", "6L", "6M", "6N", "6O", "6P", "6Q",
+                                       "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DA", "DB", "DC", "DD", "DE", "DF", "DG", "DH", "DI", "DJ", "DK", "DL", "DM", "DN", "DO", "DP", "DQ",
+                                       "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "EA", "EB", "EC", "ED", "EE", "EF", "EG", "EH", "EI", "EJ", "EK", "EL", "EM", "EN", "EO", "EP", "EQ",
                                        "SC"}
     ' 71 through 89 are reserved
     '"71", "72", "73", "74", "75", "76", "78", "79",
@@ -1306,24 +1306,36 @@ EndOfSub:
                 xGCD = GCD(xGCD, Notes(i).VPosition, 19200000)
                 ' ついでにプレイモードを検出
                 If format.info.mode_hint = "beat-5k" AndAlso
-                   GetColumn(Notes(i).ColumnIndex).Identifier >= 18 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= 19 Then
+                   GetColumn(Notes(i).ColumnIndex).Identifier >= (36 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (36 + 9) Then
                     format.info.mode_hint = "beat-7k"
                 End If
                 If format.info.mode_hint = "beat-5k" AndAlso
-                   GetColumn(Notes(i).ColumnIndex).Identifier >= 20 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= 25 Then
+                   GetColumn(Notes(i).ColumnIndex).Identifier >= 72 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (72 + 5) Then
                     format.info.mode_hint = "beat-10k"
                 End If
                 If format.info.mode_hint = "popn-9k" AndAlso
-                    (GetColumn(Notes(i).ColumnIndex).Identifier Mod 10 = 6 OrElse GetColumn(Notes(i).ColumnIndex).Identifier = 21) Then
+                    (GetColumn(Notes(i).ColumnIndex).Identifier Mod 36 = 6 OrElse GetColumn(Notes(i).ColumnIndex).Identifier = (72 + 1)) Then
                     format.info.mode_hint = "beat-10k"
                 End If
                 If (format.info.mode_hint = "beat-10k" OrElse format.info.mode_hint = "popn-9k") AndAlso
-                   GetColumn(Notes(i).ColumnIndex).Identifier >= 18 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= 19 Then
+                   GetColumn(Notes(i).ColumnIndex).Identifier >= (36 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (36 + 8) Then
                     format.info.mode_hint = "beat-14k"
                 End If
                 If format.info.mode_hint <> "beat-14k" AndAlso
-                   GetColumn(Notes(i).ColumnIndex).Identifier >= 28 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= 29 Then
+                   GetColumn(Notes(i).ColumnIndex).Identifier >= (72 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (72 + 9) Then
                     format.info.mode_hint = "beat-14k"
+                End If
+                If format.info.mode_hint = "beat-5k" AndAlso format.info.mode_hint = "beat-7k" AndAlso
+                   (GetColumn(Notes(i).ColumnIndex).Identifier = (36 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (36 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 72 Then
+                    format.info.mode_hint = "keyboard-24k"
+                End If
+                If format.info.mode_hint = "popn-9k" AndAlso format.info.mode_hint = "beat-10k" AndAlso format.info.mode_hint = "beat-14k" AndAlso
+                   (GetColumn(Notes(i).ColumnIndex).Identifier = (36 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (36 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 72 Then
+                    format.info.mode_hint = "keyboard-24k-double"
+                End If
+                If format.info.mode_hint <> "keyboard-24k-double" AndAlso
+                   (GetColumn(Notes(i).ColumnIndex).Identifier = (72 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (72 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 108 Then
+                    format.info.mode_hint = "keyboard-24k-double"
                 End If
             Next
             Dim resolution = CInt(48.0R / xGCD)
@@ -1356,21 +1368,32 @@ EndOfSub:
                     End If
                     note_list(value).Add(New BmsonNote(position, 0))
                 Else
-                    Dim lane = GetColumn(Notes(i).ColumnIndex).Identifier - 10
+                    Dim lane = GetColumn(Notes(i).ColumnIndex).Identifier - 36
                     Dim value = Notes(i).Value / 10000
                     'ノート定義を変換
                     If format.info.mode_hint = "popn-9k" Then
-                        If lane >= 10 Then
-                            lane -= 6
+                        If lane >= 36 Then
+                            lane -= 32
+                        End If
+                    ElseIf format.info.mode_hint = "keyboard-24k" OrElse format.info.mode_hint = "keyboard-24k-double" Then
+                        If (lane Mod 36) = 6 Then
+                            lane += 20
+                        ElseIf (lane Mod 36) = 7 Then
+                            lane += 18
+                        ElseIf (lane Mod 36) >= 8 Then
+                            lane -= 2
+                        End If
+                        If (lane >= 36) Then
+                            lane -= 10
                         End If
                     Else
-                        If (lane Mod 10) = 6 Then
+                        If (lane Mod 36) = 6 Then
                             lane += 2
-                        ElseIf (lane Mod 10) >= 8 Then
+                        ElseIf (lane Mod 36) >= 8 Then
                             lane -= 2
                         End If
-                        If (lane >= 10) Then
-                            lane -= 2
+                        If (lane >= 36) Then
+                            lane -= 28
                         End If
                     End If
 

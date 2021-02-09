@@ -9,6 +9,7 @@ Partial Public Class MainWindow
             'w.WriteAttributeString("Left", .Left)
             w.WriteAttributeString("Width", .Width)
             w.WriteAttributeString("Title", .Title)
+            w.WriteAttributeString("Display", .isVisible)
             'w.WriteAttributeString("Text", .Text)
             'w.WriteAttributeString("Enabled", .Enabled)
             'w.WriteAttributeString("isNumeric", .isNumeric)
@@ -489,6 +490,10 @@ Partial Public Class MainWindow
 
         'Columns
         Dim eColumns As XmlElement = Root.Item("Columns")
+        For i = niA1 To niAQ
+            column(i).isVisible = False
+            column(i + (niD1 - niA1)).isVisible = False
+        Next
         If eColumns IsNot Nothing Then
             For Each eeCol As XmlElement In eColumns.ChildNodes
                 Me.XMLLoadColumn(eeCol)
@@ -1144,6 +1149,11 @@ EndOfSub:
                 XMLLoadLocale(eImportSM.Item("Title"), Strings.fImportSM.Title)
                 XMLLoadLocale(eImportSM.Item("Difficulty"), Strings.fImportSM.Difficulty)
                 XMLLoadLocale(eImportSM.Item("Note"), Strings.fImportSM.Note)
+            End If
+
+            Dim eImportBMSON As XmlElement = Root.Item("ImportBMSON")
+            If eImportBMSON IsNot Nothing Then
+                XMLLoadLocale(eImportBMSON.Item("Message"), Strings.fImportBMSON.Message)
             End If
 
             Dim eFileAssociation As XmlElement = Root.Item("FileAssociation")

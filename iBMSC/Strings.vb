@@ -57,6 +57,7 @@ Public Class Strings
 
         Public Shared SM As String = "StepMania Script (*.sm)"
         Public Shared IBMSC As String = "iBMSC Binary Format (*.ibmsc)"
+        Public Shared BMSON As String = "BMS JSON Format (*.bmson)"
         Public Shared XML As String = "Extensible Markup Language (*.xml)"
         Public Shared THEME_XML As String = "iBMSC Theme File (*.Theme.xml)"
         Public Shared TH As String = "iBMSC 2.x Theme File (*.Theme.xml)"
@@ -209,6 +210,10 @@ Public Class Strings
         Public Shared Title As String = "Import *.SM file"
         Public Shared Difficulty As String = "Difficulty"
         Public Shared Note As String = "Please note that bg musics and STOP values will not be imported."
+    End Class
+
+    Public Class fImportBMSON
+        Public Shared Message As String = "BMSON Format is write only."
     End Class
 
     Public Class FileAssociation

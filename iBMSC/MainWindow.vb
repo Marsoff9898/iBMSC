@@ -187,7 +187,7 @@ Public Class MainWindow
     Dim gBPM As Boolean = True
     'Dim gA8 As Boolean = False
     Dim iPlayer As Integer = 0
-    Dim gColumns As Integer = 46
+    Dim gColumns As Integer = 82
 
     '----Visual Options
     Dim vo As New visualSettings()
@@ -1018,6 +1018,8 @@ Public Class MainWindow
                 SetFileName("Imported_" & GetFileName(xPath))
                 SetIsSaved(False)
 
+            Case ".bmson"
+                MsgBox(Strings.fImportBMSON.Message)
         End Select
     End Sub
 
@@ -1602,7 +1604,7 @@ EndSearch:
         KMouseOver = -1
 
         Dim xDSave As New SaveFileDialog
-        xDSave.Filter = Strings.FileType.IBMSC & "|*.bmson"
+        xDSave.Filter = Strings.FileType.BMSON & "|*.bmson"
         xDSave.DefaultExt = "bmson"
         xDSave.InitialDirectory = IIf(ExcludeFileName(FileName) = "", InitPath, ExcludeFileName(FileName))
         If xDSave.ShowDialog = Windows.Forms.DialogResult.Cancel Then Exit Sub
@@ -2222,15 +2224,21 @@ EndSearch:
         For i As Integer = 1 To UBound(Notes)
             With Notes(i)
                 Dim row As Integer = -1
-                Select Case .ColumnIndex
-                    Case niBPM : row = 0
-                    Case niSTOP : row = 1
-                    Case niSCROLL : row = 2
-                    Case niA1, niA2, niA3, niA4, niA5, niA6, niA7, niA8 : row = 3
-                    Case niD1, niD2, niD3, niD4, niD5, niD6, niD7, niD8 : row = 4
-                    Case Is >= niB : row = 5
-                    Case Else : row = 6
-                End Select
+                If .ColumnIndex = niBPM Then
+                    row = 0
+                ElseIf .ColumnIndex = niSTOP Then
+                    row = 1
+                ElseIf .ColumnIndex = niSCROLL Then
+                    row = 2
+                ElseIf .ColumnIndex >= niA1 AndAlso .ColumnIndex <= niAQ Then
+                    row = 3
+                ElseIf .ColumnIndex >= niD1 AndAlso .ColumnIndex <= niDQ Then
+                    row = 4
+                ElseIf .ColumnIndex >= niB Then
+                    row = 5
+                Else
+                    row = 6
+                End If
 
 
 StartCount:     If Not NTInput Then
@@ -2273,17 +2281,17 @@ StartCount:     If Not NTInput Then
 
         If Not NTInput Then
             For xI1 = 1 To UBound(Notes)
-                If Notes(xI1).ColumnIndex >= niA1 AndAlso Notes(xI1).ColumnIndex <= niA8 Then xIAll += 1
-                If (Notes(xI1).ColumnIndex >= niD1 AndAlso Notes(xI1).ColumnIndex <= niD8) AndAlso column(Notes(xI1).ColumnIndex).isVisible Then xIAll += 1
+                If Notes(xI1).ColumnIndex >= niA1 AndAlso Notes(xI1).ColumnIndex <= niAQ Then xIAll += 1
+                If (Notes(xI1).ColumnIndex >= niD1 AndAlso Notes(xI1).ColumnIndex <= niDQ) AndAlso column(Notes(xI1).ColumnIndex).isVisible Then xIAll += 1
             Next
 
         Else
             For xI1 = 1 To UBound(Notes)
-                If Notes(xI1).ColumnIndex >= niA1 And Notes(xI1).ColumnIndex <= niA8 Then
+                If Notes(xI1).ColumnIndex >= niA1 And Notes(xI1).ColumnIndex <= niAQ Then
                     xIAll += 1
                     If Notes(xI1).Length <> 0 Then xIAll += 1
                 End If
-                If (Notes(xI1).ColumnIndex >= niD1 And Notes(xI1).ColumnIndex <= niD8) AndAlso column(Notes(xI1).ColumnIndex).isVisible Then
+                If (Notes(xI1).ColumnIndex >= niD1 And Notes(xI1).ColumnIndex <= niDQ) AndAlso column(Notes(xI1).ColumnIndex).isVisible Then
                     xIAll += 1
                     If Notes(xI1).Length <> 0 Then xIAll += 1
                 End If
@@ -2456,13 +2464,20 @@ StartCount:     If Not NTInput Then
             If Not Notes(xI1).Selected Then Continue For
 
             Select Case Notes(xI1).ColumnIndex
-                Case niA1 : xCol = niA7
-                Case niA2 : xCol = niA6
-                Case niA3 : xCol = niA5
-                Case niA4 : xCol = niA4
-                Case niA5 : xCol = niA3
-                Case niA6 : xCol = niA2
-                Case niA7 : xCol = niA1
+                Case niA3 : xCol = niA9
+                Case niA4 : xCol = niA8
+                Case niA5 : xCol = niA7
+                Case niA6 : xCol = niA6
+                Case niA7 : xCol = niA5
+                Case niA8 : xCol = niA4
+                Case niA9 : xCol = niA3
+                Case niD1 : xCol = niD7
+                Case niD2 : xCol = niD6
+                Case niD3 : xCol = niD5
+                Case niD4 : xCol = niD4
+                Case niD5 : xCol = niD3
+                Case niD6 : xCol = niD2
+                Case niD7 : xCol = niD1
                 Case Else : Continue For
             End Select
 
@@ -3150,14 +3165,43 @@ StartCount:     If Not NTInput Then
 
         iPlayer = CHPlayer.SelectedIndex
         Dim xGP2 As Boolean = iPlayer <> 0
-        column(niD1).isVisible = xGP2
-        column(niD2).isVisible = xGP2
-        column(niD3).isVisible = xGP2
-        column(niD4).isVisible = xGP2
-        column(niD5).isVisible = xGP2
-        column(niD6).isVisible = xGP2
-        column(niD7).isVisible = xGP2
-        column(niD8).isVisible = xGP2
+        column(niD8).isVisible = (xGP2 And column(niAA).isVisible)
+        column(niD9).isVisible = (xGP2 And column(niAB).isVisible)
+        column(niDA).isVisible = (xGP2 And column(niAC).isVisible)
+        column(niDB).isVisible = (xGP2 And column(niAD).isVisible)
+        column(niDC).isVisible = (xGP2 And column(niAE).isVisible)
+        column(niDD).isVisible = (xGP2 And column(niAF).isVisible)
+        column(niDE).isVisible = (xGP2 And column(niAG).isVisible)
+        column(niDF).isVisible = (xGP2 And column(niAH).isVisible)
+        column(niDG).isVisible = (xGP2 And column(niAI).isVisible)
+        column(niDH).isVisible = (xGP2 And column(niAJ).isVisible)
+        column(niDI).isVisible = (xGP2 And column(niAK).isVisible)
+        column(niDJ).isVisible = (xGP2 And column(niAL).isVisible)
+        column(niDK).isVisible = (xGP2 And column(niAM).isVisible)
+        column(niDL).isVisible = (xGP2 And column(niAN).isVisible)
+        column(niDM).isVisible = (xGP2 And column(niAO).isVisible)
+        column(niDN).isVisible = (xGP2 And column(niAP).isVisible)
+        column(niDO).isVisible = (xGP2 And column(niAQ).isVisible)
+        column(niDP).isVisible = (xGP2 And column(niA1).isVisible)
+        If Rscratch Then
+            column(niD1).isVisible = (xGP2 And column(niA2).isVisible)
+            column(niD2).isVisible = (xGP2 And column(niA3).isVisible)
+            column(niD3).isVisible = (xGP2 And column(niA4).isVisible)
+            column(niD4).isVisible = (xGP2 And column(niA5).isVisible)
+            column(niD5).isVisible = (xGP2 And column(niA6).isVisible)
+            column(niD6).isVisible = (xGP2 And column(niA7).isVisible)
+            column(niD7).isVisible = (xGP2 And column(niA8).isVisible)
+            column(niDQ).isVisible = (xGP2 And column(niA9).isVisible)
+        Else
+            column(niD1).isVisible = (xGP2 And column(niA3).isVisible)
+            column(niD2).isVisible = (xGP2 And column(niA4).isVisible)
+            column(niD3).isVisible = (xGP2 And column(niA5).isVisible)
+            column(niD4).isVisible = (xGP2 And column(niA6).isVisible)
+            column(niD5).isVisible = (xGP2 And column(niA7).isVisible)
+            column(niD6).isVisible = (xGP2 And column(niA8).isVisible)
+            column(niD7).isVisible = (xGP2 And column(niA9).isVisible)
+            column(niDQ).isVisible = (xGP2 And column(niA2).isVisible)
+        End If
         column(niS3).isVisible = xGP2
 
         For xI1 As Integer = 1 To UBound(Notes)

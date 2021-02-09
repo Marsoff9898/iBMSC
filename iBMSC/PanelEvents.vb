@@ -198,14 +198,14 @@ Partial Public Class MainWindow
             Case Keys.NumPad0, Keys.D0
                 MoveToBGM(xUndo, xRedo)
 
-            Case Keys.Oem1, Keys.NumPad1, Keys.D1 : MoveToColumn(niA1, xUndo, xRedo)
-            Case Keys.Oem2, Keys.NumPad2, Keys.D2 : MoveToColumn(niA2, xUndo, xRedo)
-            Case Keys.Oem3, Keys.NumPad3, Keys.D3 : MoveToColumn(niA3, xUndo, xRedo)
-            Case Keys.Oem4, Keys.NumPad4, Keys.D4 : MoveToColumn(niA4, xUndo, xRedo)
-            Case Keys.Oem5, Keys.NumPad5, Keys.D5 : MoveToColumn(niA5, xUndo, xRedo)
-            Case Keys.Oem6, Keys.NumPad6, Keys.D6 : MoveToColumn(niA6, xUndo, xRedo)
-            Case Keys.Oem7, Keys.NumPad7, Keys.D7 : MoveToColumn(niA7, xUndo, xRedo)
-            Case Keys.Oem8, Keys.NumPad8, Keys.D8 : MoveToColumn(niA8, xUndo, xRedo)
+            Case Keys.Oem1, Keys.NumPad1, Keys.D1 : MoveToColumn(niA2, xUndo, xRedo)
+            Case Keys.Oem2, Keys.NumPad2, Keys.D2 : MoveToColumn(niA3, xUndo, xRedo)
+            Case Keys.Oem3, Keys.NumPad3, Keys.D3 : MoveToColumn(niA4, xUndo, xRedo)
+            Case Keys.Oem4, Keys.NumPad4, Keys.D4 : MoveToColumn(niA5, xUndo, xRedo)
+            Case Keys.Oem5, Keys.NumPad5, Keys.D5 : MoveToColumn(niA6, xUndo, xRedo)
+            Case Keys.Oem6, Keys.NumPad6, Keys.D6 : MoveToColumn(niA7, xUndo, xRedo)
+            Case Keys.Oem7, Keys.NumPad7, Keys.D7 : MoveToColumn(niA8, xUndo, xRedo)
+            Case Keys.Oem8, Keys.NumPad8, Keys.D8 : MoveToColumn(niA9, xUndo, xRedo)
 
         End Select
 

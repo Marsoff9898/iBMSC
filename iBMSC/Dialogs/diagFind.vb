@@ -1,7 +1,7 @@
 Imports System.Windows.Forms
 
 Public Class diagFind
-    Dim bCol As Integer = 47
+    Dim bCol As Integer = 83
     Dim msg1 As String = "Error"
     Dim msg2 As String = "Invalid label."
 
@@ -71,16 +71,16 @@ Public Class diagFind
         TBDelete.Text = Strings.fFind.Delete_
         TBClose.Text = Strings.fFind.Close_
 
-        For xI1 As Integer = 28 To bCol
+        For xI1 As Integer = 64 To bCol
             Dim xCB As New CheckBox
             With xCB
                 .Appearance = Appearance.Button
                 .Checked = True
                 .FlatStyle = FlatStyle.System
-                .Location = New Point(((xI1 - 27) Mod 8) * 35 + 3, ((xI1 - 27) \ 8) * 25 + 103)
+                .Location = New Point(((xI1 - 63) Mod 8) * 35 + 3, ((xI1 - 63) \ 8) * 25 + 103)
                 .Size = New Size(35, 25)
                 .Tag = xI1
-                .Text = "B" & (xI1 - 26).ToString
+                .Text = "B" & (xI1 - 62).ToString
                 .TextAlign = ContentAlignment.MiddleCenter
                 .UseVisualStyleBackColor = True
             End With
