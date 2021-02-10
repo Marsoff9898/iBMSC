@@ -253,66 +253,82 @@ Partial Public Class MainWindow
             tLeft(i) = column(niA1 + i + 1).Left - column(niA1 + i).Left
         Next
         If Rscratch Then
+            Dim tTitle = {column(niA1).Title, column(niA2).Title}
             Dim tcBG = {column(niA1).cBG, column(niA2).cBG}
             Dim tcNote = {column(niA1).cNote, column(niA2).cNote}
             Dim tcLNote = {column(niA1).cLNote, column(niA2).cLNote}
             Dim tcText = {column(niA1).cText, column(niA2).cText}
             Dim tcLText = {column(niA1).cLText, column(niA2).cLText}
             Dim tWidth = {column(niA1).Width, column(niA2).Width}
+            Dim tVisible = {column(niA1).isVisible, column(niA2).isVisible}
             tLeft(9) = tLeft(0)
             tLeft(10) = tLeft(1)
             For i = 0 To 6 Step 1
+                column(niA1 + i).Title = column(niA1 + i + 2).Title
                 column(niA1 + i).cBG = column(niA1 + i + 2).cBG
                 column(niA1 + i).cText = column(niA1 + i + 2).cText
                 column(niA1 + i).cLText = column(niA1 + i + 2).cLText
                 column(niA1 + i).setNoteColor(column(niA1 + i + 2).cNote)
                 column(niA1 + i).setLNoteColor(column(niA1 + i + 2).cLNote)
+                column(niA1 + i).isVisible = column(niA1 + i + 2).isVisible
                 column(niA1 + i).Width = column(niA1 + i + 2).Width
                 tLeft(i) = tLeft(i + 2)
             Next
+            column(niA8).Title = tTitle(0)
             column(niA8).cBG = tcBG(0)
             column(niA8).cText = tcText(0)
             column(niA8).cLText = tcLText(0)
             column(niA8).setNoteColor(tcNote(0))
             column(niA8).setLNoteColor(tcLNote(0))
+            column(niA8).isVisible = tVisible(0)
             column(niA8).Width = tWidth(0)
+            column(niA9).Title = tTitle(1)
             column(niA9).cBG = tcBG(1)
             column(niA9).cText = tcText(1)
             column(niA9).cLText = tcLText(1)
             column(niA9).setNoteColor(tcNote(1))
             column(niA9).setLNoteColor(tcLNote(1))
+            column(niA9).isVisible = tVisible(1)
             column(niA9).Width = tWidth(1)
             tLeft(7) = tLeft(9)
             tLeft(8) = tLeft(10)
         ElseIf swap Then
+            Dim tTitle = {column(niA8).Title, column(niA9).Title}
             Dim tcBG = {column(niA8).cBG, column(niA9).cBG}
             Dim tcNote = {column(niA8).cNote, column(niA9).cNote}
             Dim tcLNote = {column(niA8).cLNote, column(niA9).cLNote}
             Dim tcText = {column(niA8).cText, column(niA9).cText}
             Dim tcLText = {column(niA8).cLText, column(niA9).cLText}
             Dim tWidth = {column(niA8).Width, column(niA9).Width}
+            Dim tVisible = {column(niA8).isVisible, column(niA9).isVisible}
             tLeft(9) = tLeft(7)
             tLeft(10) = tLeft(8)
             For i = 6 To 0 Step -1
+                column(niA1 + i + 2).Title = column(niA1 + i).Title
                 column(niA1 + i + 2).cBG = column(niA1 + i).cBG
                 column(niA1 + i + 2).cText = column(niA1 + i).cText
                 column(niA1 + i + 2).cLText = column(niA1 + i).cLText
                 column(niA1 + i + 2).setNoteColor(column(niA1 + i).cNote)
                 column(niA1 + i + 2).setLNoteColor(column(niA1 + i).cLNote)
+                column(niA1 + i + 2).isVisible = column(niA1 + i).isVisible
                 column(niA1 + i + 2).Width = column(niA1 + i).Width
                 tLeft(i + 2) = tLeft(i)
             Next
+            column(niA1).Title = tTitle(0)
             column(niA1).cBG = tcBG(0)
             column(niA1).cText = tcText(0)
             column(niA1).cLText = tcLText(0)
             column(niA1).setNoteColor(tcNote(0))
             column(niA1).setLNoteColor(tcLNote(0))
+            column(niA1).isVisible = tVisible(0)
             column(niA1).Width = tWidth(0)
+            column(niA2).Title = tTitle(1)
             column(niA2).cBG = tcBG(1)
             column(niA2).cText = tcText(1)
             column(niA2).cLText = tcLText(1)
             column(niA2).setNoteColor(tcNote(1))
             column(niA2).setLNoteColor(tcLNote(1))
+            column(niA2).isVisible = tVisible(1)
             column(niA2).Width = tWidth(1)
             tLeft(0) = tLeft(9)
             tLeft(1) = tLeft(10)
@@ -352,8 +368,8 @@ Partial Public Class MainWindow
             Case "13", "33", "53", "73", "D3" : result = niA5
             Case "14", "34", "54", "74", "D4" : result = niA6
             Case "15", "35", "55", "75", "D5" : result = niA7
-            Case "16", "36", "56", "76", "D6" : result = niA2
-            Case "17", "37", "57", "77", "D7" : result = niA1
+            Case "16", "36", "56", "76", "D6" : result = niA1
+            Case "17", "37", "57", "77", "D7" : result = niA2
             Case "18", "38", "58", "78", "D8" : result = niA8
             Case "19", "39", "59", "79", "D9" : result = niA9
             Case "1A", "3A", "5A", "7A", "DA" : result = niAA
@@ -379,8 +395,8 @@ Partial Public Class MainWindow
             Case "23", "43", "63", "83", "E3" : result = niD3
             Case "24", "44", "64", "84", "E4" : result = niD4
             Case "25", "45", "65", "85", "E5" : result = niD5
-            Case "26", "46", "66", "86", "E6" : result = niDQ
-            Case "27", "47", "67", "87", "E7" : result = niDP
+            Case "26", "46", "66", "86", "E6" : result = niDP
+            Case "27", "47", "67", "87", "E7" : result = niDQ
             Case "28", "48", "68", "88", "E8" : result = niD6
             Case "29", "49", "69", "89", "E9" : result = niD7
             Case "2A", "4A", "6A", "8A", "EA" : result = niD8

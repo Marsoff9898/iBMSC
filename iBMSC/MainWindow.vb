@@ -2293,6 +2293,24 @@ StartCount:     If Not NTInput Then
         TBStatistics.Text = xIAll
     End Sub
 
+    Private Function CalculateTotalNotes() As Integer
+        Dim xI1 As Integer
+        Dim xIAll As Integer = 0
+
+        For xI1 = 1 To UBound(Notes)
+            If (Notes(xI1).ColumnIndex >= niA1 AndAlso Notes(xI1).ColumnIndex <= niAQ) AndAlso
+                   Not Notes(xI1).Hidden AndAlso Not Notes(xI1).Landmine AndAlso column(Notes(xI1).ColumnIndex).isVisible Then
+                xIAll += 1
+            End If
+            If (Notes(xI1).ColumnIndex >= niD1 AndAlso Notes(xI1).ColumnIndex <= niDQ) AndAlso
+                   Not Notes(xI1).Hidden AndAlso Not Notes(xI1).Landmine AndAlso column(Notes(xI1).ColumnIndex).isVisible Then
+                xIAll += 1
+            End If
+        Next
+
+        Return xIAll
+    End Function
+
     Public Function GetMouseVPosition(Optional snap As Boolean = True)
         Dim panHeight = spMain(PanelFocus).Height
         Dim panDisplacement = PanelVScroll(PanelFocus)

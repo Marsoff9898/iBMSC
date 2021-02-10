@@ -1303,7 +1303,7 @@ EndOfSub:
             ' 必要な分解能を計算
             Dim xGCD As Double = 192.0R
             For i = 0 To UBound(Notes)
-                xGCD = GCD(xGCD, Notes(i).VPosition, 19200000)
+                xGCD = GCD(xGCD, Notes(i).VPosition, 1920000)
                 ' ついでにプレイモードを検出
                 If format.info.mode_hint = "beat-5k" AndAlso
                    GetColumn(Notes(i).ColumnIndex).Identifier >= (36 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (36 + 9) Then
@@ -1486,12 +1486,12 @@ EndOfSub:
     End Sub
 
     Function CalcBMSTotal() As Double
-        Dim notes = CInt(TBStatistics.Text)
+        Dim notes = CalculateTotalNotes()
         Return System.Math.Max((720.0 / (800 + notes) * notes), 200.0)
     End Function
 
     Function CalcBMSONTotal(total As Double) As Double
-        Dim notes = CInt(TBStatistics.Text)
+        Dim notes = CalculateTotalNotes()
         Return total / System.Math.Max((800.0 / (700 + notes) * notes), 250.0) * 100
     End Function
 
