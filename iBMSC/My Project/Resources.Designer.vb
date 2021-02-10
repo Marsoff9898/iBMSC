@@ -548,16 +548,6 @@ Namespace My.Resources
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
-        Friend ReadOnly Property x16LNLinkSelect() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("x16LNLinkSelect", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        '''</summary>
         Friend ReadOnly Property x16LnNT() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16LnNT", resourceCulture)

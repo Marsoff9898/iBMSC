@@ -81,7 +81,6 @@ Partial Public Class MainWindow
             .WriteAttributeString("FirstClickDisabled", FirstClickDisabled)
             .WriteAttributeString("ShowFileName", ShowFileName)
             .WriteAttributeString("ChangePlaySide", Rscratch)
-            .WriteAttributeString("LNLinkSelect", LNLinkSelect)
             .WriteAttributeString("MiddleButtonMoveMethod", MiddleButtonMoveMethod)
             .WriteAttributeString("AutoSaveInterval", AutoSaveInterval)
             .WriteAttributeString("PreviewOnClick", PreviewOnClick)
@@ -357,10 +356,6 @@ Partial Public Class MainWindow
                 XMLLoadAttribute(.GetAttribute("ChangePlaySide"), Rscratch)
                 TBChangePlaySide.Checked = Rscratch
                 TBChangePlaySide_Click(TBChangePlaySide, New System.EventArgs)
-
-                XMLLoadAttribute(.GetAttribute("LNLinkSelect"), LNLinkSelect)
-                TBLNLinkSelect.Checked = LNLinkSelect
-                TBLNLinkSelect_Click(TBLNLinkSelect, New System.EventArgs)
 
                 XMLLoadAttribute(.GetAttribute("ClickStopPreview"), ClickStopPreview)
             End With
@@ -705,7 +700,6 @@ EndOfSub:
                     XMLLoadLocaleMenu(eOptions.Item("PreviewOnClick"), mnPreviewOnClick.Text)
                     XMLLoadLocaleMenu(eOptions.Item("ShowFileName"), mnShowFileName.Text)
                     XMLLoadLocaleMenu(eOptions.Item("ChangePlaySide"), mnChangePlaySide.Text)
-                    XMLLoadLocaleMenu(eOptions.Item("LNLinkSelect"), mnLNLinkSelect.Text)
                     XMLLoadLocaleMenu(eOptions.Item("GeneralOptions"), mnGOptions.Text)
                     XMLLoadLocaleMenu(eOptions.Item("VisualOptions"), mnVOptions.Text)
                     XMLLoadLocaleMenu(eOptions.Item("PlayerOptions"), mnPOptions.Text)
@@ -748,7 +742,6 @@ EndOfSub:
                 XMLLoadLocale(eToolBar.Item("PreviewOnClick"), TBPreviewOnClick.Text)
                 XMLLoadLocale(eToolBar.Item("ShowFileName"), TBShowFileName.Text)
                 XMLLoadLocale(eToolBar.Item("ChangePlaySide"), TBChangePlaySide.Text)
-                XMLLoadLocale(eToolBar.Item("LNLinkSelect"), TBLNLinkSelect.Text)
                 XMLLoadLocale(eToolBar.Item("Undo"), TBUndo.Text)
                 XMLLoadLocale(eToolBar.Item("Redo"), TBRedo.Text)
                 XMLLoadLocale(eToolBar.Item("NT"), TBNTInput.Text)

@@ -849,10 +849,6 @@ Jump1:
                         TBChangePlaySide.Checked = Rscratch
                     End If
 
-                    LNLinkSelect = xPref And &H20
-                    TBLNLinkSelect.Checked = LNLinkSelect
-                    TBLNLinkSelect_Click(TBLNLinkSelect, New System.EventArgs)
-
                     mnSMenu.Checked = xPref And &H100
                     mnSTB.Checked = xPref And &H200
                     mnSOP.Checked = xPref And &H400
@@ -1061,7 +1057,6 @@ EndOfSub:
             If PreviewOnClick Then xPref = xPref Or &H4
             If ShowFileName Then xPref = xPref Or &H8
             If Rscratch Then xPref = xPref Or &H10
-            If LNLinkSelect Then xPref = xPref Or &H20
             If mnSMenu.Checked Then xPref = xPref Or &H100
             If mnSTB.Checked Then xPref = xPref Or &H200
             If mnSOP.Checked Then xPref = xPref Or &H400

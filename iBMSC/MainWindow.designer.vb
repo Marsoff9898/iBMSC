@@ -270,7 +270,6 @@ Partial Class MainWindow
         Me.mnPreviewOnClick = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnShowFileName = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnChangePlaySide = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnLNLinkSelect = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator20 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnGOptions = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnVOptions = New System.Windows.Forms.ToolStripMenuItem()
@@ -320,7 +319,6 @@ Partial Class MainWindow
         Me.TBPreviewOnClick = New System.Windows.Forms.ToolStripButton()
         Me.TBShowFileName = New System.Windows.Forms.ToolStripButton()
         Me.TBChangePlaySide = New System.Windows.Forms.ToolStripButton()
-        Me.TBLNLinkSelect = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         Me.TBNTInput = New System.Windows.Forms.ToolStripButton()
         Me.TBWavIncrease = New System.Windows.Forms.ToolStripButton()
@@ -3297,14 +3295,16 @@ Partial Class MainWindow
         '
         'mnOptions
         '
-        Me.mnOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnNTInput, Me.mnErrorCheck, Me.mnPreviewOnClick, Me.mnShowFileName, Me.mnChangePlaySide, Me.mnLNLinkSelect, Me.ToolStripSeparator20, Me.mnGOptions, Me.mnVOptions, Me.mnPOptions, Me.mnLanguage, Me.mnTheme})
+        Me.mnOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnNTInput, Me.mnErrorCheck, Me.mnPreviewOnClick, Me.mnShowFileName, Me.mnChangePlaySide, Me.ToolStripSeparator20, Me.mnGOptions, Me.mnVOptions, Me.mnPOptions, Me.mnLanguage, Me.mnTheme})
         Me.mnOptions.Name = "mnOptions"
         Me.mnOptions.Size = New System.Drawing.Size(61, 19)
         Me.mnOptions.Text = "&Options"
         '
         'mnNTInput
         '
+        Me.mnNTInput.Checked = True
         Me.mnNTInput.CheckOnClick = True
+        Me.mnNTInput.CheckState = System.Windows.Forms.CheckState.Checked
         Me.mnNTInput.Image = Global.iBMSC.My.Resources.Resources.x16NTInput
         Me.mnNTInput.Name = "mnNTInput"
         Me.mnNTInput.ShortcutKeys = System.Windows.Forms.Keys.F8
@@ -3346,16 +3346,6 @@ Partial Class MainWindow
         Me.mnChangePlaySide.Name = "mnChangePlaySide"
         Me.mnChangePlaySide.Size = New System.Drawing.Size(229, 22)
         Me.mnChangePlaySide.Text = "&RightScratch Mode"
-        '
-        'mnLNLinkSelect
-        '
-        Me.mnLNLinkSelect.Checked = True
-        Me.mnLNLinkSelect.CheckOnClick = True
-        Me.mnLNLinkSelect.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.mnLNLinkSelect.Image = Global.iBMSC.My.Resources.Resources.x16LNLinkSelect
-        Me.mnLNLinkSelect.Name = "mnLNLinkSelect"
-        Me.mnLNLinkSelect.Size = New System.Drawing.Size(229, 22)
-        Me.mnLNLinkSelect.Text = "Select &Linked Notes"
         '
         'ToolStripSeparator20
         '
@@ -3511,7 +3501,7 @@ Partial Class MainWindow
         Me.TBMain.AccessibleRole = System.Windows.Forms.AccessibleRole.ToolBar
         Me.TBMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TBMain.Dock = System.Windows.Forms.DockStyle.None
-        Me.TBMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TBNew, Me.TBOpen, Me.TBSave, Me.ToolStripSeparator1, Me.TBCut, Me.TBCopy, Me.TBPaste, Me.TBFind, Me.ToolStripSeparator24, Me.TBStatistics, Me.POConvert, Me.TBMyO2, Me.ToolStripSeparator4, Me.TBErrorCheck, Me.TBPreviewOnClick, Me.TBShowFileName, Me.TBChangePlaySide, Me.TBLNLinkSelect, Me.ToolStripSeparator8, Me.TBNTInput, Me.TBWavIncrease, Me.ToolStripSeparator2, Me.TBUndo, Me.TBRedo, Me.ToolStripSeparator5, Me.TBTimeSelect, Me.TBSelect, Me.TBWrite, Me.ToolStripSeparator3, Me.TBPlayB, Me.TBPlay, Me.TBStop, Me.TBPOptions, Me.ToolStripSeparator7, Me.TBVOptions, Me.TBGOptions, Me.TBLanguage, Me.TBTheme, Me.POBStorm})
+        Me.TBMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TBNew, Me.TBOpen, Me.TBSave, Me.ToolStripSeparator1, Me.TBCut, Me.TBCopy, Me.TBPaste, Me.TBFind, Me.ToolStripSeparator24, Me.TBStatistics, Me.POConvert, Me.TBMyO2, Me.ToolStripSeparator4, Me.TBErrorCheck, Me.TBPreviewOnClick, Me.TBShowFileName, Me.TBChangePlaySide, Me.ToolStripSeparator8, Me.TBNTInput, Me.TBWavIncrease, Me.ToolStripSeparator2, Me.TBUndo, Me.TBRedo, Me.ToolStripSeparator5, Me.TBTimeSelect, Me.TBSelect, Me.TBWrite, Me.ToolStripSeparator3, Me.TBPlayB, Me.TBPlay, Me.TBStop, Me.TBPOptions, Me.ToolStripSeparator7, Me.TBVOptions, Me.TBGOptions, Me.TBLanguage, Me.TBTheme, Me.POBStorm})
         Me.TBMain.Location = New System.Drawing.Point(3, 23)
         Me.TBMain.Name = "TBMain"
         Me.TBMain.Size = New System.Drawing.Size(805, 25)
@@ -3741,18 +3731,6 @@ Partial Class MainWindow
         Me.TBChangePlaySide.Size = New System.Drawing.Size(23, 22)
         Me.TBChangePlaySide.Text = "RightScratch Mode"
         '
-        'TBLNLinkSelect
-        '
-        Me.TBLNLinkSelect.Checked = True
-        Me.TBLNLinkSelect.CheckOnClick = True
-        Me.TBLNLinkSelect.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.TBLNLinkSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TBLNLinkSelect.Image = Global.iBMSC.My.Resources.Resources.x16LNLinkSelect
-        Me.TBLNLinkSelect.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TBLNLinkSelect.Name = "TBLNLinkSelect"
-        Me.TBLNLinkSelect.Size = New System.Drawing.Size(23, 22)
-        Me.TBLNLinkSelect.Text = "Select Linked Notes"
-        '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
@@ -3760,7 +3738,9 @@ Partial Class MainWindow
         '
         'TBNTInput
         '
+        Me.TBNTInput.Checked = True
         Me.TBNTInput.CheckOnClick = True
+        Me.TBNTInput.CheckState = System.Windows.Forms.CheckState.Checked
         Me.TBNTInput.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.TBNTInput.Image = Global.iBMSC.My.Resources.Resources.x16NTInput
         Me.TBNTInput.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -4572,7 +4552,6 @@ Partial Class MainWindow
     Friend WithEvents mnPreviewOnClick As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnShowFileName As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnChangePlaySide As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents mnLNLinkSelect As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator20 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents mnGOptions As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnVOptions As System.Windows.Forms.ToolStripMenuItem
@@ -4718,7 +4697,6 @@ Partial Class MainWindow
     Friend WithEvents TBPreviewOnClick As System.Windows.Forms.ToolStripButton
     Friend WithEvents TBShowFileName As System.Windows.Forms.ToolStripButton
     Friend WithEvents TBChangePlaySide As System.Windows.Forms.ToolStripButton
-    Friend WithEvents TBLNLinkSelect As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents TBUndo As System.Windows.Forms.ToolStripButton
     Friend WithEvents TBRedo As System.Windows.Forms.ToolStripButton
