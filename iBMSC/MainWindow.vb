@@ -3182,15 +3182,15 @@ StartCount:     If Not NTInput Then
         column(niDM).isVisible = (xGP2 And column(niAO).isVisible)
         column(niDN).isVisible = (xGP2 And column(niAP).isVisible)
         column(niDO).isVisible = (xGP2 And column(niAQ).isVisible)
-        column(niDP).isVisible = (xGP2 And column(niA1).isVisible)
         If Rscratch Then
-            column(niD1).isVisible = (xGP2 And column(niA2).isVisible)
-            column(niD2).isVisible = (xGP2 And column(niA3).isVisible)
-            column(niD3).isVisible = (xGP2 And column(niA4).isVisible)
-            column(niD4).isVisible = (xGP2 And column(niA5).isVisible)
-            column(niD5).isVisible = (xGP2 And column(niA6).isVisible)
-            column(niD6).isVisible = (xGP2 And column(niA7).isVisible)
-            column(niD7).isVisible = (xGP2 And column(niA8).isVisible)
+            column(niD1).isVisible = (xGP2 And column(niA1).isVisible)
+            column(niD2).isVisible = (xGP2 And column(niA2).isVisible)
+            column(niD3).isVisible = (xGP2 And column(niA3).isVisible)
+            column(niD4).isVisible = (xGP2 And column(niA4).isVisible)
+            column(niD5).isVisible = (xGP2 And column(niA5).isVisible)
+            column(niD6).isVisible = (xGP2 And column(niA6).isVisible)
+            column(niD7).isVisible = (xGP2 And column(niA7).isVisible)
+            column(niDP).isVisible = (xGP2 And column(niA8).isVisible)
             column(niDQ).isVisible = (xGP2 And column(niA9).isVisible)
         Else
             column(niD1).isVisible = (xGP2 And column(niA3).isVisible)
@@ -3200,6 +3200,7 @@ StartCount:     If Not NTInput Then
             column(niD5).isVisible = (xGP2 And column(niA7).isVisible)
             column(niD6).isVisible = (xGP2 And column(niA8).isVisible)
             column(niD7).isVisible = (xGP2 And column(niA9).isVisible)
+            column(niDP).isVisible = (xGP2 And column(niA1).isVisible)
             column(niDQ).isVisible = (xGP2 And column(niA2).isVisible)
         End If
         column(niS3).isVisible = xGP2

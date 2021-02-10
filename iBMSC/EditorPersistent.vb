@@ -499,6 +499,11 @@ Partial Public Class MainWindow
                 Me.XMLLoadColumn(eeCol)
             Next
         End If
+        If iPlayer = 0 Then
+            For i = niD1 To niDQ
+                column(i).isVisible = False
+            Next
+        End If
 
         'VisualSettings
         Dim eVisualSettings As XmlElement = Root.Item("VisualSettings")

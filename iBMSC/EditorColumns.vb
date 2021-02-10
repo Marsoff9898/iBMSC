@@ -75,8 +75,8 @@ Partial Public Class MainWindow
                               New Column(110, 60, "BPM", True, True, False, True, 3, 0, &HFFFF0000, 0, &HFFFF0000, 0),
                               New Column(170, 50, "STOP", True, True, False, True, 9, 0, &HFFFF0000, 0, &HFFFF0000, 0),
                               New Column(220, 5, "", False, False, False, True, 0, 0, 0, 0, 0, 0),
-                              New Column(225, 40, "AQ", True, False, True, False, 43, &HFFB0B0B0, &HFF000000, &HFF909090, &HFF000000, 0),
-                              New Column(225, 40, "A1", True, False, True, True, 42, &HFF808080, &HFF000000, &HFF909090, &HFF000000, 0),
+                              New Column(225, 40, "AQ", True, False, True, False, 42, &HFFB0B0B0, &HFF000000, &HFF909090, &HFF000000, 0),
+                              New Column(225, 40, "A1", True, False, True, True, 43, &HFF808080, &HFF000000, &HFF909090, &HFF000000, 0),
                               New Column(265, 42, "A2", True, False, True, True, 37, &HFFB0B0B0, &HFF000000, &HFFC0C0C0, &HFF000000, &H14FFFFFF),
                               New Column(307, 30, "A3", True, False, True, True, 38, &HFF62B0FF, &HFF000000, &HFF6AB0F7, &HFF000000, &H140033FF),
                               New Column(337, 42, "A4", True, False, True, True, 39, &HFFB0B0B0, &HFF000000, &HFFC0C0C0, &HFF000000, &H14FFFFFF),
@@ -126,8 +126,8 @@ Partial Public Class MainWindow
                               New Column(503, 30, "DN", True, False, True, False, 96, &HFF62B0FF, &HFF000000, &HFF6AB0F7, &HFF000000, &H140033FF),
                               New Column(503, 42, "DO", True, False, True, False, 97, &HFFB0B0B0, &HFF000000, &HFFC0C0C0, &HFF000000, &H14FFFFFF),
                               New Column(503, 30, "DP", True, False, True, False, 98, &HFF62B0FF, &HFF000000, &HFF6AB0F7, &HFF000000, &H140033FF),
-                              New Column(503, 40, "DQ", True, False, True, False, 79, &HFF808080, &HFF000000, &HFF909090, &HFF000000, 0),
-                              New Column(503, 40, "D8", True, False, True, False, 78, &HFF808080, &HFF000000, &HFF909090, &HFF000000, 0),
+                              New Column(503, 40, "DQ", True, False, True, False, 78, &HFF808080, &HFF000000, &HFF909090, &HFF000000, 0),
+                              New Column(503, 40, "D8", True, False, True, False, 79, &HFF808080, &HFF000000, &HFF909090, &HFF000000, 0),
                               New Column(503, 5, "", False, False, False, False, 0, 0, 0, 0, 0, 0),
                               New Column(503, 40, "BGA", True, False, False, False, 4, &HFF8CD78A, &HFF000000, &HFF90D38E, &HFF000000, 0),
                               New Column(503, 40, "LAYER", True, False, False, False, 7, &HFF8CD78A, &HFF000000, &HFF90D38E, &HFF000000, 0),
@@ -205,24 +205,28 @@ Partial Public Class MainWindow
 
     Private Sub ChangePlaySide(ByVal swap As Boolean)
         If Rscratch Then
-            column(niA2).Identifier = 37
-            column(niA3).Identifier = 38
-            column(niA4).Identifier = 39
-            column(niA5).Identifier = 40
-            column(niA6).Identifier = 41
-            column(niA7).Identifier = 44
-            column(niA8).Identifier = 45
-            column(niA9).Identifier = 42
+            column(niA1).Identifier = 37
+            column(niA2).Identifier = 38
+            column(niA3).Identifier = 39
+            column(niA4).Identifier = 40
+            column(niA5).Identifier = 41
+            column(niA6).Identifier = 44
+            column(niA7).Identifier = 45
+            column(niA8).Identifier = 42
+            column(niA9).Identifier = 43
 
             For i = 0 To UBound(Notes) Step 1
-                If Notes(i).ColumnIndex = niA2 Then
+                If Notes(i).ColumnIndex = niA1 Then
+                    Notes(i).ColumnIndex = niA8
+                ElseIf Notes(i).ColumnIndex = niA2 Then
                     Notes(i).ColumnIndex = niA9
                 ElseIf Notes(i).ColumnIndex >= niA3 AndAlso Notes(i).ColumnIndex <= niA9 Then
-                    Notes(i).ColumnIndex -= 1
+                    Notes(i).ColumnIndex -= 2
                 End If
             Next
         ElseIf swap Then
-            column(niA2).Identifier = 42
+            column(niA1).Identifier = 42
+            column(niA2).Identifier = 43
             column(niA3).Identifier = 37
             column(niA4).Identifier = 38
             column(niA5).Identifier = 39
@@ -231,10 +235,12 @@ Partial Public Class MainWindow
             column(niA8).Identifier = 44
             column(niA9).Identifier = 45
             For i = 0 To UBound(Notes) Step 1
-                If Notes(i).ColumnIndex = niA9 Then
+                If Notes(i).ColumnIndex = niA8 Then
+                    Notes(i).ColumnIndex = niA1
+                ElseIf Notes(i).ColumnIndex = niA9 Then
                     Notes(i).ColumnIndex = niA2
-                ElseIf Notes(i).ColumnIndex >= niA2 AndAlso Notes(i).ColumnIndex <= niA8 Then
-                    Notes(i).ColumnIndex += 1
+                ElseIf Notes(i).ColumnIndex >= niA1 AndAlso Notes(i).ColumnIndex <= niA7 Then
+                    Notes(i).ColumnIndex += 2
                 End If
             Next
         End If
@@ -242,61 +248,77 @@ Partial Public Class MainWindow
     End Sub
 
     Private Sub ChangePlaySideSkin(ByVal swap As Boolean)
-        Dim tLeft(8)
-        For i = 0 To 7 Step 1
-            tLeft(i) = column(niA2 + i + 1).Left - column(niA2 + i).Left
+        Dim tLeft(10)
+        For i = 0 To 8 Step 1
+            tLeft(i) = column(niA1 + i + 1).Left - column(niA1 + i).Left
         Next
         If Rscratch Then
-            Dim tcBG = column(niA2).cBG
-            Dim tcNote = column(niA2).cNote
-            Dim tcLNote = column(niA2).cLNote
-            Dim tcText = column(niA2).cText
-            Dim tcLText = column(niA2).cLText
-            Dim tWidth = column(niA2).Width
-            tLeft(8) = tLeft(0)
+            Dim tcBG = {column(niA1).cBG, column(niA2).cBG}
+            Dim tcNote = {column(niA1).cNote, column(niA2).cNote}
+            Dim tcLNote = {column(niA1).cLNote, column(niA2).cLNote}
+            Dim tcText = {column(niA1).cText, column(niA2).cText}
+            Dim tcLText = {column(niA1).cLText, column(niA2).cLText}
+            Dim tWidth = {column(niA1).Width, column(niA2).Width}
+            tLeft(9) = tLeft(0)
+            tLeft(10) = tLeft(1)
             For i = 0 To 6 Step 1
-                column(niA2 + i).cBG = column(niA2 + i + 1).cBG
-                column(niA2 + i).cText = column(niA2 + i + 1).cText
-                column(niA2 + i).cLText = column(niA2 + i + 1).cLText
-                column(niA2 + i).setNoteColor(column(niA2 + i + 1).cNote)
-                column(niA2 + i).setLNoteColor(column(niA2 + i + 1).cLNote)
-                column(niA2 + i).Width = column(niA2 + i + 1).Width
-                tLeft(i) = tLeft(i + 1)
+                column(niA1 + i).cBG = column(niA1 + i + 2).cBG
+                column(niA1 + i).cText = column(niA1 + i + 2).cText
+                column(niA1 + i).cLText = column(niA1 + i + 2).cLText
+                column(niA1 + i).setNoteColor(column(niA1 + i + 2).cNote)
+                column(niA1 + i).setLNoteColor(column(niA1 + i + 2).cLNote)
+                column(niA1 + i).Width = column(niA1 + i + 2).Width
+                tLeft(i) = tLeft(i + 2)
             Next
-            column(niA9).cBG = tcBG
-            column(niA9).cText = tcText
-            column(niA9).cLText = tcLText
-            column(niA9).setNoteColor(tcNote)
-            column(niA9).setLNoteColor(tcLNote)
-            column(niA9).Width = tWidth
-            tLeft(7) = tLeft(8)
+            column(niA8).cBG = tcBG(0)
+            column(niA8).cText = tcText(0)
+            column(niA8).cLText = tcLText(0)
+            column(niA8).setNoteColor(tcNote(0))
+            column(niA8).setLNoteColor(tcLNote(0))
+            column(niA8).Width = tWidth(0)
+            column(niA9).cBG = tcBG(1)
+            column(niA9).cText = tcText(1)
+            column(niA9).cLText = tcLText(1)
+            column(niA9).setNoteColor(tcNote(1))
+            column(niA9).setLNoteColor(tcLNote(1))
+            column(niA9).Width = tWidth(1)
+            tLeft(7) = tLeft(9)
+            tLeft(8) = tLeft(10)
         ElseIf swap Then
-            Dim tcBG = column(niA9).cBG
-            Dim tcNote = column(niA9).cNote
-            Dim tcLNote = column(niA9).cLNote
-            Dim tcText = column(niA9).cText
-            Dim tcLText = column(niA9).cLText
-            Dim tWidth = column(niA9).Width
-            tLeft(8) = tLeft(7)
-            For i = 7 To 1 Step -1
-                column(niA2 + i).cBG = column(niA2 + i - 1).cBG
-                column(niA2 + i).cText = column(niA2 + i - 1).cText
-                column(niA2 + i).cLText = column(niA2 + i - 1).cLText
-                column(niA2 + i).setNoteColor(column(niA2 + i - 1).cNote)
-                column(niA2 + i).setLNoteColor(column(niA2 + i - 1).cLNote)
-                column(niA2 + i).Width = column(niA2 + i - 1).Width
-                tLeft(i) = tLeft(i - 1)
+            Dim tcBG = {column(niA8).cBG, column(niA9).cBG}
+            Dim tcNote = {column(niA8).cNote, column(niA9).cNote}
+            Dim tcLNote = {column(niA8).cLNote, column(niA9).cLNote}
+            Dim tcText = {column(niA8).cText, column(niA9).cText}
+            Dim tcLText = {column(niA8).cLText, column(niA9).cLText}
+            Dim tWidth = {column(niA8).Width, column(niA9).Width}
+            tLeft(9) = tLeft(7)
+            tLeft(10) = tLeft(8)
+            For i = 6 To 0 Step -1
+                column(niA1 + i + 2).cBG = column(niA1 + i).cBG
+                column(niA1 + i + 2).cText = column(niA1 + i).cText
+                column(niA1 + i + 2).cLText = column(niA1 + i).cLText
+                column(niA1 + i + 2).setNoteColor(column(niA1 + i).cNote)
+                column(niA1 + i + 2).setLNoteColor(column(niA1 + i).cLNote)
+                column(niA1 + i + 2).Width = column(niA1 + i).Width
+                tLeft(i + 2) = tLeft(i)
             Next
-            column(niA2).cBG = tcBG
-            column(niA2).cText = tcText
-            column(niA2).cLText = tcLText
-            column(niA2).setNoteColor(tcNote)
-            column(niA2).setLNoteColor(tcLNote)
-            column(niA2).Width = tWidth
-            tLeft(0) = tLeft(8)
+            column(niA1).cBG = tcBG(0)
+            column(niA1).cText = tcText(0)
+            column(niA1).cLText = tcLText(0)
+            column(niA1).setNoteColor(tcNote(0))
+            column(niA1).setLNoteColor(tcLNote(0))
+            column(niA1).Width = tWidth(0)
+            column(niA2).cBG = tcBG(1)
+            column(niA2).cText = tcText(1)
+            column(niA2).cLText = tcLText(1)
+            column(niA2).setNoteColor(tcNote(1))
+            column(niA2).setLNoteColor(tcLNote(1))
+            column(niA2).Width = tWidth(1)
+            tLeft(0) = tLeft(9)
+            tLeft(1) = tLeft(10)
         End If
-        For i = 0 To 7 Step 1
-            column(niA2 + i + 1).Left = column(niA2 + i).Left + tLeft(i)
+        For i = 0 To 8 Step 1
+            column(niA1 + i + 1).Left = column(niA1 + i).Left + tLeft(i)
         Next
     End Sub
 

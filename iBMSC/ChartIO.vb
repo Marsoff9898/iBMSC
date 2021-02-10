@@ -841,11 +841,15 @@ Jump1:
                     TBShowFileName.Checked = ShowFileName
                     TBShowFileName_Click(TBShowFileName, New System.EventArgs)
 
-                    Rscratch = xPref And &H16
-                    TBChangePlaySide.Checked = Rscratch
-                    TBChangePlaySide_Click(TBChangePlaySide, New System.EventArgs)
+                    Rscratch = xPref And &H10
+                    If TBChangePlaySide.Checked <> Rscratch Then
+                        TBChangePlaySide.Checked = Rscratch
+                        TBChangePlaySide_Click(TBChangePlaySide, New System.EventArgs)
+                    Else
+                        TBChangePlaySide.Checked = Rscratch
+                    End If
 
-                    LNLinkSelect = xPref And &H32
+                    LNLinkSelect = xPref And &H20
                     TBLNLinkSelect.Checked = LNLinkSelect
                     TBLNLinkSelect_Click(TBLNLinkSelect, New System.EventArgs)
 
@@ -1056,7 +1060,8 @@ EndOfSub:
             If ErrorCheck Then xPref = xPref Or &H2
             If PreviewOnClick Then xPref = xPref Or &H4
             If ShowFileName Then xPref = xPref Or &H8
-            If Rscratch Then xPref = xPref Or &H16
+            If Rscratch Then xPref = xPref Or &H10
+            If LNLinkSelect Then xPref = xPref Or &H20
             If mnSMenu.Checked Then xPref = xPref Or &H100
             If mnSTB.Checked Then xPref = xPref Or &H200
             If mnSOP.Checked Then xPref = xPref Or &H400
@@ -1114,7 +1119,7 @@ EndOfSub:
             'bw.Write(THLnType.Text)
             bw.Write(CShort(CHLnObj.SelectedIndex))
             bw.Write(THPreview.Text)
-            bw.Write(CShort(CHLnmode.SelectedIndex))
+            bw.Write(CByte(CHLnmode.SelectedIndex))
 
             'Wav List
             'bw.Write(("WAV" & vbNullChar).ToCharArray)
@@ -1376,10 +1381,8 @@ EndOfSub:
                             lane -= 32
                         End If
                     ElseIf format.info.mode_hint = "keyboard-24k" OrElse format.info.mode_hint = "keyboard-24k-double" Then
-                        If (lane Mod 36) = 6 Then
-                            lane += 20
-                        ElseIf (lane Mod 36) = 7 Then
-                            lane += 18
+                        If (lane Mod 36) = 6 OrElse (lane Mod 36) = 7 Then
+                            lane += 19
                         ElseIf (lane Mod 36) >= 8 Then
                             lane -= 2
                         End If
