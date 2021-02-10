@@ -22,72 +22,73 @@ Partial Class OpVisual
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
-        Me.OK_Button = New System.Windows.Forms.Button
-        Me.Cancel_Button = New System.Windows.Forms.Button
-        Me.Panel1 = New System.Windows.Forms.Panel
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.Label33 = New System.Windows.Forms.Label
-        Me.iHiddenNoteOpacity = New System.Windows.Forms.NumericUpDown
-        Me.Label23 = New System.Windows.Forms.Label
-        Me.cAdjustLengthBorder = New System.Windows.Forms.Button
-        Me.cSelectedBorder = New System.Windows.Forms.Button
-        Me.cMouseOver = New System.Windows.Forms.Button
-        Me.iLongLabelHorizShift = New System.Windows.Forms.NumericUpDown
-        Me.iLabelHorizShift = New System.Windows.Forms.NumericUpDown
-        Me.iLabelVerticalShift = New System.Windows.Forms.NumericUpDown
-        Me.fMeasureLabel = New System.Windows.Forms.Button
-        Me.fNoteLabel = New System.Windows.Forms.Button
-        Me.iNoteHeight = New System.Windows.Forms.NumericUpDown
-        Me.fTSBPM = New System.Windows.Forms.Button
-        Me.cTSBPM = New System.Windows.Forms.Button
-        Me.cTSSelectionFill = New System.Windows.Forms.Button
-        Me.cTSCursor = New System.Windows.Forms.Button
-        Me.cSelectionBox = New System.Windows.Forms.Button
-        Me.cWaveForm = New System.Windows.Forms.Button
-        Me.cMeasureBarLine = New System.Windows.Forms.Button
-        Me.cVerticalLine = New System.Windows.Forms.Button
-        Me.cSub = New System.Windows.Forms.Button
-        Me.cGrid = New System.Windows.Forms.Button
-        Me.cBG = New System.Windows.Forms.Button
-        Me.fColumnTitle = New System.Windows.Forms.Button
-        Me.cColumnTitle = New System.Windows.Forms.Button
-        Me.Label40 = New System.Windows.Forms.Label
-        Me.Label39 = New System.Windows.Forms.Label
-        Me.Label38 = New System.Windows.Forms.Label
-        Me.Label37 = New System.Windows.Forms.Label
-        Me.Label88 = New System.Windows.Forms.Label
-        Me.Label35 = New System.Windows.Forms.Label
-        Me.Label34 = New System.Windows.Forms.Label
-        Me.Label86 = New System.Windows.Forms.Label
-        Me.Label98 = New System.Windows.Forms.Label
-        Me.Label31 = New System.Windows.Forms.Label
-        Me.Label30 = New System.Windows.Forms.Label
-        Me.Label29 = New System.Windows.Forms.Label
-        Me.Label28 = New System.Windows.Forms.Label
-        Me.Label27 = New System.Windows.Forms.Label
-        Me.Label26 = New System.Windows.Forms.Label
-        Me.Label25 = New System.Windows.Forms.Label
-        Me.Label24 = New System.Windows.Forms.Label
-        Me.Label22 = New System.Windows.Forms.Label
-        Me.Label21 = New System.Windows.Forms.Label
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.cTSSplitter = New System.Windows.Forms.Button
-        Me.Label97 = New System.Windows.Forms.Label
-        Me.Label96 = New System.Windows.Forms.Label
-        Me.iTSSensitivity = New System.Windows.Forms.NumericUpDown
-        Me.cTSMouseOver = New System.Windows.Forms.Button
-        Me.Label91 = New System.Windows.Forms.Label
-        Me.Label82 = New System.Windows.Forms.Label
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.iMiddleSensitivity = New System.Windows.Forms.NumericUpDown
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.Cancel_Button = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.iHiddenNoteOpacity = New System.Windows.Forms.NumericUpDown()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.cAdjustLengthBorder = New System.Windows.Forms.Button()
+        Me.cSelectedBorder = New System.Windows.Forms.Button()
+        Me.cMouseOver = New System.Windows.Forms.Button()
+        Me.iLongLabelHorizShift = New System.Windows.Forms.NumericUpDown()
+        Me.iLabelHorizShift = New System.Windows.Forms.NumericUpDown()
+        Me.iLabelVerticalShift = New System.Windows.Forms.NumericUpDown()
+        Me.fMeasureLabel = New System.Windows.Forms.Button()
+        Me.fNoteLabel = New System.Windows.Forms.Button()
+        Me.iNoteHeight = New System.Windows.Forms.NumericUpDown()
+        Me.fTSBPM = New System.Windows.Forms.Button()
+        Me.cTSBPM = New System.Windows.Forms.Button()
+        Me.cTSSelectionFill = New System.Windows.Forms.Button()
+        Me.cTSCursor = New System.Windows.Forms.Button()
+        Me.cSelectionBox = New System.Windows.Forms.Button()
+        Me.cWaveForm = New System.Windows.Forms.Button()
+        Me.cMeasureBarLine = New System.Windows.Forms.Button()
+        Me.cVerticalLine = New System.Windows.Forms.Button()
+        Me.cSub = New System.Windows.Forms.Button()
+        Me.cGrid = New System.Windows.Forms.Button()
+        Me.cBG = New System.Windows.Forms.Button()
+        Me.fColumnTitle = New System.Windows.Forms.Button()
+        Me.cColumnTitle = New System.Windows.Forms.Button()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Label88 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label86 = New System.Windows.Forms.Label()
+        Me.Label98 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.cTSSplitter = New System.Windows.Forms.Button()
+        Me.Label97 = New System.Windows.Forms.Label()
+        Me.Label96 = New System.Windows.Forms.Label()
+        Me.iTSSensitivity = New System.Windows.Forms.NumericUpDown()
+        Me.cTSMouseOver = New System.Windows.Forms.Button()
+        Me.Label91 = New System.Windows.Forms.Label()
+        Me.Label82 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.iMiddleSensitivity = New System.Windows.Forms.NumericUpDown()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.iHiddenNoteOpacity, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,9 +144,10 @@ Partial Class OpVisual
         Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label4)
+        Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Location = New System.Drawing.Point(10, 263)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1004, 402)
+        Me.Panel1.Size = New System.Drawing.Size(1004, 410)
         Me.Panel1.TabIndex = 87
         '
         'Label8
@@ -210,6 +212,14 @@ Partial Class OpVisual
         Me.Label4.TabIndex = 35
         Me.Label4.Text = "Note"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Panel2
+        '
+        Me.Panel2.AutoScroll = True
+        Me.Panel2.Location = New System.Drawing.Point(78, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(926, 410)
+        Me.Panel2.TabIndex = 88
         '
         'Label33
         '
@@ -837,6 +847,7 @@ Partial Class OpVisual
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Label39 As System.Windows.Forms.Label
     Friend WithEvents Label38 As System.Windows.Forms.Label
     Friend WithEvents Label37 As System.Windows.Forms.Label

@@ -4,7 +4,6 @@ Imports iBMSC.Editor
 
 Public Class OpVisual
     Dim niB As Integer = MainWindow.niB
-    Dim lLeft() As Integer = {78, 110, 142, 174, 208, 240, 272, 304, 336, 368, 400, 432, 464, 498, 530, 562, 594, 626, 658, 690, 722, 754, 788, 820, 852, 884, 918, 950}
 
     Structure ColumnOptionSet
         Public Width As NumericUpDown
@@ -102,7 +101,7 @@ Public Class OpVisual
             Dim jw As New NumericUpDown
             With jw
                 .BorderStyle = BorderStyle.FixedSingle
-                .Location = New Point(lLeft(xI1), 12)
+                .Location = New Point(xI1 * 32, 12)
                 .Maximum = 999
                 .Size = New Size(33, 23)
                 .Value = col(xI1).Width
@@ -111,7 +110,7 @@ Public Class OpVisual
             Dim jt As New TextBox
             With jt
                 .BorderStyle = BorderStyle.FixedSingle
-                .Location = New Point(lLeft(xI1), 34)
+                .Location = New Point(xI1 * 32, 34)
                 .Size = New Size(33, 23)
                 .Text = col(xI1).Title
             End With
@@ -120,7 +119,7 @@ Public Class OpVisual
             With js
                 .FlatStyle = FlatStyle.Popup
                 .Font = monoFont
-                .Location = New Point(lLeft(xI1), 63)
+                .Location = New Point(xI1 * 32, 63)
                 .Size = New Size(33, 66)
                 .BackColor = Color.FromArgb(col(xI1).cNote)
                 .ForeColor = col(xI1).cText
@@ -131,7 +130,7 @@ Public Class OpVisual
             With jst
                 .FlatStyle = FlatStyle.Popup
                 .Font = monoFont
-                .Location = New Point(lLeft(xI1), 128)
+                .Location = New Point(xI1 * 32, 128)
                 .Size = New Size(33, 66)
                 .BackColor = Color.FromArgb(col(xI1).cNote)
                 .ForeColor = col(xI1).cText
@@ -145,7 +144,7 @@ Public Class OpVisual
             With jl
                 .FlatStyle = FlatStyle.Popup
                 .Font = monoFont
-                .Location = New Point(lLeft(xI1), 193)
+                .Location = New Point(xI1 * 32, 193)
                 .Size = New Size(33, 66)
                 .BackColor = Color.FromArgb(col(xI1).cLNote)
                 .ForeColor = col(xI1).cLText
@@ -156,7 +155,7 @@ Public Class OpVisual
             With jlt
                 .FlatStyle = FlatStyle.Popup
                 .Font = monoFont
-                .Location = New Point(lLeft(xI1), 258)
+                .Location = New Point(xI1 * 32, 258)
                 .Size = New Size(33, 66)
                 .BackColor = Color.FromArgb(col(xI1).cLNote)
                 .ForeColor = col(xI1).cLText
@@ -170,7 +169,7 @@ Public Class OpVisual
             With jb
                 .FlatStyle = FlatStyle.Popup
                 .Font = monoFont
-                .Location = New Point(lLeft(xI1), 323)
+                .Location = New Point(xI1 * 32, 323)
                 .Size = New Size(33, 66)
                 .BackColor = col(xI1).cBG
                 .ForeColor = IIf(CInt(col(xI1).cBG.GetBrightness * 255) + 255 - col(xI1).cBG.A >= 128, Color.Black, Color.White)
@@ -179,13 +178,13 @@ Public Class OpVisual
                 .Tag = Nothing
             End With
 
-            Panel1.Controls.Add(jw)
-            Panel1.Controls.Add(jt)
-            Panel1.Controls.Add(js)
-            Panel1.Controls.Add(jst)
-            Panel1.Controls.Add(jl)
-            Panel1.Controls.Add(jlt)
-            Panel1.Controls.Add(jb)
+            Panel2.Controls.Add(jw)
+            Panel2.Controls.Add(jt)
+            Panel2.Controls.Add(js)
+            Panel2.Controls.Add(jst)
+            Panel2.Controls.Add(jl)
+            Panel2.Controls.Add(jlt)
+            Panel2.Controls.Add(jb)
             co(xI1).Width = jw
             co(xI1).Title = jt
             co(xI1).SNote = js
