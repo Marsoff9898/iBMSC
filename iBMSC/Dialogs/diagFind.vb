@@ -71,19 +71,79 @@ Public Class diagFind
         TBDelete.Text = Strings.fFind.Delete_
         TBClose.Text = Strings.fFind.Close_
 
-        For xI1 As Integer = 64 To bCol
+        Me.Panel1.Controls.Add(Me.cb1)
+        Me.Panel1.Controls.Add(Me.cb2)
+        Me.Panel1.Controls.Add(Me.cb3)
+
+        Dim xColumn = 1
+        Dim xLow = 0
+        For xI1 As Integer = 0 To 25
+            Dim xCB As New CheckBox
+            If MainWindow.column(MainWindow.niA1 + xI1).isVisible Then
+                With xCB
+                    .Appearance = Appearance.Button
+                    .Checked = True
+                    .FlatStyle = FlatStyle.System
+                    .Location = New Point((xLow Mod 8) * 35 + 3, xColumn * 25 + 2)
+                    .Size = New Size(35, 25)
+                    .Tag = MainWindow.niA1 + xI1
+                    .Text = MainWindow.column(MainWindow.niA1 + xI1).Title
+                    .TextAlign = ContentAlignment.MiddleCenter
+                    .UseVisualStyleBackColor = True
+                End With
+                xLow += 1
+                If xLow Mod 8 = 0 Then xColumn += 1
+                Panel1.Controls.Add(xCB)
+            End If
+        Next
+        If xLow Mod 8 <> 0 Then xColumn += 1
+
+        xLow = 0
+        For xI1 As Integer = 0 To 25
+            Dim xCB As New CheckBox
+            If MainWindow.column(MainWindow.niD1 + xI1).isVisible Then
+                With xCB
+                    .Appearance = Appearance.Button
+                    .Checked = True
+                    .FlatStyle = FlatStyle.System
+                    .Location = New Point((xLow Mod 8) * 35 + 3, xColumn * 25 + 2)
+                    .Size = New Size(35, 25)
+                    .Tag = MainWindow.niD1 + xI1
+                    .Text = MainWindow.column(MainWindow.niD1 + xI1).Title
+                    .TextAlign = ContentAlignment.MiddleCenter
+                    .UseVisualStyleBackColor = True
+                End With
+                xLow += 1
+                If xLow Mod 8 = 0 Then xColumn += 1
+                Panel1.Controls.Add(xCB)
+            End If
+        Next
+        If xLow Mod 8 <> 0 Then xColumn += 1
+        xLow = 0
+
+        Me.Panel1.Controls.Add(Me.cb4)
+        Me.cb4.Location = New Point(0 * 55 + 3, xColumn * 25 + 2)
+        Me.Panel1.Controls.Add(Me.cb5)
+        Me.cb5.Location = New Point(1 * 55 + 3, xColumn * 25 + 2)
+        Me.Panel1.Controls.Add(Me.cb6)
+        Me.cb6.Location = New Point(2 * 55 + 3, xColumn * 25 + 2)
+
+        xColumn += 1
+        For xI1 As Integer = 63 To bCol
             Dim xCB As New CheckBox
             With xCB
                 .Appearance = Appearance.Button
                 .Checked = True
                 .FlatStyle = FlatStyle.System
-                .Location = New Point(((xI1 - 63) Mod 8) * 35 + 3, ((xI1 - 63) \ 8) * 25 + 103)
+                .Location = New Point((xLow Mod 8) * 35 + 3, xColumn * 25 + 2)
                 .Size = New Size(35, 25)
                 .Tag = xI1
                 .Text = "B" & (xI1 - 62).ToString
                 .TextAlign = ContentAlignment.MiddleCenter
                 .UseVisualStyleBackColor = True
             End With
+            xLow += 1
+            If xLow Mod 8 = 0 Then xColumn += 1
             Panel1.Controls.Add(xCB)
         Next
 
