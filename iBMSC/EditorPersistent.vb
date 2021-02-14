@@ -114,6 +114,7 @@ Partial Public Class MainWindow
 
             .WriteStartElement("Grid")
             .WriteAttributeString("gSnap", gSnap)
+            .WriteAttributeString("gDisableVertical", DisableVerticalMove)
             .WriteAttributeString("gWheel", gWheel)
             .WriteAttributeString("gPgUpDn", gPgUpDn)
             .WriteAttributeString("gShow", gShowGrid)
@@ -429,6 +430,7 @@ Partial Public Class MainWindow
         If eGrid IsNot Nothing Then
             With eGrid
                 XMLLoadAttribute(.GetAttribute("gSnap"), CGSnap.Checked)
+                XMLLoadAttribute(.GetAttribute("gDisableVertical"), CGDisableVertical.Checked)
                 XMLLoadAttribute(.GetAttribute("gWheel"), gWheel)
                 XMLLoadAttribute(.GetAttribute("gPgUpDn"), gPgUpDn)
                 XMLLoadAttribute(.GetAttribute("gShow"), CGShow.Checked)
