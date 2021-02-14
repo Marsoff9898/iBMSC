@@ -2471,24 +2471,43 @@ StartCount:     If Not NTInput Then
         Dim xCol As Integer = 0
         For xI1 = 1 To UBound(Notes)
             If Not Notes(xI1).Selected Then Continue For
-
-            Select Case Notes(xI1).ColumnIndex
-                Case niA3 : xCol = niA9
-                Case niA4 : xCol = niA8
-                Case niA5 : xCol = niA7
-                Case niA6 : xCol = niA6
-                Case niA7 : xCol = niA5
-                Case niA8 : xCol = niA4
-                Case niA9 : xCol = niA3
-                Case niD1 : xCol = niD7
-                Case niD2 : xCol = niD6
-                Case niD3 : xCol = niD5
-                Case niD4 : xCol = niD4
-                Case niD5 : xCol = niD3
-                Case niD6 : xCol = niD2
-                Case niD7 : xCol = niD1
-                Case Else : Continue For
-            End Select
+            If Rscratch Then
+                Select Case Notes(xI1).ColumnIndex
+                    Case niA1 : xCol = niA7
+                    Case niA2 : xCol = niA6
+                    Case niA3 : xCol = niA5
+                    Case niA4 : xCol = niA4
+                    Case niA5 : xCol = niA3
+                    Case niA6 : xCol = niA2
+                    Case niA7 : xCol = niA1
+                    Case niD1 : xCol = niD7
+                    Case niD2 : xCol = niD6
+                    Case niD3 : xCol = niD5
+                    Case niD4 : xCol = niD4
+                    Case niD5 : xCol = niD3
+                    Case niD6 : xCol = niD2
+                    Case niD7 : xCol = niD1
+                    Case Else : Continue For
+                End Select
+            Else
+                Select Case Notes(xI1).ColumnIndex
+                    Case niA3 : xCol = niA9
+                    Case niA4 : xCol = niA8
+                    Case niA5 : xCol = niA7
+                    Case niA6 : xCol = niA6
+                    Case niA7 : xCol = niA5
+                    Case niA8 : xCol = niA4
+                    Case niA9 : xCol = niA3
+                    Case niD1 : xCol = niD7
+                    Case niD2 : xCol = niD6
+                    Case niD3 : xCol = niD5
+                    Case niD4 : xCol = niD4
+                    Case niD5 : xCol = niD3
+                    Case niD6 : xCol = niD2
+                    Case niD7 : xCol = niD1
+                    Case Else : Continue For
+                End Select
+            End If
 
             Me.RedoMoveNote(Notes(xI1), xCol, Notes(xI1).VPosition, xUndo, xRedo)
             Notes(xI1).ColumnIndex = xCol
