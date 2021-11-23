@@ -1354,7 +1354,7 @@ EndOfSub:
                 ElseIf Notes(i).ColumnIndex = niBPM Then
                     bpm_list.Add(New BpmEvent(position, Notes(i).Value / 10000.0R))
                 ElseIf Notes(i).ColumnIndex = niSTOP Then
-                    stop_list.Add(New StopEvent(position, Notes(i).Value / 10000))
+                    stop_list.Add(New StopEvent(position, Notes(i).Value * resolution / 480000.0R))
                 ElseIf Notes(i).ColumnIndex = niBGA Then
                     bga_list.Add(New BGAEvent(position, Notes(i).Value / 10000))
                 ElseIf Notes(i).ColumnIndex = niLAYER Then
