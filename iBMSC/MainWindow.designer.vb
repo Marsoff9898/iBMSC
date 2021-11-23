@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class MainWindow
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class MainWindow
     '注意: 以下过程是 Windows 窗体设计器所必需的
     '可以使用 Windows 窗体设计器修改它。
     '不要使用代码编辑器修改它。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainWindow))
@@ -2149,18 +2149,15 @@ Partial Class MainWindow
         Me.POHeaderPart2.Controls.Add(Me.CHDifficulty, 1, 5)
         Me.POHeaderPart2.Controls.Add(Me.Label13, 2, 6)
         Me.POHeaderPart2.Controls.Add(Me.THExRank, 1, 6)
-        Me.POHeaderPart2.Controls.Add(Me.Label25, 2, 7)
-        Me.POHeaderPart2.Controls.Add(Me.CHLnObj, 1, 9)
+        Me.POHeaderPart2.Controls.Add(Me.CHLnObj, 1, 8)
         Me.POHeaderPart2.Controls.Add(Me.Label23, 0, 6)
         Me.POHeaderPart2.Controls.Add(Me.Label21, 0, 5)
-        Me.POHeaderPart2.Controls.Add(Me.THComment, 1, 8)
-        Me.POHeaderPart2.Controls.Add(Me.Label24, 0, 9)
+        Me.POHeaderPart2.Controls.Add(Me.THComment, 1, 7)
+        Me.POHeaderPart2.Controls.Add(Me.Label24, 0, 8)
         Me.POHeaderPart2.Controls.Add(Me.Label15, 0, 0)
-        Me.POHeaderPart2.Controls.Add(Me.THTotal, 1, 7)
-        Me.POHeaderPart2.Controls.Add(Me.Label20, 0, 7)
         Me.POHeaderPart2.Controls.Add(Me.BHStageFile, 2, 2)
         Me.POHeaderPart2.Controls.Add(Me.BHBanner, 2, 3)
-        Me.POHeaderPart2.Controls.Add(Me.Label19, 0, 8)
+        Me.POHeaderPart2.Controls.Add(Me.Label19, 0, 7)
         Me.POHeaderPart2.Controls.Add(Me.BHBackBMP, 2, 4)
         Me.POHeaderPart2.Controls.Add(Me.Label17, 0, 1)
         Me.POHeaderPart2.Controls.Add(Me.Label16, 0, 2)
@@ -2171,21 +2168,21 @@ Partial Class MainWindow
         Me.POHeaderPart2.Controls.Add(Me.THStageFile, 1, 2)
         Me.POHeaderPart2.Controls.Add(Me.THSubTitle, 1, 0)
         Me.POHeaderPart2.Controls.Add(Me.THSubArtist, 1, 1)
-        Me.POHeaderPart2.Controls.Add(Me.Label26, 0, 10)
-        Me.POHeaderPart2.Controls.Add(Me.Label27, 0, 11)
-        Me.POHeaderPart2.Controls.Add(Me.THLandMine, 1, 10)
-        Me.POHeaderPart2.Controls.Add(Me.BHLandMine, 2, 10)
-        Me.POHeaderPart2.Controls.Add(Me.THMissBMP, 1, 11)
-        Me.POHeaderPart2.Controls.Add(Me.BHMissBMP, 2, 11)
-        Me.POHeaderPart2.Controls.Add(Me.Label28, 0, 12)
-        Me.POHeaderPart2.Controls.Add(Me.Label29, 0, 13)
-        Me.POHeaderPart2.Controls.Add(Me.THPreview, 1, 12)
-        Me.POHeaderPart2.Controls.Add(Me.BHPreview, 2, 12)
-        Me.POHeaderPart2.Controls.Add(Me.CHLnmode, 1, 13)
+        Me.POHeaderPart2.Controls.Add(Me.Label26, 0, 9)
+        Me.POHeaderPart2.Controls.Add(Me.Label27, 0, 10)
+        Me.POHeaderPart2.Controls.Add(Me.THLandMine, 1, 9)
+        Me.POHeaderPart2.Controls.Add(Me.BHLandMine, 2, 9)
+        Me.POHeaderPart2.Controls.Add(Me.THMissBMP, 1, 10)
+        Me.POHeaderPart2.Controls.Add(Me.BHMissBMP, 2, 10)
+        Me.POHeaderPart2.Controls.Add(Me.Label28, 0, 11)
+        Me.POHeaderPart2.Controls.Add(Me.Label29, 0, 12)
+        Me.POHeaderPart2.Controls.Add(Me.THPreview, 1, 11)
+        Me.POHeaderPart2.Controls.Add(Me.BHPreview, 2, 11)
+        Me.POHeaderPart2.Controls.Add(Me.CHLnmode, 1, 12)
         Me.POHeaderPart2.Dock = System.Windows.Forms.DockStyle.Top
         Me.POHeaderPart2.Location = New System.Drawing.Point(0, 186)
         Me.POHeaderPart2.Name = "POHeaderPart2"
-        Me.POHeaderPart2.RowCount = 12
+        Me.POHeaderPart2.RowCount = 13
         Me.POHeaderPart2.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.POHeaderPart2.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.POHeaderPart2.RowStyles.Add(New System.Windows.Forms.RowStyle())
@@ -2614,9 +2611,10 @@ Partial Class MainWindow
         '
         Me.POHeaderPart1.AutoSize = True
         Me.POHeaderPart1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.POHeaderPart1.ColumnCount = 2
+        Me.POHeaderPart1.ColumnCount = 3
         Me.POHeaderPart1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.POHeaderPart1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.POHeaderPart1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.POHeaderPart1.Controls.Add(Me.Label3, 0, 0)
         Me.POHeaderPart1.Controls.Add(Me.THPlayLevel, 1, 6)
         Me.POHeaderPart1.Controls.Add(Me.CHRank, 1, 5)
@@ -2631,10 +2629,13 @@ Partial Class MainWindow
         Me.POHeaderPart1.Controls.Add(Me.Label9, 0, 3)
         Me.POHeaderPart1.Controls.Add(Me.Label8, 0, 4)
         Me.POHeaderPart1.Controls.Add(Me.Label6, 0, 6)
+        Me.POHeaderPart1.Controls.Add(Me.THTotal, 1, 7)
+        Me.POHeaderPart1.Controls.Add(Me.Label20, 0, 7)
+        Me.POHeaderPart1.Controls.Add(Me.Label25, 2, 7)
         Me.POHeaderPart1.Dock = System.Windows.Forms.DockStyle.Top
         Me.POHeaderPart1.Location = New System.Drawing.Point(0, 0)
         Me.POHeaderPart1.Name = "POHeaderPart1"
-        Me.POHeaderPart1.RowCount = 7
+        Me.POHeaderPart1.RowCount = 8
         Me.POHeaderPart1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.POHeaderPart1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.POHeaderPart1.RowStyles.Add(New System.Windows.Forms.RowStyle())
@@ -2658,6 +2659,7 @@ Partial Class MainWindow
         '
         'THPlayLevel
         '
+        Me.POHeaderPart1.SetColumnSpan(Me.THPlayLevel, 2)
         Me.THPlayLevel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.THPlayLevel.Location = New System.Drawing.Point(65, 138)
         Me.THPlayLevel.Margin = New System.Windows.Forms.Padding(0)
@@ -2667,6 +2669,7 @@ Partial Class MainWindow
         '
         'CHRank
         '
+        Me.POHeaderPart1.SetColumnSpan(Me.CHRank, 2)
         Me.CHRank.Dock = System.Windows.Forms.DockStyle.Top
         Me.CHRank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CHRank.FlatStyle = System.Windows.Forms.FlatStyle.System
@@ -2690,6 +2693,7 @@ Partial Class MainWindow
         '
         'CHPlayer
         '
+        Me.POHeaderPart1.SetColumnSpan(Me.CHPlayer, 2)
         Me.CHPlayer.Dock = System.Windows.Forms.DockStyle.Top
         Me.CHPlayer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CHPlayer.FlatStyle = System.Windows.Forms.FlatStyle.System
@@ -2713,6 +2717,7 @@ Partial Class MainWindow
         '
         'THGenre
         '
+        Me.POHeaderPart1.SetColumnSpan(Me.THGenre, 2)
         Me.THGenre.Dock = System.Windows.Forms.DockStyle.Fill
         Me.THGenre.Location = New System.Drawing.Point(65, 46)
         Me.THGenre.Margin = New System.Windows.Forms.Padding(0)
@@ -2723,6 +2728,7 @@ Partial Class MainWindow
         'THBPM
         '
         Me.THBPM.DecimalPlaces = 4
+        Me.POHeaderPart1.SetColumnSpan(Me.THBPM, 2)
         Me.THBPM.Dock = System.Windows.Forms.DockStyle.Fill
         Me.THBPM.Increment = New Decimal(New Integer() {10, 0, 0, 0})
         Me.THBPM.Location = New System.Drawing.Point(65, 69)
@@ -2747,6 +2753,7 @@ Partial Class MainWindow
         '
         'THArtist
         '
+        Me.POHeaderPart1.SetColumnSpan(Me.THArtist, 2)
         Me.THArtist.Dock = System.Windows.Forms.DockStyle.Fill
         Me.THArtist.Location = New System.Drawing.Point(65, 23)
         Me.THArtist.Margin = New System.Windows.Forms.Padding(0)
@@ -2756,6 +2763,7 @@ Partial Class MainWindow
         '
         'THTitle
         '
+        Me.POHeaderPart1.SetColumnSpan(Me.THTitle, 2)
         Me.THTitle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.THTitle.Location = New System.Drawing.Point(65, 0)
         Me.THTitle.Margin = New System.Windows.Forms.Padding(0)
