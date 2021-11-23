@@ -1321,15 +1321,15 @@ EndOfSub:
                    GetColumn(Notes(i).ColumnIndex).Identifier >= (36 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (36 + 8) Then
                     format.info.mode_hint = "beat-14k"
                 End If
-                If format.info.mode_hint <> "beat-14k" AndAlso
+                If (format.info.mode_hint <> "beat-14k" AndAlso format.info.mode_hint <> "keyboard-24k" AndAlso format.info.mode_hint <> "keyboard-24k-double") AndAlso
                    GetColumn(Notes(i).ColumnIndex).Identifier >= (72 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (72 + 9) Then
                     format.info.mode_hint = "beat-14k"
                 End If
-                If format.info.mode_hint = "beat-5k" AndAlso format.info.mode_hint = "beat-7k" AndAlso
+                If (format.info.mode_hint = "beat-5k" OrElse format.info.mode_hint = "beat-7k") AndAlso
                    (GetColumn(Notes(i).ColumnIndex).Identifier = (36 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (36 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 72 Then
                     format.info.mode_hint = "keyboard-24k"
                 End If
-                If format.info.mode_hint = "popn-9k" AndAlso format.info.mode_hint = "beat-10k" AndAlso format.info.mode_hint = "beat-14k" AndAlso
+                If (format.info.mode_hint = "popn-9k" OrElse format.info.mode_hint = "beat-10k" OrElse format.info.mode_hint = "beat-14k") AndAlso
                    (GetColumn(Notes(i).ColumnIndex).Identifier = (36 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (36 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 72 Then
                     format.info.mode_hint = "keyboard-24k-double"
                 End If
