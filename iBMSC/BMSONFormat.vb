@@ -99,10 +99,10 @@ Namespace Editor
 
 	Public Class BpmEvent
 		Inherits BMSONEvent
-		Public duration As Double
+		Public bpm As Double
 		Public Sub New(position As Integer, value As Double)
 			y = position
-			duration = value
+			bpm = value
 		End Sub
 	End Class
 
