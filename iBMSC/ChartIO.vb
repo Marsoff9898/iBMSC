@@ -1402,18 +1402,20 @@ EndOfSub:
                             hidden_note_list(value) = New List(Of MineNote)
                         End If
                         hidden_note_list(value).Add(New MineNote(position, lane, 0))
-                    ElseIf NTInput AndAlso Notes(i).LongNote Then
+                    ElseIf NTInput Then
                         If Not note_list.ContainsKey(value) Then
                             note_list(value) = New List(Of BmsonNote)
                         End If
                         Dim length = Notes(i).Length * resolution / 48.0R
                         note_list(value).Add(New BmsonNote(position, lane, length))
-                    ElseIf Not NTInput AndAlso Notes(i).LNPair > 0 AndAlso i < Notes(i).LNPair Then
-                        If Not note_list.ContainsKey(value) Then
-                            note_list(value) = New List(Of BmsonNote)
+                    ElseIf Not NTInput AndAlso Notes(i).LNPair > 0 Then
+                        If i < Notes(i).LNPair Then
+                            If Not note_list.ContainsKey(value) Then
+                                note_list(value) = New List(Of BmsonNote)
+                            End If
+                            Dim length = (Notes(Notes(i).LNPair).VPosition - Notes(i).VPosition) * resolution / 48.0R
+                            note_list(value).Add(New BmsonNote(position, lane, length))
                         End If
-                        Dim length = (Notes(Notes(i).LNPair).VPosition - Notes(i).VPosition) * resolution / 48.0R
-                        note_list(value).Add(New BmsonNote(position, lane, length))
                     Else
                         If Not note_list.ContainsKey(value) Then
                             note_list(value) = New List(Of BmsonNote)
