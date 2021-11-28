@@ -1437,8 +1437,12 @@ EndOfSub:
                     If note_list.ContainsKey(i) Then
                         wav_list.Add(i, New SoundChannel(hWAV(i)))
                     End If
-                    If hidden_note_list.ContainsKey(i) Then
+                End If
+                If hidden_note_list.ContainsKey(i) Then
+                    If hWAV(i) <> "" Then
                         hidden_list.Add(i, New MineChannel(hWAV(i)))
+                    Else
+                        hidden_list.Add(i, New MineChannel(""))
                     End If
                 End If
             Next
