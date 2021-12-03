@@ -25,7 +25,7 @@ Public Class dgImportSM
     Private Sub dgImportSM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Dim xS() As String = Form1.lpimpSM
 
-        Me.Font = MainWindow.Font
+        Me.Font = MainWindow.Refer.Font
 
         Me.Text = Strings.fImportSM.Title
         Label7.Text = Strings.fImportSM.Difficulty

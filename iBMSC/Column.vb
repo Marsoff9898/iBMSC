@@ -1,4 +1,6 @@
-﻿Namespace Editor
+﻿Imports System.Drawing
+
+Namespace Editor
     Public Structure Column
         Private _Width As Integer
         Private _isNoteCol As Boolean
@@ -121,4 +123,5 @@
             cBG = Color.FromArgb(xcBG)
         End Sub
     End Structure
+
 End Namespace

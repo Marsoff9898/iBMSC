@@ -1,4 +1,6 @@
-﻿Module XMLUtil
+﻿Imports System.Drawing
+Imports System.Xml
+Module XMLUtil
     Public Sub XMLWriteValue(ByVal w As XmlTextWriter, ByVal local As String, ByVal val As String)
         w.WriteStartElement(local)
         w.WriteAttributeString("Value", Editor.WriteDecimalWithDot(val))

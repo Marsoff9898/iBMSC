@@ -107,14 +107,14 @@
         Dim xResult(-1) As String
         Dim xResult2(-1) As String
         Dim Identifiers() As String = {"01", "03", "04", "06", "07", "08", "09",
-                                       "16", "11", "12", "13", "14", "15", "18", "19",
-                                       "26", "21", "22", "23", "24", "25", "28", "29",
-                                       "36", "31", "32", "33", "34", "35", "38", "39",
-                                       "46", "41", "42", "43", "44", "45", "48", "49",
-                                       "56", "51", "52", "53", "54", "55", "58", "59",
-                                       "66", "61", "62", "63", "64", "65", "68", "69",
-                                       "76", "71", "72", "73", "74", "75", "78", "79",
-                                       "86", "81", "82", "83", "84", "85", "88", "89"}
+                                    "16", "11", "12", "13", "14", "15", "18", "19",
+                                    "26", "21", "22", "23", "24", "25", "28", "29",
+                                    "36", "31", "32", "33", "34", "35", "38", "39",
+                                    "46", "41", "42", "43", "44", "45", "48", "49",
+                                    "56", "51", "52", "53", "54", "55", "58", "59",
+                                    "66", "61", "62", "63", "64", "65", "68", "69",
+                                    "76", "71", "72", "73", "74", "75", "78", "79",
+                                    "86", "81", "82", "83", "84", "85", "88", "89"}
 
         Dim xLowerIndex As Integer = 1
         Dim xUpperIndex As Integer = 1
@@ -159,14 +159,14 @@
                         'put result
                         ReDim Preserve xResult(UBound(xResult) + 1)
                         xResult(UBound(xResult)) = xMeasure & "_" &
-                                                   BMSChannelToColumn(xId) & "_" &
-                                                   nTitle(BMSChannelToColumn(xId)) & "_" &
-                                                   CStr(CInt(192 / xGCD)) & "_" &
-                                                   CInt(IsChannelLongNote(xId)) & "_" &
-                                                   CInt(IsChannelHidden(xId)) & "_" &
-                                                   CInt(xAdj64) & "_" &
-                                                   xD64 & "_" &
-                                                   xD48
+                                                BMSChannelToColumn(xId) & "_" &
+                                                nTitle(BMSChannelToColumn(xId)) & "_" &
+                                                CStr(CInt(192 / xGCD)) & "_" &
+                                                CInt(IsChannelLongNote(xId)) & "_" &
+                                                CInt(IsChannelHidden(xId)) & "_" &
+                                                CInt(xAdj64) & "_" &
+                                                xD64 & "_" &
+                                                xD48
                     End If
                 Next
 
@@ -220,14 +220,14 @@
                         'put result
                         ReDim Preserve xResult(UBound(xResult) + 1)
                         xResult(UBound(xResult)) = xMeasure & "_" &
-                                                   BMSChannelToColumn(xId) & "_" &
-                                                   nTitle(BMSChannelToColumn(xId)) & "_" &
-                                                   CStr(CInt(192 / xGCD)) & "_" &
-                                                   CInt(IsChannelLongNote(xId)) & "_" &
-                                                   CInt(IsChannelHidden(xId)) & "_" &
-                                                   CInt(xAdj64) & "_" &
-                                                   xD64 & "_" &
-                                                   xD48
+                                                BMSChannelToColumn(xId) & "_" &
+                                                nTitle(BMSChannelToColumn(xId)) & "_" &
+                                                CStr(CInt(192 / xGCD)) & "_" &
+                                                CInt(IsChannelLongNote(xId)) & "_" &
+                                                CInt(IsChannelHidden(xId)) & "_" &
+                                                CInt(xAdj64) & "_" &
+                                                xD64 & "_" &
+                                                xD48
                     End If
                 Next
 
@@ -256,9 +256,9 @@
             For Each xadj As dgMyO2.Adj In xaj
                 For xI1 As Integer = 1 To UBound(Notes)
                     If MeasureAtDisplacement(Notes(xI1).VPosition) = xadj.Measure And
-                       Notes(xI1).ColumnIndex = xadj.ColumnIndex And
-                       Notes(xI1).LongNote = xadj.LongNote And
-                       Notes(xI1).Hidden = xadj.Hidden Then
+                    Notes(xI1).ColumnIndex = xadj.ColumnIndex And
+                    Notes(xI1).LongNote = xadj.LongNote And
+                    Notes(xI1).Hidden = xadj.Hidden Then
                         Notes(xI1).VPosition = CLng(Notes(xI1).VPosition / IIf(xadj.AdjTo64, 3, 4)) * IIf(xadj.AdjTo64, 3, 4)
                     End If
                 Next
@@ -272,15 +272,15 @@
                     Dim xStart As Double = Notes(xI1).VPosition
                     Dim xEnd As Double = Notes(xI1).VPosition + Notes(xI1).Length
                     If MeasureAtDisplacement(Notes(xI1).VPosition) = xadj.Measure And
-                       Notes(xI1).ColumnIndex = xadj.ColumnIndex And
-                       Notes(xI1).Hidden = xadj.Hidden Then _
-                        xStart = CLng(Notes(xI1).VPosition / IIf(xadj.AdjTo64, 3, 4)) * IIf(xadj.AdjTo64, 3, 4)
+                    Notes(xI1).ColumnIndex = xadj.ColumnIndex And
+                    Notes(xI1).Hidden = xadj.Hidden Then _
+                    xStart = CLng(Notes(xI1).VPosition / IIf(xadj.AdjTo64, 3, 4)) * IIf(xadj.AdjTo64, 3, 4)
 
                     If Notes(xI1).Length > 0 AndAlso
-                       MeasureAtDisplacement(Notes(xI1).VPosition + Notes(xI1).Length) = xadj.Measure And
-                       Notes(xI1).ColumnIndex = xadj.ColumnIndex And
-                       Notes(xI1).Hidden = xadj.Hidden Then _
-                        xEnd = CLng((Notes(xI1).VPosition + Notes(xI1).Length) / IIf(xadj.AdjTo64, 3, 4)) * IIf(xadj.AdjTo64, 3, 4)
+                    MeasureAtDisplacement(Notes(xI1).VPosition + Notes(xI1).Length) = xadj.Measure And
+                    Notes(xI1).ColumnIndex = xadj.ColumnIndex And
+                    Notes(xI1).Hidden = xadj.Hidden Then _
+                    xEnd = CLng((Notes(xI1).VPosition + Notes(xI1).Length) / IIf(xadj.AdjTo64, 3, 4)) * IIf(xadj.AdjTo64, 3, 4)
 
                     Notes(xI1).VPosition = xStart
                     If Notes(xI1).Length > 0 Then Notes(xI1).Length = xEnd - Notes(xI1).VPosition
@@ -307,3 +307,4 @@
         Beep()
     End Sub
 End Class
+

@@ -1,3 +1,5 @@
+Imports System.IO
+Imports System.Text
 Imports System.Windows.Forms
 
 Public Class OpGeneral
@@ -10,8 +12,8 @@ Public Class OpGeneral
     Public zGridPartition As Integer
 
     'Dim lpfa() As String
+    Private ReadOnly DirectoryPath = Directory.GetParent(Application.ExecutablePath)
 
-    <System.Runtime.InteropServices.DllImport("shell32.dll")> _
     Shared Sub SHChangeNotify(ByVal wEventId As Integer, ByVal uFlags As Integer, ByVal dwItem1 As Integer, ByVal dwItem2 As Integer)
     End Sub
 
@@ -33,15 +35,15 @@ Public Class OpGeneral
             Case 6 : zPgUpDn = 96
         End Select
         Select Case CTextEncoding.SelectedIndex
-            Case 0 : zEncoding = System.Text.Encoding.Default
-            Case 1 : zEncoding = System.Text.Encoding.Unicode
-            Case 2 : zEncoding = System.Text.Encoding.ASCII
-            Case 3 : zEncoding = System.Text.Encoding.BigEndianUnicode
-            Case 4 : zEncoding = System.Text.Encoding.UTF32
-            Case 5 : zEncoding = System.Text.Encoding.UTF7
-            Case 6 : zEncoding = System.Text.Encoding.UTF8
-            Case 7 : zEncoding = System.Text.Encoding.GetEncoding(932)
-            Case 8 : zEncoding = System.Text.Encoding.GetEncoding(51949)
+            Case 0 : zEncoding = Encoding.Default
+            Case 1 : zEncoding = Encoding.Unicode
+            Case 2 : zEncoding = Encoding.ASCII
+            Case 3 : zEncoding = Encoding.BigEndianUnicode
+            Case 4 : zEncoding = Encoding.UTF32
+            Case 5 : zEncoding = Encoding.UTF7
+            Case 6 : zEncoding = Encoding.UTF8
+            Case 7 : zEncoding = Encoding.GetEncoding(932)
+            Case 8 : zEncoding = Encoding.GetEncoding(51949)
         End Select
         'zSort = CSortingMethod.SelectedIndex
         zMiddle = IIf(rMiddleDrag.Checked, 1, 0)
@@ -60,6 +62,9 @@ Public Class OpGeneral
                    ByVal xAutoSave As Integer, ByVal xBeep As Boolean, ByVal xBPMx As Boolean, ByVal xSTOPx As Boolean, _
                    ByVal xMFEnter As Boolean, ByVal xMFClick As Boolean, ByVal xMStopPreview As Boolean)
         InitializeComponent()
+
+        Dim Provider = CodePagesEncodingProvider.Instance
+        Encoding.RegisterProvider(Provider)
 
         On Error Resume Next
         Select Case xMsWheel
@@ -101,7 +106,7 @@ Public Class OpGeneral
     End Sub
 
     Private Sub OpGeneral_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.Font = MainWindow.Font
+        Me.Font = MainWindow.Refer.Font
 
         'lpfa = Form1.lpfa
         'Dim xL() As String = Form1.lpgo
@@ -177,7 +182,7 @@ Public Class OpGeneral
                 'Default Icon
                 xReg.CreateSubKey("DefaultIcon")
                 xReg = .OpenSubKey(xClass & "\DefaultIcon", True)
-                xReg.SetValue("", My.Application.Info.DirectoryPath & "\TypeBMS.ico", Microsoft.Win32.RegistryValueKind.String)
+                xReg.SetValue("", DirectoryPath & "\TypeBMS.ico", Microsoft.Win32.RegistryValueKind.String)
 
                 xReg = .OpenSubKey(xClass, True)
                 xReg.CreateSubKey("shell")
@@ -197,7 +202,7 @@ Public Class OpGeneral
                     xReg = .OpenSubKey(xClass & "\shell\preview", True)
                     xReg.SetValue("", Strings.FileAssociation.Preview)
                     xReg = .OpenSubKey(xClass & "\shell\preview\command", True)
-                    xReg.SetValue("", """" & My.Application.Info.DirectoryPath & "\uBMplay.exe" & """ ""%1""")
+                    xReg.SetValue("", """" & DirectoryPath & "\uBMplay.exe" & """ ""%1""")
 
                     xReg = .OpenSubKey(xClass & "\shell", True)
                     xReg.CreateSubKey("viewcode\command")
@@ -250,7 +255,7 @@ Public Class OpGeneral
     '
     '            xReg.CreateSubKey("DefaultIcon")
     '            xReg = .OpenSubKey(xCtg & "\DefaultIcon", True)
-    '            'xReg.SetValue("", My.Application.Info.DirectoryPath & "\TypeBMS.ico", Microsoft.Win32.RegistryValueKind.String)
+    '            'xReg.SetValue("", DirectoryPath & "\TypeBMS.ico", Microsoft.Win32.RegistryValueKind.String)
     '
     '            xReg = .OpenSubKey(xCtg, True)
     '            xReg.CreateSubKey("shell")
@@ -271,7 +276,7 @@ Public Class OpGeneral
     '            xReg = .OpenSubKey(xCtg & "\shell\open\command", True)
     '            xReg.SetValue("", """" & Application.ExecutablePath & """ ""%1""")
     '            xReg = .OpenSubKey(xCtg & "\shell\preview\command", True)
-    '            xReg.SetValue("", """" & My.Application.Info.DirectoryPath & "\uBMplay.exe" & """ ""%1""")
+    '            xReg.SetValue("", """" & DirectoryPath & "\uBMplay.exe" & """ ""%1""")
     '            xReg = .OpenSubKey(xCtg & "\shell\viewcode\command", True)
     '            xReg.SetValue("", Environment.SystemDirectory & "\notepad.exe %1")
     '        End With
@@ -317,7 +322,7 @@ Public Class OpGeneral
     '
     '            xReg.CreateSubKey("DefaultIcon")
     '            xReg = .OpenSubKey(xCtg & "\DefaultIcon", True)
-    '            'xReg.SetValue("", My.Application.Info.DirectoryPath & "\TypeBMS.ico", Microsoft.Win32.RegistryValueKind.String)
+    '            'xReg.SetValue("", DirectoryPath & "\TypeBMS.ico", Microsoft.Win32.RegistryValueKind.String)
     '
     '            xReg = .OpenSubKey(xCtg, True)
     '            xReg.CreateSubKey("shell")
@@ -338,7 +343,7 @@ Public Class OpGeneral
     '            xReg = .OpenSubKey(xCtg & "\shell\open\command", True)
     '            xReg.SetValue("", """" & Application.ExecutablePath & """ ""%1""")
     '            'xReg = .OpenSubKey(xCtg & "\shell\preview\command", True)
-    '            'xReg.SetValue("", """" & My.Application.Info.DirectoryPath & "\uBMplay.exe" & """ ""%1""")
+    '            'xReg.SetValue("", """" & DirectoryPath & "\uBMplay.exe" & """ ""%1""")
     '            xReg = .OpenSubKey(xCtg & "\shell\viewcode\command", True)
     '            xReg.SetValue("", Environment.SystemDirectory & "\notepad.exe %1")
     '        End With

@@ -1,8 +1,8 @@
-﻿Imports CSCore.Streams
+﻿Imports System.Windows.Forms
+Imports CSCore.Streams
 Imports CSCore.Streams.Effects
 Imports CSCore
 Imports CSCore.Codecs
-
 
 Partial Public Class MainWindow
 

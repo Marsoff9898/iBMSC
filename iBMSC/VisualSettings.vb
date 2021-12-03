@@ -1,4 +1,6 @@
-﻿Namespace Editor
+﻿Imports System.Drawing
+
+Namespace Editor
 
     Public Class visualSettings
         Public ColumnTitle As SolidBrush
@@ -123,5 +125,4 @@
             kOpacity = vKOpacity
         End Sub
     End Class
-
 End Namespace

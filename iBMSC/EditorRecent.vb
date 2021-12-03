@@ -1,4 +1,7 @@
-﻿Partial Public Class MainWindow
+﻿Imports System.IO
+Imports System.Windows.Forms
+
+Partial Public Class MainWindow
     Private Sub NewRecent(ByVal xFileName As String)
         Dim xAlreadyExists As Boolean = False
         Dim xI1 As Integer
@@ -53,7 +56,7 @@
         'KMouseDown = -1
         ReDim SelectedNotes(-1)
         KMouseOver = -1
-        If Not My.Computer.FileSystem.FileExists(xFileName) Then
+        If Not File.Exists(xFileName) Then
             MsgBox(Strings.Messages.CannotFind.Replace("{}", xFileName), MsgBoxStyle.Critical)
             Exit Sub
         End If
@@ -64,7 +67,7 @@
                 InitPath = ExcludeFileName(xFileName)
                 SetFileName(xFileName)
                 ClearUndo()
-                OpenBMS(My.Computer.FileSystem.ReadAllText(xFileName, TextEncoding))
+                OpenBMS(File.ReadAllText(xFileName, TextEncoding))
                 SetFileName(FileName)
                 SetIsSaved(True)
             Case ".IBMSC"

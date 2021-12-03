@@ -1,9 +1,10 @@
-Imports System.Runtime.CompilerServices
+Imports System.Drawing
 Imports System.Windows.Forms
 Imports iBMSC.Editor
+Imports iBMSC.Window
 
 Public Class OpVisual
-    Dim niB As Integer = MainWindow.niB
+    Dim niB As Integer = MainWindow.Refer.niB
 
     Structure ColumnOptionSet
         Public Width As NumericUpDown
@@ -294,7 +295,7 @@ Public Class OpVisual
         vo.PEDeltaMouseOver = CInt(Me.iTSSensitivity.Value)
         vo.MiddleDeltaRelease = CInt(Me.iMiddleSensitivity.Value)
 
-        MainWindow.setVO(vo)
+        MainWindow.Refer.setVO(vo)
 
         For xI1 As Integer = 0 To UBound(co)
             col(xI1).Title = co(xI1).Title.Text
@@ -306,7 +307,7 @@ Public Class OpVisual
             col(xI1).cBG = co(xI1).BG.BackColor
         Next
 
-        MainWindow.column = col
+        MainWindow.Refer.column = col
 
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
@@ -318,7 +319,7 @@ Public Class OpVisual
     End Sub
 
     Private Sub OpVisual_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.Font = MainWindow.Font
+        Me.Font = MainWindow.Refer.Font
 
         'Language
 

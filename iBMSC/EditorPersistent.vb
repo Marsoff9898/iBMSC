@@ -1,5 +1,8 @@
 ﻿Imports iBMSC.Editor.Functions
-
+Imports System.Windows.Forms
+Imports System.IO
+Imports System.Drawing
+Imports System.Xml
 Partial Public Class MainWindow
 
     Private Sub XMLWriteColumn(ByVal w As XmlTextWriter, ByVal I As Integer)
@@ -50,9 +53,9 @@ Partial Public Class MainWindow
             .Indentation = 4
 
             .WriteStartElement("iBMSC")
-            .WriteAttributeString("Major", My.Application.Info.Version.Major)
-            .WriteAttributeString("Minor", My.Application.Info.Version.Minor)
-            .WriteAttributeString("Build", My.Application.Info.Version.Build)
+            .WriteAttributeString("Major", Info.Version.Major)
+            .WriteAttributeString("Minor", Info.Version.Minor)
+            .WriteAttributeString("Build", Info.Version.Build)
 
             If ThemeOnly Then GoTo 5000
 
@@ -204,7 +207,7 @@ Partial Public Class MainWindow
     End Sub
     Private Sub XMLLoadElementValue(ByVal n As XmlElement, ByRef v As Color)
         If n Is Nothing Then Exit Sub
-        XMLLoadAttribute(n.GetAttribute("Value"), v)
+        XMLLoadAttribute(n.GetAttribute("Value"), v.ToArgb)
     End Sub
 
     Private Sub XMLLoadElementValue(ByVal n As XmlElement, ByRef v As Font)
@@ -250,16 +253,16 @@ Partial Public Class MainWindow
             'XMLLoadAttribute(n.GetAttribute("Identifier"), .Identifier)
             XMLLoadAttribute(n.GetAttribute("NoteColor"), .cNote)
             .setNoteColor(.cNote)
-            XMLLoadAttribute(n.GetAttribute("TextColor"), .cText)
+            XMLLoadAttribute(n.GetAttribute("TextColor"), .cText.ToArgb)
             XMLLoadAttribute(n.GetAttribute("LongNoteColor"), .cLNote)
             .setLNoteColor(.cLNote)
-            XMLLoadAttribute(n.GetAttribute("LongTextColor"), .cLText)
-            XMLLoadAttribute(n.GetAttribute("BG"), .cBG)
+            XMLLoadAttribute(n.GetAttribute("LongTextColor"), .cLText.ToArgb)
+            XMLLoadAttribute(n.GetAttribute("BG"), .cBG.ToArgb)
         End With
     End Sub
 
     Private Sub LoadSettings(ByVal Path As String)
-        If Not My.Computer.FileSystem.FileExists(Path) Then Return
+        If Not File.Exists(Path) Then Return
 
         'Dim xTempFileName As String = ""
         'Do
@@ -279,9 +282,9 @@ Partial Public Class MainWindow
         If Root Is Nothing Then GoTo EndOfSub
 
         'version
-        Dim Major As Integer = My.Application.Info.Version.Major
-        Dim Minor As Integer = My.Application.Info.Version.Minor
-        Dim Build As Integer = My.Application.Info.Version.Build
+        Dim Major As Integer = Info.Version.Major
+        Dim Minor As Integer = Info.Version.Minor
+        Dim Build As Integer = Info.Version.Build
         Try
             Dim xMajor As Integer = Val(Root.Attributes("Major").Value)
             Dim xMinor As Integer = Val(Root.Attributes("Minor").Value)
@@ -331,7 +334,7 @@ Partial Public Class MainWindow
                 POBLong.Enabled = Not NTInput
                 POBLongShort.Enabled = Not NTInput
 
-                LoadLocale(My.Application.Info.DirectoryPath & "\" & .GetAttribute("Language"))
+                LoadLocale(DirectoryPath & "\" & .GetAttribute("Language"))
 
                 'XMLLoadAttribute(.GetAttribute("SortingMethod"), SortingMethod)
 
@@ -567,7 +570,7 @@ EndOfSub:
     End Sub
 
     Private Sub LoadLocale(ByVal Path As String)
-        If Not My.Computer.FileSystem.FileExists(Path) Then Return
+        If Not File.Exists(Path) Then Return
 
         Dim Doc As XmlDocument = Nothing
         Dim FileStream As IO.FileStream = Nothing
@@ -1168,7 +1171,7 @@ EndOfSub:
                 XMLLoadLocale(eFileAssociation.Item("ViewCode"), Strings.FileAssociation.ViewCode)
             End If
 
-            DispLang = Path.Replace(My.Application.Info.DirectoryPath & "\", "")
+            DispLang = Path.Replace(DirectoryPath & "\", "")
 
         Catch ex As Exception
             MsgBox(Path & vbCrLf & vbCrLf & ex.Message, MsgBoxStyle.Exclamation)
@@ -1186,7 +1189,7 @@ EndOfSub:
 
     Private Sub LoadThemeComptability(ByVal xPath As String)
         Try
-            Dim xStrLine() As String = Split(My.Computer.FileSystem.ReadAllText(xPath), vbCrLf)
+            Dim xStrLine() As String = Split(File.ReadAllText(xPath), vbCrLf)
             If xStrLine(0).Trim <> "iBMSC Configuration Settings Format" And xStrLine(0).Trim <> "iBMSC Theme Format" Then Exit Sub
 
             Dim xW1 As String = ""
@@ -1227,7 +1230,7 @@ EndOfSub:
                     Case "VKMOUSEOVER" : vo.kMouseOver.Color = Color.FromArgb(Val(xW2))
                     Case "VKMOUSEOVERE " : vo.kMouseOverE.Color = Color.FromArgb(Val(xW2))
                     Case "VKSELECTED" : vo.kSelected.Color = Color.FromArgb(Val(xW2))
-                        'Case "VKHIDTRANSPARENCY" : vo.kOpacity = Val(xW2)
+                    'Case "VKHIDTRANSPARENCY" : vo.kOpacity = Val(xW2)
 
                     Case "KLENGTH"
                         Dim xE() As String = LoadThemeComptability_SplitStringInto26Parts(xW2)
@@ -1317,10 +1320,10 @@ EndOfSub:
     End Sub
 
     Private Sub LoadTheme(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        'If Not File.Exists(My.Application.Info.DirectoryPath & "\Data\" & sender.Text) Then Exit Sub
+        'If Not File.Exists(DirectoryPath & "\Data\" & sender.Text) Then Exit Sub
         'SaveTheme = True
-        'LoadCFF(My.Computer.FileSystem.ReadAllText(My.Application.Info.DirectoryPath & "\Theme\" & sender.Text, System.Text.Encoding.Unicode))
-        LoadSettings(My.Application.Info.DirectoryPath & "\Data\" & sender.Text)
+        'LoadCFF(File.ReadAllText(DirectoryPath & "\Theme\" & sender.Text, System.Text.Encoding.Unicode))
+        LoadSettings(DirectoryPath & "\Data\" & sender.Text)
         ChangePlaySideSkin(False)
         RefreshPanelAll()
     End Sub

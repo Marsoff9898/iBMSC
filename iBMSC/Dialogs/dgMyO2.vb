@@ -14,8 +14,8 @@ Public Class dgMyO2
     Private Aj(-1) As Adj
 
     Private Sub fMyO2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.Font = MainWindow.Font
-        vBPM.Value = MainWindow.THBPM.Value
+        Me.Font = MainWindow.Refer.Font
+        vBPM.Value = MainWindow.Refer.THBPM.Value
     End Sub
 
     Private Sub AddAdjItem(ByVal xAj As Adj, ByVal Index As Integer)
@@ -33,11 +33,11 @@ Public Class dgMyO2
     End Sub
 
     Private Sub bApply1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bApply1.Click
-        MainWindow.MyO2ConstBPM(vBPM.Value * 10000)
+        MainWindow.Refer.MyO2ConstBPM(vBPM.Value * 10000)
     End Sub
 
     Private Sub bApply2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bApply2.Click
-        Dim xStrItem() As String = MainWindow.MyO2GridCheck()
+        Dim xStrItem() As String = MainWindow.Refer.MyO2GridCheck()
         ReDim Aj(UBound(xStrItem))
 
         lResult.Rows.Clear()
@@ -60,7 +60,7 @@ Public Class dgMyO2
     End Sub
 
     Private Sub bApply3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bApply3.Click
-        MainWindow.MyO2GridAdjust(Aj)
+        MainWindow.Refer.MyO2GridAdjust(Aj)
     End Sub
 
     Public Sub New()

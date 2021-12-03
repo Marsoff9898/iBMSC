@@ -1,4 +1,5 @@
 Imports System.Windows.Forms
+Imports System.Drawing
 
 Public Class dgStatistics
 
@@ -13,7 +14,7 @@ Public Class dgStatistics
     End Sub
 
     Private Sub dgStatistics_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.Font = MainWindow.Font
+        Me.Font = MainWindow.Refer.Font
 
         Me.Text = Strings.fStatistics.Title
         Label6.Text = Strings.fStatistics.lBPM

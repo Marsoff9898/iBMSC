@@ -14,7 +14,7 @@ Option Explicit On
 Imports System
 
 Namespace My.Resources
-    
+
     'このクラスは StronglyTypedResourceBuilder クラスが ResGen
     'または Visual Studio のようなツールを使用して自動生成されました。
     'メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
@@ -22,20 +22,20 @@ Namespace My.Resources
     '''<summary>
     '''  ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.Microsoft.VisualBasic.HideModuleNameAttribute()>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+     Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),
+     Global.Microsoft.VisualBasic.HideModuleNameAttribute()>
     Friend Module Resources
-        
+
         Private resourceMan As Global.System.Resources.ResourceManager
-        
+
         Private resourceCulture As Global.System.Globalization.CultureInfo
-        
+
         '''<summary>
         '''  このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         '''</summary>
-        <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>
         Friend ReadOnly Property ResourceManager() As Global.System.Resources.ResourceManager
             Get
                 If Object.ReferenceEquals(resourceMan, Nothing) Then
@@ -45,12 +45,12 @@ Namespace My.Resources
                 Return resourceMan
             End Get
         End Property
-        
+
         '''<summary>
         '''  すべてについて、現在のスレッドの CurrentUICulture プロパティをオーバーライドします
         '''  現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         '''</summary>
-        <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>
         Friend Property Culture() As Global.System.Globalization.CultureInfo
             Get
                 Return resourceCulture
@@ -59,197 +59,197 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property About0() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("About0", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property Collapse() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Collapse", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property ConvertNotes() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ConvertNotes", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property ConvertNotesH() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ConvertNotesH", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property ConvertNotesHV() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ConvertNotesHV", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property ConvertNotesL() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ConvertNotesL", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property ConvertNotesN() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ConvertNotesN", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property ConvertNotesV() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ConvertNotesV", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Byte[] のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property CursorResizeDown() As Byte()
             Get
                 Dim obj As Object = ResourceManager.GetObject("CursorResizeDown", resourceCulture)
-                Return CType(obj,Byte())
+                Return CType(obj, Byte())
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Byte[] のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property CursorResizeLeft() As Byte()
             Get
                 Dim obj As Object = ResourceManager.GetObject("CursorResizeLeft", resourceCulture)
-                Return CType(obj,Byte())
+                Return CType(obj, Byte())
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Byte[] のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property CursorResizeRight() As Byte()
             Get
                 Dim obj As Object = ResourceManager.GetObject("CursorResizeRight", resourceCulture)
-                Return CType(obj,Byte())
+                Return CType(obj, Byte())
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property Expand() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Expand", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property icon2_16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("icon2_16", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property icon2_16_highlight() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("icon2_16_highlight", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property ImageError() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ImageError", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property lgheight() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("lgheight", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property lgpartition() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("lgpartition", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property lgsub() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("lgsub", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property lgwidth() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("lgwidth", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;
         '''&lt;iBMSC Major=&quot;3&quot; Minor=&quot;1&quot; Build=&quot;0&quot;&gt;
@@ -264,705 +264,706 @@ Namespace My.Resources
                 Return ResourceManager.GetString("O2Mania_Theme", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property Shortcut() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Shortcut", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property SplashScreenx() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("SplashScreenx", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property Statistics3() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Statistics3", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property TransparentBG() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("TransparentBG", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property WAVLeft() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("WAVLeft", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property WAVOffset() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("WAVOffset", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property WAVPrecision() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("WAVPrecision", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property WAVSaturation() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("WAVSaturation", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property WAVTransparency() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("WAVTransparency", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property WAVWidth() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("WAVWidth", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16About() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16About", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Add() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Add", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Associate() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Associate", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16ChangePlaySide() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16ChangePlaySide", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16CheckError() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16CheckError", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16CheckErrorN() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16CheckErrorN", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Copy() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Copy", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Cut() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Cut", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Down() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Down", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Export() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Export", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Export2() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Export2", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Find() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Find", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16GeneralOptions() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16GeneralOptions", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Help() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Help", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Import() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Import", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Import2() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Import2", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Language() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Language", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16LnBMSE() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16LnBMSE", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16LnNT() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16LnNT", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Lock() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Lock", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16MeasureInsert() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16MeasureInsert", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16MeasureRemove() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16MeasureRemove", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Mirror() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Mirror", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16ModifyLabel() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16ModifyLabel", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16ModifyLabelN() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16ModifyLabelN", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16ModifyLabelY() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16ModifyLabelY", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16MultiSelect() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16MultiSelect", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16MyO2() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16MyO2", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16New() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16New", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16NewFromCode() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16NewFromCode", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16NTInput() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16NTInput", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Open() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Open", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Paste() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Paste", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Pen() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Pen", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Play() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Play", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16PlayB() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16PlayB", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16PlayerBrowse() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16PlayerBrowse", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16PlayerDefault() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16PlayerDefault", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16PlayerOptions() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16PlayerOptions", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16PreviewCheck() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16PreviewCheck", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16PreviewCheckN() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16PreviewCheckN", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16PreviewOnClick() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16PreviewOnClick", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16PreviewOnClickN() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16PreviewOnClickN", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Redo() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Redo", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Refresh() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Refresh", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Remove() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Remove", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Save() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Save", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16SaveAs() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16SaveAs", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Select() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Select", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16settings() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16settings", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16ShowFileName() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16ShowFileName", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16ShowFileNameN() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16ShowFileNameN", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Statistics() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Statistics", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Stop() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Stop", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Storm() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Storm", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Theme() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Theme", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16TimeSelection() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16TimeSelection", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Undo() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Undo", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16Up() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16Up", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
-        
+
         '''<summary>
         '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property x16VisualOptions() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("x16VisualOptions", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return CType(obj, System.Drawing.Bitmap)
             End Get
         End Property
     End Module
+
 End Namespace

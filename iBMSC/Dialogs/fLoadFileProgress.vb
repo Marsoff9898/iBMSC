@@ -29,14 +29,14 @@ Public Class fLoadFileProgress
             Application.DoEvents()
             If CancelPressed Then Exit For
 
-            If xI1 = 0 AndAlso IsSaved Then MainWindow.ReadFile(xPath(xI1)) _
+            If xI1 = 0 AndAlso IsSaved Then MainWindow.Refer.ReadFile(xPath(xI1)) _
                 Else System.Diagnostics.Process.Start(Application.ExecutablePath, """" & xPath(xI1) & """") 'Shell("""" & Application.ExecutablePath & """ """ & xPaths(xI1) & """") ' 
         Next
         Me.Close()
     End Sub
 
     Private Sub fLoadFileProgress_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.Font = MainWindow.Font
+        Me.Font = MainWindow.Refer.Font
         Me.Cancel_Button.Text = Strings.Cancel
     End Sub
 End Class

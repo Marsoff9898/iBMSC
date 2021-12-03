@@ -1,4 +1,4 @@
-Imports System.Linq
+Imports System.Windows.Forms
 Imports iBMSC.Editor
 
 Partial Public Class MainWindow
@@ -678,3 +678,4 @@ EndOfAdjustment:
     End Sub
 
 End Class
+

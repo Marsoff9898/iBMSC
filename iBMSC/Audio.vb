@@ -1,4 +1,5 @@
-﻿Imports NVorbis
+﻿Imports System.IO
+Imports NVorbis
 Imports CSCore
 Imports CSCore.Codecs
 Imports CSCore.SoundOut

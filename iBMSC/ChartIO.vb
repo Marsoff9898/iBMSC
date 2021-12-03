@@ -1,4 +1,7 @@
 ﻿Imports iBMSC.Editor
+Imports System.IO
+Imports System.Windows.Forms
+Imports System.Reflection
 Imports System.Text.Json
 
 Partial Public Class MainWindow
@@ -84,12 +87,12 @@ Partial Public Class MainWindow
             ElseIf sLineTrim.StartsWith("#PLAYER", StringComparison.CurrentCultureIgnoreCase) Then
                 Dim xInt As Integer = Val(Mid(sLineTrim, Len("#PLAYER") + 1).Trim)
                 If xInt >= 1 And xInt <= 4 Then _
-                    CHPlayer.SelectedIndex = xInt - 1
+                CHPlayer.SelectedIndex = xInt - 1
 
             ElseIf sLineTrim.StartsWith("#RANK", StringComparison.CurrentCultureIgnoreCase) Then
                 Dim xInt As Integer = Val(Mid(sLineTrim, Len("#RANK") + 1).Trim)
                 If xInt >= 0 And xInt <= 4 Then _
-                    CHRank.SelectedIndex = xInt
+                CHRank.SelectedIndex = xInt
 
             ElseIf sLineTrim.StartsWith("#PLAYLEVEL", StringComparison.CurrentCultureIgnoreCase) Then
                 THPlayLevel.Text = Mid(sLineTrim, Len("#PLAYLEVEL") + 1).Trim
@@ -151,7 +154,7 @@ Partial Public Class MainWindow
             ElseIf sLineTrim.StartsWith("#LNMODE", StringComparison.CurrentCultureIgnoreCase) Then
                 Dim xInt As Integer = Val(Mid(sLineTrim, Len("#LNMODE") + 1).Trim)
                 If xInt >= 1 And xInt <= 3 Then _
-                    CHLnmode.SelectedIndex = xInt
+                CHLnmode.SelectedIndex = xInt
 
             ElseIf sLineTrim.StartsWith("#") And Mid(sLineTrim, 7, 1) = ":" Then   'If the line contains Ks
                 Dim xIdentifier As String = Mid(sLineTrim, 5, 2)
@@ -200,7 +203,7 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
 
                 With Notes(UBound(Notes))
                     .ColumnIndex = BMSChannelToColumn(Channel) +
-                                        IIf(Channel = "01", 1, 0) * (mColumn(xMeasure) - 1)
+                                    IIf(Channel = "01", 1, 0) * (mColumn(xMeasure) - 1)
                     .LongNote = IsChannelLongNote(Channel)
                     .Hidden = IsChannelHidden(Channel)
                     .Landmine = IsChannelLandmine(Channel)
@@ -245,15 +248,15 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
     End Sub
 
     ReadOnly BMSChannelList() As String = {"01", "03", "04", "06", "07", "08", "09",
-                                       "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D", "1E", "1F", "1G", "1H", "1I", "1J", "1K", "1L", "1M", "1N", "1O", "1P", "1Q",
-                                       "21", "22", "23", "24", "25", "26", "27", "28", "29", "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "2I", "2J", "2K", "2L", "2M", "2N", "2O", "2P", "2Q",
-                                       "31", "32", "33", "34", "35", "36", "37", "38", "39", "3A", "3B", "3C", "3D", "3E", "3F", "3G", "3H", "3I", "3J", "3K", "3L", "3M", "3N", "3O", "3P", "3Q",
-                                       "41", "42", "43", "44", "45", "46", "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "4G", "4H", "4I", "4J", "4K", "4L", "4M", "4N", "4O", "4P", "4Q",
-                                       "51", "52", "53", "54", "55", "56", "57", "58", "59", "5A", "5B", "5C", "5D", "5E", "5F", "5G", "5H", "5I", "5J", "5K", "5L", "5M", "5N", "5O", "5P", "5Q",
-                                       "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C", "6D", "6E", "6F", "6G", "6H", "6I", "6J", "6K", "6L", "6M", "6N", "6O", "6P", "6Q",
-                                       "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DA", "DB", "DC", "DD", "DE", "DF", "DG", "DH", "DI", "DJ", "DK", "DL", "DM", "DN", "DO", "DP", "DQ",
-                                       "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "EA", "EB", "EC", "ED", "EE", "EF", "EG", "EH", "EI", "EJ", "EK", "EL", "EM", "EN", "EO", "EP", "EQ",
-                                       "SC"}
+                                    "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D", "1E", "1F", "1G", "1H", "1I", "1J", "1K", "1L", "1M", "1N", "1O", "1P", "1Q",
+                                    "21", "22", "23", "24", "25", "26", "27", "28", "29", "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "2I", "2J", "2K", "2L", "2M", "2N", "2O", "2P", "2Q",
+                                    "31", "32", "33", "34", "35", "36", "37", "38", "39", "3A", "3B", "3C", "3D", "3E", "3F", "3G", "3H", "3I", "3J", "3K", "3L", "3M", "3N", "3O", "3P", "3Q",
+                                    "41", "42", "43", "44", "45", "46", "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "4G", "4H", "4I", "4J", "4K", "4L", "4M", "4N", "4O", "4P", "4Q",
+                                    "51", "52", "53", "54", "55", "56", "57", "58", "59", "5A", "5B", "5C", "5D", "5E", "5F", "5G", "5H", "5I", "5J", "5K", "5L", "5M", "5N", "5O", "5P", "5Q",
+                                    "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C", "6D", "6E", "6F", "6G", "6H", "6I", "6J", "6K", "6L", "6M", "6N", "6O", "6P", "6Q",
+                                    "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DA", "DB", "DC", "DD", "DE", "DF", "DG", "DH", "DI", "DJ", "DK", "DL", "DM", "DN", "DO", "DP", "DQ",
+                                    "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "EA", "EB", "EC", "ED", "EE", "EF", "EG", "EH", "EI", "EJ", "EK", "EL", "EM", "EN", "EO", "EP", "EQ",
+                                    "SC"}
     ' 71 through 89 are reserved
     '"71", "72", "73", "74", "75", "76", "78", "79",
     '"81", "82", "83", "84", "85", "86", "88", "89",
@@ -328,17 +331,17 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
 
         ' Warn about 255 limit if neccesary.
         If hasOverlapping Then MsgBox(Strings.Messages.SaveWarning & vbCrLf &
-                                                          Strings.Messages.NoteOverlapError & vbCrLf &
-                                                Strings.Messages.SavedFileWillContainErrors, MsgBoxStyle.Exclamation)
+                                                        Strings.Messages.NoteOverlapError & vbCrLf &
+                                            Strings.Messages.SavedFileWillContainErrors, MsgBoxStyle.Exclamation)
         If UBound(hBPM) > IIf(BPMx1296, 1295, 255) Then MsgBox(Strings.Messages.SaveWarning & vbCrLf &
-                                                          Strings.Messages.BPMOverflowError & UBound(hBPM) & " > " & IIf(BPMx1296, 1295, 255) & vbCrLf &
-                                                Strings.Messages.SavedFileWillContainErrors, MsgBoxStyle.Exclamation)
+                                                        Strings.Messages.BPMOverflowError & UBound(hBPM) & " > " & IIf(BPMx1296, 1295, 255) & vbCrLf &
+                                            Strings.Messages.SavedFileWillContainErrors, MsgBoxStyle.Exclamation)
         If UBound(hSTOP) > IIf(STOPx1296, 1295, 255) Then MsgBox(Strings.Messages.SaveWarning & vbCrLf &
-                                                           Strings.Messages.STOPOverflowError & UBound(hSTOP) & " > " & IIf(STOPx1296, 1295, 255) & vbCrLf &
-                                                  Strings.Messages.SavedFileWillContainErrors, MsgBoxStyle.Exclamation)
+                                                        Strings.Messages.STOPOverflowError & UBound(hSTOP) & " > " & IIf(STOPx1296, 1295, 255) & vbCrLf &
+                                                Strings.Messages.SavedFileWillContainErrors, MsgBoxStyle.Exclamation)
         If UBound(hBMSCROLL) > 1295 Then MsgBox(Strings.Messages.SaveWarning & vbCrLf &
-                                           Strings.Messages.SCROLLOverflowError & UBound(hBMSCROLL) & " > " & 1295 & vbCrLf &
-                                         Strings.Messages.SavedFileWillContainErrors, MsgBoxStyle.Exclamation)
+                                        Strings.Messages.SCROLLOverflowError & UBound(hBMSCROLL) & " > " & 1295 & vbCrLf &
+                                        Strings.Messages.SavedFileWillContainErrors, MsgBoxStyle.Exclamation)
 
         ' Add expansion text
         Dim xStrExp As String = vbCrLf & "*---------------------- EXPANSION FIELD" & vbCrLf & TExpansion.Text & vbCrLf & vbCrLf
@@ -382,7 +385,7 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
         If THComment.Text <> "" Then xStrHeader &= "#COMMENT """ & THComment.Text & """" & vbCrLf
         'If THLnType.Text <> "" Then xStrHeader &= "#LNTYPE " & THLnType.Text & vbCrLf
         If CHLnObj.SelectedIndex > 0 Then xStrHeader &= "#LNOBJ " & C10to36(CHLnObj.SelectedIndex) & vbCrLf _
-                                     Else xStrHeader &= "#LNTYPE 1" & vbCrLf
+                                    Else xStrHeader &= "#LNTYPE 1" & vbCrLf
         If THPreview.Text <> "" Then xStrHeader &= "#PREVIEW " & THPreview.Text & vbCrLf
         If CHLnmode.SelectedIndex > 0 Then xStrHeader &= "#LNMODE " & CHLnmode.SelectedIndex & vbCrLf
         xStrHeader &= vbCrLf
@@ -394,25 +397,25 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
 
         For i = 0 To UBound(hWAV)
             If Not hWAV(i) = "" Then xStrHeader &= "#WAV" & C10to36(i) &
-                                                    " " & hWAV(i) & vbCrLf
+                                                " " & hWAV(i) & vbCrLf
         Next
         For i = 0 To UBound(hBMP)
             If Not hBMP(i) = "" Then xStrHeader &= "#BMP" & C10to36(i) &
-                                                    " " & hBMP(i) & vbCrLf
+                                                " " & hBMP(i) & vbCrLf
         Next
         For i = 1 To UBound(hBPM)
             xStrHeader &= "#BPM" &
-            IIf(BPMx1296, C10to36(i), Mid("0" & Hex(i), Len(Hex(i)))) &
-            " " & WriteDecimalWithDot(hBPM(i) / 10000) & vbCrLf
+        IIf(BPMx1296, C10to36(i), Mid("0" & Hex(i), Len(Hex(i)))) &
+        " " & WriteDecimalWithDot(hBPM(i) / 10000) & vbCrLf
         Next
         For i = 1 To UBound(hSTOP)
             xStrHeader &= "#STOP" &
-                IIf(STOPx1296, C10to36(i), Mid("0" & Hex(i), Len(Hex(i)))) &
-                " " & WriteDecimalWithDot(hSTOP(i) / 10000) & vbCrLf
+            IIf(STOPx1296, C10to36(i), Mid("0" & Hex(i), Len(Hex(i)))) &
+            " " & WriteDecimalWithDot(hSTOP(i) / 10000) & vbCrLf
         Next
         For i = 1 To UBound(hBMSCROLL)
             xStrHeader &= "#SCROLL" &
-                C10to36(i) & " " & WriteDecimalWithDot(hBMSCROLL(i) / 10000) & vbCrLf
+            C10to36(i) & " " & WriteDecimalWithDot(hBMSCROLL(i) / 10000) & vbCrLf
         Next
 
         Return xStrHeader
@@ -527,11 +530,11 @@ AddExpansion:       xExpansion &= sLine & vbCrLf
                         .Value = C36to10(NoteStrings(i))
                     End With
                     If BMSChannelList(CurrentBMSChannel) = "08" Then _
-                        xprevNotes(UBound(xprevNotes)).Value = IIf(BPMx1296, hBPM(C36to10(NoteStrings(i))), hBPM(Convert.ToInt32(NoteStrings(i), 16)))
+                    xprevNotes(UBound(xprevNotes)).Value = IIf(BPMx1296, hBPM(C36to10(NoteStrings(i))), hBPM(Convert.ToInt32(NoteStrings(i), 16)))
                     If BMSChannelList(CurrentBMSChannel) = "09" Then _
-                        xprevNotes(UBound(xprevNotes)).Value = IIf(STOPx1296, hSTOP(C36to10(NoteStrings(i))), hSTOP(Convert.ToInt32(NoteStrings(i), 16)))
+                    xprevNotes(UBound(xprevNotes)).Value = IIf(STOPx1296, hSTOP(C36to10(NoteStrings(i))), hSTOP(Convert.ToInt32(NoteStrings(i), 16)))
                     If BMSChannelList(CurrentBMSChannel) = "SC" Then _
-                        xprevNotes(UBound(xprevNotes)).Value = hBMSCROLL(C36to10(NoteStrings(i)))
+                    xprevNotes(UBound(xprevNotes)).Value = hBMSCROLL(C36to10(NoteStrings(i)))
                     Continue For
                 End If
                 If xStrKey(CInt(relativeMeasurePos(i) / xGCD)) <> "00" Then
@@ -1038,15 +1041,15 @@ EndOfSub:
         UpdatePairing()
 
         Try
-
+            Dim Info As AssemblyName = Assembly.GetExecutingAssembly().GetName()
             Dim bw As New BinaryWriter(New IO.FileStream(Path, FileMode.Create), System.Text.Encoding.Unicode)
 
             'bw.Write("iBMSC".ToCharArray)
             bw.Write(&H534D4269)
             bw.Write(CByte(&H43))
-            bw.Write(CByte(My.Application.Info.Version.Major))
-            bw.Write(CByte(My.Application.Info.Version.Minor))
-            bw.Write(CByte(My.Application.Info.Version.Build))
+            bw.Write(CByte(Info.Version.Major))
+            bw.Write(CByte(Info.Version.Minor))
+            bw.Write(CByte(Info.Version.Build))
 
             'Preferences
             'bw.Write("Pref".ToCharArray)
@@ -1306,35 +1309,35 @@ EndOfSub:
                 xGCD = GCD(xGCD, Notes(i).VPosition, 1920000)
                 ' ついでにプレイモードを検出
                 If format.info.mode_hint = "beat-5k" AndAlso
-                   GetColumn(Notes(i).ColumnIndex).Identifier >= (36 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (36 + 9) Then
+                GetColumn(Notes(i).ColumnIndex).Identifier >= (36 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (36 + 9) Then
                     format.info.mode_hint = "beat-7k"
                 End If
                 If format.info.mode_hint = "beat-5k" AndAlso
-                   GetColumn(Notes(i).ColumnIndex).Identifier >= 72 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (72 + 5) Then
+                GetColumn(Notes(i).ColumnIndex).Identifier >= 72 AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (72 + 5) Then
                     format.info.mode_hint = "beat-10k"
                 End If
                 If format.info.mode_hint = "popn-9k" AndAlso
-                    (GetColumn(Notes(i).ColumnIndex).Identifier Mod 36 = 6 OrElse GetColumn(Notes(i).ColumnIndex).Identifier = (72 + 1)) Then
+                (GetColumn(Notes(i).ColumnIndex).Identifier Mod 36 = 6 OrElse GetColumn(Notes(i).ColumnIndex).Identifier = (72 + 1)) Then
                     format.info.mode_hint = "beat-10k"
                 End If
                 If (format.info.mode_hint = "beat-10k" OrElse format.info.mode_hint = "popn-9k") AndAlso
-                   GetColumn(Notes(i).ColumnIndex).Identifier >= (36 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (36 + 8) Then
+                GetColumn(Notes(i).ColumnIndex).Identifier >= (36 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (36 + 8) Then
                     format.info.mode_hint = "beat-14k"
                 End If
                 If (format.info.mode_hint <> "beat-14k" AndAlso format.info.mode_hint <> "keyboard-24k" AndAlso format.info.mode_hint <> "keyboard-24k-double") AndAlso
-                   GetColumn(Notes(i).ColumnIndex).Identifier >= (72 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (72 + 9) Then
+                GetColumn(Notes(i).ColumnIndex).Identifier >= (72 + 8) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier <= (72 + 9) Then
                     format.info.mode_hint = "beat-14k"
                 End If
                 If (format.info.mode_hint = "beat-5k" OrElse format.info.mode_hint = "beat-7k") AndAlso
-                   (GetColumn(Notes(i).ColumnIndex).Identifier = (36 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (36 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 72 Then
+                (GetColumn(Notes(i).ColumnIndex).Identifier = (36 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (36 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 72 Then
                     format.info.mode_hint = "keyboard-24k"
                 End If
                 If (format.info.mode_hint = "popn-9k" OrElse format.info.mode_hint = "beat-10k" OrElse format.info.mode_hint = "beat-14k") AndAlso
-                   (GetColumn(Notes(i).ColumnIndex).Identifier = (36 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (36 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 72 Then
+                (GetColumn(Notes(i).ColumnIndex).Identifier = (36 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (36 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 72 Then
                     format.info.mode_hint = "keyboard-24k-double"
                 End If
                 If format.info.mode_hint <> "keyboard-24k-double" AndAlso
-                   (GetColumn(Notes(i).ColumnIndex).Identifier = (72 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (72 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 108 Then
+                (GetColumn(Notes(i).ColumnIndex).Identifier = (72 + 7) OrElse GetColumn(Notes(i).ColumnIndex).Identifier > (72 + 9)) AndAlso GetColumn(Notes(i).ColumnIndex).Identifier < 108 Then
                     format.info.mode_hint = "keyboard-24k-double"
                 End If
             Next
@@ -1509,3 +1512,4 @@ EndOfSub:
     End Function
 
 End Class
+

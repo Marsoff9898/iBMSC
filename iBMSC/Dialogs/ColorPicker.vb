@@ -1,4 +1,4 @@
-Imports System.Windows.Forms
+Imports System.Drawing
 
 Public Class ColorPicker
     Public OrigColor As Color = Color.Black
@@ -615,6 +615,6 @@ Public Class ColorPicker
     End Sub
 
     Private Sub ColorPicker_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.Font = MainWindow.Font
+        Me.Font = MainWindow.Refer.Font
     End Sub
 End Class

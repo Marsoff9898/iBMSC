@@ -1,5 +1,5 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class MainWindow
+﻿
+Partial Public Class MainWindow
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
@@ -4002,7 +4002,7 @@ Partial Class MainWindow
         Me.BVCApply.Size = New System.Drawing.Size(95, 20)
         Me.BVCApply.Text = "Expand By Ratio"
         Me.BVCApply.ToolTipText = "This will expand notes and selection by the ratio next to this button. Ignores ce" &
-    "nter bar."
+"nter bar."
         '
         'TVCBPM
         '
@@ -4023,7 +4023,7 @@ Partial Class MainWindow
         Me.BVCCalculate.Size = New System.Drawing.Size(104, 20)
         Me.BVCCalculate.Text = "Relocate By Value"
         Me.BVCCalculate.ToolTipText = "This will move notes within the selection and preserve the selection, given the B" &
-    "PM value next to this button. Considers center bar."
+"PM value next to this button. Considers center bar."
         '
         'BConvertStop
         '
@@ -4034,7 +4034,7 @@ Partial Class MainWindow
         Me.BConvertStop.Size = New System.Drawing.Size(117, 20)
         Me.BConvertStop.Text = "Transform Into Stop"
         Me.BConvertStop.ToolTipText = "This will move notes within the selection and preserve the selection, given the B" &
-    "PM value next to this button. Considers center bar."
+"PM value next to this button. Considers center bar."
         '
         'FStatus
         '
@@ -4861,10 +4861,10 @@ Partial Class MainWindow
     Friend WithEvents CGBPM As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BGSlash As System.Windows.Forms.Button
     Friend WithEvents FSM As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents mnGotoMeasure As ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator24 As ToolStripSeparator
-    Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
-    Friend WithEvents TBWavIncrease As ToolStripButton
-    Friend WithEvents TimeStatusLabel As ToolStripStatusLabel
-    Friend WithEvents BConvertStop As ToolStripButton
+    Friend WithEvents mnGotoMeasure As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator24 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripSeparator8 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents TBWavIncrease As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TimeStatusLabel As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents BConvertStop As System.Windows.Forms.ToolStripButton
 End Class

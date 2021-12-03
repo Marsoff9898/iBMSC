@@ -1,4 +1,6 @@
-﻿Namespace Editor
+﻿Imports System.IO
+
+Namespace Editor
     Public Structure Note
         Public VPosition As Double
         Public ColumnIndex As Integer

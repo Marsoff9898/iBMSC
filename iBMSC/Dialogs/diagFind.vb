@@ -1,4 +1,6 @@
+Imports System.Drawing
 Imports System.Windows.Forms
+Imports iBMSC.Window
 
 Public Class diagFind
     Dim bCol As Integer = 83
@@ -33,7 +35,7 @@ Public Class diagFind
     End Sub
 
     Private Sub diagFind_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.Font = MainWindow.Font
+        Me.Font = MainWindow.Refer.Font
         Dim xBold As New Font(Me.Font, FontStyle.Bold)
 
         TBSelect.Font = xBold
@@ -41,7 +43,7 @@ Public Class diagFind
         Label9.Font = xBold
 
         'Dim xS() As String = Form1.lpfdr
-        Me.Text = MainWindow.TBFind.Text
+        Me.Text = MainWindow.Refer.TBFind.Text
 
         Label1.Text = Strings.fFind.NoteRange
         Label2.Text = Strings.fFind.MeasureRange
@@ -79,7 +81,7 @@ Public Class diagFind
         Dim xLow = 0
         For xI1 As Integer = 0 To 25
             Dim xCB As New CheckBox
-            If MainWindow.column(MainWindow.niA1 + xI1).isVisible Then
+            If MainWindow.Refer.column(MainWindow.niA1 + xI1).isVisible Then
                 With xCB
                     .Appearance = Appearance.Button
                     .Checked = True
@@ -87,7 +89,7 @@ Public Class diagFind
                     .Location = New Point((xLow Mod 8) * 35 + 3, xColumn * 25 + 2)
                     .Size = New Size(35, 25)
                     .Tag = MainWindow.niA1 + xI1
-                    .Text = MainWindow.column(MainWindow.niA1 + xI1).Title
+                    .Text = MainWindow.Refer.column(MainWindow.niA1 + xI1).Title
                     .TextAlign = ContentAlignment.MiddleCenter
                     .UseVisualStyleBackColor = True
                 End With
@@ -101,7 +103,7 @@ Public Class diagFind
         xLow = 0
         For xI1 As Integer = 0 To 25
             Dim xCB As New CheckBox
-            If MainWindow.column(MainWindow.niD1 + xI1).isVisible Then
+            If MainWindow.Refer.column(MainWindow.niD1 + xI1).isVisible Then
                 With xCB
                     .Appearance = Appearance.Button
                     .Checked = True
@@ -109,7 +111,7 @@ Public Class diagFind
                     .Location = New Point((xLow Mod 8) * 35 + 3, xColumn * 25 + 2)
                     .Size = New Size(35, 25)
                     .Tag = MainWindow.niD1 + xI1
-                    .Text = MainWindow.column(MainWindow.niD1 + xI1).Title
+                    .Text = MainWindow.Refer.column(MainWindow.niD1 + xI1).Title
                     .TextAlign = ContentAlignment.MiddleCenter
                     .UseVisualStyleBackColor = True
                 End With
@@ -204,10 +206,10 @@ Public Class diagFind
         If cbx5.Checked Then xRange *= 11
         If cbx6.Checked Then xRange *= 13
 
-        MainWindow.fdrSelect(xRange, _
-                        mr1.Value, mr2.Value, _
-                        lr1.Text, lr2.Text, _
-                        vr1.Value * 10000, vr2.Value * 10000, _
+        MainWindow.Refer.fdrSelect(xRange,
+                        mr1.Value, mr2.Value,
+                        lr1.Text, lr2.Text,
+                        vr1.Value * 10000, vr2.Value * 10000,
                         xCol)
     End Sub
 
@@ -231,10 +233,10 @@ Public Class diagFind
         If cbx5.Checked Then xRange *= 11
         If cbx6.Checked Then xRange *= 13
 
-        MainWindow.fdrUnselect(xRange, _
-                          mr1.Value, mr2.Value, _
-                          lr1.Text, lr2.Text, _
-                          vr1.Value * 10000, vr2.Value * 10000, _
+        MainWindow.Refer.fdrUnselect(xRange,
+                          mr1.Value, mr2.Value,
+                          lr1.Text, lr2.Text,
+                          vr1.Value * 10000, vr2.Value * 10000,
                           xCol)
     End Sub
 
@@ -258,10 +260,10 @@ Public Class diagFind
         If cbx5.Checked Then xRange *= 11
         If cbx6.Checked Then xRange *= 13
 
-        MainWindow.fdrDelete(xRange, _
-                        mr1.Value, mr2.Value, _
-                        lr1.Text, lr2.Text, _
-                        vr1.Value * 10000, vr2.Value * 10000, _
+        MainWindow.Refer.fdrDelete(xRange,
+                        mr1.Value, mr2.Value,
+                        lr1.Text, lr2.Text,
+                        vr1.Value * 10000, vr2.Value * 10000,
                         xCol)
     End Sub
 
@@ -286,10 +288,10 @@ Public Class diagFind
         If cbx5.Checked Then xRange *= 11
         If cbx6.Checked Then xRange *= 13
 
-        MainWindow.fdrReplaceL(xRange, _
-                          mr1.Value, mr2.Value, _
-                          lr1.Text, lr2.Text, _
-                          vr1.Value * 10000, vr2.Value * 10000, _
+        MainWindow.Refer.fdrReplaceL(xRange,
+                          mr1.Value, mr2.Value,
+                          lr1.Text, lr2.Text,
+                          vr1.Value * 10000, vr2.Value * 10000,
                           xCol, Ttl.Text)
     End Sub
 
@@ -313,10 +315,10 @@ Public Class diagFind
         If cbx5.Checked Then xRange *= 11
         If cbx6.Checked Then xRange *= 13
 
-        MainWindow.fdrReplaceV(xRange, _
-                          mr1.Value, mr2.Value, _
-                          lr1.Text, lr2.Text, _
-                          vr1.Value * 10000, vr2.Value * 10000, _
+        MainWindow.Refer.fdrReplaceV(xRange,
+                          mr1.Value, mr2.Value,
+                          lr1.Text, lr2.Text,
+                          vr1.Value * 10000, vr2.Value * 10000,
                           xCol, Ttv.Value * 10000)
     End Sub
 End Class

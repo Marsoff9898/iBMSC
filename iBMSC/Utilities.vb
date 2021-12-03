@@ -1,4 +1,6 @@
-﻿Imports System.Text.RegularExpressions
+﻿Imports System.IO
+Imports System.Drawing
+Imports System.Text.RegularExpressions
 
 Namespace Editor
     Public Module Functions
@@ -222,4 +224,5 @@ Namespace Editor
         End Function
 
     End Module
+
 End Namespace

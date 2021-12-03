@@ -1,4 +1,7 @@
-﻿Public NotInheritable Class SplashScreen1
+﻿Imports System.Drawing
+Imports System.Windows.Forms
+
+Public NotInheritable Class SplashScreen1
 
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
