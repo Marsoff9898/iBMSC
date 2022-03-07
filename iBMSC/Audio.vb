@@ -25,13 +25,23 @@ Module Audio
             Return filename
         End If
         Dim ext = Path.GetExtension(filename)
-        If String.Compare(ext, ".ogg") = 0 Then
-            Dim wpath = Path.ChangeExtension(filename, ".wav")
-            Return IIf(File.Exists(wpath), wpath, filename)
+        If String.Compare(ext, ".wav") = 0 OrElse String.Compare(ext, ".ogg") = 0 Then
+            Dim wpath = Path.ChangeExtension(filename, ".flac")
+            If (File.Exists(wpath)) Then
+                Return wpath
+            End If
         End If
-        If String.Compare(ext, ".wav") = 0 Then
-            Dim opath = Path.ChangeExtension(filename, ".ogg")
-            Return IIf(File.Exists(opath), opath, filename)
+        If String.Compare(ext, ".ogg") = 0 OrElse String.Compare(ext, ".flac") = 0 Then
+            Dim wpath = Path.ChangeExtension(filename, ".wav")
+            If (File.Exists(wpath)) Then
+                Return wpath
+            End If
+        End If
+        If String.Compare(ext, ".wav") = 0 OrElse String.Compare(ext, ".flac") = 0 Then
+            Dim wpath = Path.ChangeExtension(filename, ".ogg")
+            If (File.Exists(wpath)) Then
+                Return wpath
+            End If
         End If
         Return filename
     End Function
