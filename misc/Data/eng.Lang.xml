@@ -294,11 +294,12 @@
 		<XML>Extensible Markup Language (*.xml)</XML>
 		<THEME_XML>iBMSC Theme File (*.Theme.xml)</THEME_XML>
 		<TH>iBMSC 2.x Theme File (*.Theme.xml)</TH>
-		<_audio>Supported Audio Format (*.wav, *.ogg, *.mp3, *.mid)</_audio>
-		<_wave>Supported Wave Audio Format (*.wav, *.ogg, *.mp3)</_wave>
+		<_audio>Supported Audio Format (*.wav, *.ogg, *.mp3, *.flac, *.mid)</_audio>
+		<_wave>Supported Wave Audio Format (*.wav, *.ogg, *.mp3, *.flac)</_wave>
 		<WAV>Waveform Audio (*.wav)</WAV>
 		<OGG>Ogg Vorbis Audio (*.ogg)</OGG>
 		<MP3>MPEG Layer-3 Audio (*.mp3)</MP3>
+		<FLAC>Free Lossless Audio (*.flac)</FLAC>
 		<MID>MIDI (*.mid)</MID>
 		<_image>Supported Image Format (*.png, *.bmp, *.jpg, *.gif)</_image>
 		<_movie>Supported Movie Format (*.mpg, *.avi, *.mp4, *.wmv, *.webm)</_movie>

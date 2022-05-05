@@ -294,11 +294,12 @@
 		<XML>XML files (*.xml)</XML>
 		<THEME_XML>iBMSC テーマ (*.Theme.xml)</THEME_XML>
 		<TH>iBMSC 2.x テーマファイル (*.Theme.xml)</TH>
-		<_audio>使用可能な音楽ファイル (*.wav, *.ogg, *.mp3, *.mid)</_audio>
-		<_wave>使用可能な Wave ファイル (*.wav, *.ogg, *.mp3)</_wave>
+		<_audio>使用可能な音楽ファイル (*.wav, *.ogg, *.mp3, *.flac, *.mid)</_audio>
+		<_wave>使用可能な Wave ファイル (*.wav, *.ogg, *.mp3, *.flac)</_wave>
 		<WAV>Wave サウンド (*.wav)</WAV>
 		<OGG>Ogg Vorbis サウンド (*.ogg)</OGG>
 		<MP3>MP3 形式サウンド (*.mp3)</MP3>
+		<FLAC>FLAC 形式サウンド (*.flac)</FLAC>
 		<MID>MIDI files (*.mid)</MID>
 		<_image>使用可能な画像ファイル (*.png, *.bmp, *.jpg, *.gif)</_image>
 		<_movie>使用可能な映像ファイル (*.mpg, *.avi, *.mp4, *.wmv, *.webm)</_movie>

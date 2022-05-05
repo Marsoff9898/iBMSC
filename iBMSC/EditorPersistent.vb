@@ -1009,6 +1009,7 @@ EndOfSub:
                 XMLLoadLocale(eFileType.Item("WAV"), Strings.FileType.WAV)
                 XMLLoadLocale(eFileType.Item("OGG"), Strings.FileType.OGG)
                 XMLLoadLocale(eFileType.Item("MP3"), Strings.FileType.MP3)
+                XMLLoadLocale(eFileType.Item("FLAC"), Strings.FileType.FLAC)
                 XMLLoadLocale(eFileType.Item("MID"), Strings.FileType.MID)
                 XMLLoadLocale(eFileType.Item("_image"), Strings.FileType._image)
                 XMLLoadLocale(eFileType.Item("_movie"), Strings.FileType._movie)

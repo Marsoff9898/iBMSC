@@ -87,7 +87,7 @@ Public Class MainWindow
     'Variables for Drag/Drop
     Dim DDFileName() As String = {}
     Dim SupportedFileExtension() As String = {".bms", ".bme", ".bml", ".pms", ".txt", ".sm", ".ibmsc"}
-    Dim SupportedAudioExtension() As String = {".wav", ".mp3", ".ogg"}
+    Dim SupportedAudioExtension() As String = {".wav", ".mp3", ".ogg", ".flac"}
     Dim SupportedImageExtension() As String = {".bmp", ".png", ".jpg", ".jpeg", ".gif", ".mpg", ".mpeg", ".avi", ".m1v", ".m2v", ".m4v", ".mp4", ".webm", ".wmv"}
 
     'Variables for theme
@@ -1941,10 +1941,11 @@ EndSearch:
     Private Sub LWAV_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles LWAV.DoubleClick
         Dim xDWAV As New OpenFileDialog
         xDWAV.DefaultExt = "wav"
-        xDWAV.Filter = Strings.FileType._wave & "|*.wav;*.ogg;*.mp3|" &
+        xDWAV.Filter = Strings.FileType._wave & "|*.wav;*.ogg;*.mp3;*.flac|" &
                        Strings.FileType.WAV & "|*.wav|" &
                        Strings.FileType.OGG & "|*.ogg|" &
                        Strings.FileType.MP3 & "|*.mp3|" &
+                       Strings.FileType.FLAC & "|*.flac|" &
                        Strings.FileType._all & "|*.*"
         xDWAV.InitialDirectory = IIf(ExcludeFileName(FileName) = "", InitPath, ExcludeFileName(FileName))
 
@@ -4111,10 +4112,11 @@ Jump2:
     Private Sub BWAVBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BWAVBrowse.Click
         Dim xDWAV As New OpenFileDialog
         xDWAV.DefaultExt = "wav"
-        xDWAV.Filter = Strings.FileType._wave & "|*.wav;*.ogg;*.mp3|" &
+        xDWAV.Filter = Strings.FileType._wave & "|*.wav;*.ogg;*.mp3;*.flac|" &
                        Strings.FileType.WAV & "|*.wav|" &
                        Strings.FileType.OGG & "|*.ogg|" &
                        Strings.FileType.MP3 & "|*.mp3|" &
+                       Strings.FileType.FLAC & "|*.flac|" &
                        Strings.FileType._all & "|*.*"
         xDWAV.InitialDirectory = IIf(ExcludeFileName(FileName) = "", InitPath, ExcludeFileName(FileName))
         xDWAV.Multiselect = WAVMultiSelect
@@ -4745,10 +4747,11 @@ case2:              Dim xI0 As Integer
 
     Private Sub BHWavFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BHLandMine.Click, BHPreview.Click
         Dim xDiag As New OpenFileDialog
-        xDiag.Filter = Strings.FileType._wave & "|*.wav;*.ogg;*.mp3|" &
+        xDiag.Filter = Strings.FileType._wave & "|*.wav;*.ogg;*.mp3;*.flac|" &
                        Strings.FileType.WAV & "|*.wav|" &
                        Strings.FileType.OGG & "|*.ogg|" &
                        Strings.FileType.MP3 & "|*.mp3|" &
+                       Strings.FileType.FLAC & "|*.flac|" &
                        Strings.FileType._all & "|*.*"
         xDiag.InitialDirectory = IIf(ExcludeFileName(FileName) = "", InitPath, ExcludeFileName(FileName))
         xDiag.DefaultExt = "wav"

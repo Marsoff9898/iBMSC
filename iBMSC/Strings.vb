@@ -62,11 +62,12 @@ Public Class Strings
         Public Shared THEME_XML As String = "iBMSC Theme File (*.Theme.xml)"
         Public Shared TH As String = "iBMSC 2.x Theme File (*.Theme.xml)"
 
-        Public Shared _audio As String = "Supported Audio Format (*.wav, *.ogg, *.mp3, *.mid)"
-        Public Shared _wave As String = "Supported Wave Audio Format (*.wav, *.ogg, *.mp3)"
+        Public Shared _audio As String = "Supported Audio Format (*.wav, *.ogg, *.mp3, *.flac, *.mid)"
+        Public Shared _wave As String = "Supported Wave Audio Format (*.wav, *.ogg, *.mp3, *.flac)"
         Public Shared WAV As String = "Waveform Audio (*.wav)"
         Public Shared OGG As String = "Ogg Vorbis Audio (*.ogg)"
         Public Shared MP3 As String = "MPEG Layer-3 Audio (*.mp3)"
+        Public Shared FLAC As String = "Free Lossless Audio (*.flac)"
         Public Shared MID As String = "MIDI (*.mid)"
 
         Public Shared _image As String = "Supported Image Format (*.png, *.bmp, *.jpg, *.gif)"
