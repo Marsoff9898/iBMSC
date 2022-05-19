@@ -339,6 +339,20 @@ Partial Public Class MainWindow
     Private Sub MoveToColumn(xTargetColumn As Integer, xUndo As UndoRedo.LinkedURCmd, xRedo As UndoRedo.LinkedURCmd)
         Dim xBaseRedo As UndoRedo.LinkedURCmd = xRedo
         If xTargetColumn = -1 Then Return
+
+        If Rscratch Then
+            Select Case xTargetColumn
+                Case niA2 : xTargetColumn = niA9
+                Case niA3 : xTargetColumn = niA1
+                Case niA4 : xTargetColumn = niA2
+                Case niA5 : xTargetColumn = niA3
+                Case niA6 : xTargetColumn = niA4
+                Case niA7 : xTargetColumn = niA5
+                Case niA8 : xTargetColumn = niA6
+                Case niA9 : xTargetColumn = niA7
+            End Select
+        End If
+
         If Not nEnabled(xTargetColumn) Then Return
         Dim bMoveAndDeselectFirstNote = My.Computer.Keyboard.ShiftKeyDown
 
