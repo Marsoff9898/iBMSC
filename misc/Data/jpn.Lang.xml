@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <iBMSC.Locale Name="日本語 by Nekokan">
 	<Font Size="9">
 		<Family>Meiryo UI</Family>
@@ -70,7 +70,7 @@
 		</Preview>
 		<About>
 			<Title amp="7">About (A)</Title>
-			<About amp="12">iBMSC について (A)</About>
+			<About amp="12">μBMSC について (A)</About>
 			<CheckUpdates amp="9">更新を確認する (C)</CheckUpdates>
 			<CheckUpdatesC>更新を確認する（中国語）</CheckUpdatesC>
 		</About>
@@ -104,7 +104,7 @@
 		<GeneralOptions>一般オプション</GeneralOptions>
 		<Language>言語</Language>
 		<Theme>テーマ</Theme>
-		<About>iBMSC について</About>
+		<About>μBMSC について</About>
 	</ToolBar>
 	<StatusBar>
 		<ColumnCaption>列の見出し</ColumnCaption>
@@ -276,7 +276,7 @@
 		<STOPOverflowError>STOP の数が使用できる最大値を超えています。：</STOPOverflowError>
 		<SCROLLOverflowError>SCROLL の数が使用できる最大値を超えています。：</SCROLLOverflowError>
 		<SavedFileWillContainErrors>保存するファイルにエラーがあります。</SavedFileWillContainErrors>
-		<FileAssociationPrompt>iBMSC を {} ファイルの既定プログラムにしますか。</FileAssociationPrompt>
+		<FileAssociationPrompt>μBMSC を {} ファイルの既定プログラムにしますか。</FileAssociationPrompt>
 		<FileAssociationError>関連づけ変更エラー：</FileAssociationError>
 		<RestoreDefaultSettings>設定を初期化しますか？</RestoreDefaultSettings>
 		<RestoreAutosavedFile>{} 自動保存のファイルが見つかりました。復元しますか？</RestoreAutosavedFile>

@@ -21,6 +21,7 @@
 			<Save amp="4">저장 (S)</Save>
 			<SaveAs amp="10">다른 이름으로 저장 (A)</SaveAs>
 			<ExportIBMSC amp="18">.IBMSC 형식으로 내보내기 (E)</ExportIBMSC>
+			<ExportBMSON amp="18">.BMSON 형식으로 내보내기 (B)</ExportBMSON>
 			<Recent0>최근 사용된 파일 #0</Recent0>
 			<Recent1>최근 사용된 파일 #1</Recent1>
 			<Recent2>최근 사용된 파일 #2</Recent2>
@@ -44,19 +45,23 @@
 			<WriteTool amp="7">쓰기 모드 (W)</WriteTool>
 			<MyO2>MyO2 툴박스 (중국어 전용)</MyO2>
 		</Edit>
+		<View>
+			<Title amp="0">보기 (V)</Title>
+		</View>
 		<Options>
 			<Title amp="4">설정 (O)</Title>
 			<NT amp="1">롱노트 입력모드 - NT/BMSE</NT>
 			<ErrorCheck amp="9">오류 검색 (E)</ErrorCheck>
-			<PreviewOnClick amp="9">음원 미리듣기 (C)</PreviewOnClick>
+			<PreviewOnClick amp="17">노트 클릭하여 음원 미리듣기 (C)</PreviewOnClick>
 			<ShowFileName amp="9">파일명 표시 (F)</ShowFileName>
+			<ChangePlaySide amp="0">스크래치를 오른쪽에 표시</ChangePlaySide>
 			<GeneralOptions amp="9">일반 옵션 (G)</GeneralOptions>
 			<VisualOptions amp="9">표시 옵션 (V)</VisualOptions>
-			<PlayerOptions amp="9">재생 프로그램 옵션 (P)</PlayerOptions>
+			<PlayerOptions amp="9">구동기 옵션 (P)</PlayerOptions>
 			<Language amp="4">언어 (L)</Language>
 			<Theme amp="5">테마 (T)</Theme>
 		</Options>
-		<Conversion amp="4">보기 (C)</Conversion>
+		<Conversion amp="4">변환 (C)</Conversion>
 		<Preview>
 			<Title amp="7">프리뷰 (P)</Title>
 			<PlayBegin amp="8">처음부터 재생 (B)</PlayBegin>
@@ -64,9 +69,9 @@
 			<PlayStop amp="4">정지 (S)</PlayStop>
 		</Preview>
 		<About>
-			<Title amp="4">정보 (A)</Title>
-			<About amp="12">iBMSC 에 대해서... (A)</About>
-			<CheckUpdates amp="9">업데이트 확인 (C)</CheckUpdates>
+			<Title amp="0">정보 (A)</Title>
+			<About amp="0">μBMSC 에 대해서... (A)</About>
+			<CheckUpdates amp="6">업데이트 확인 (C)</CheckUpdates>
 			<CheckUpdatesC>업데이트 확인 (중국어)</CheckUpdatesC>
 		</About>
 	</Menu>
@@ -82,8 +87,9 @@
 		<Conversion>오브젝트 변환 </Conversion>
 		<MyO2>MyO2 툴박스 (중국어전용)</MyO2>
 		<ErrorCheck>오류 검색</ErrorCheck>
-		<PreviewOnClick>음원 미리듣기</PreviewOnClick>
+		<PreviewOnClick>노트를 클릭하여 음원 미리듣기</PreviewOnClick>
 		<ShowFileName>파일명 표시</ShowFileName>
+		<ChangePlaySide>스크래치를 오른쪽에 표시</ChangePlaySide>
 		<Undo>실행취소 (Ctrl+Z)</Undo>
 		<Redo>다시실행 (Ctrl+Y)</Redo>
 		<NT>롱노트 입력모드 - NoteTool/BMSE</NT>
@@ -98,7 +104,7 @@
 		<GeneralOptions>일반 옵션</GeneralOptions>
 		<Language>언어</Language>
 		<Theme>테마</Theme>
-		<About>iBMSC에 대해서... </About>
+		<About>μBMSC에 대해서... </About>
 	</ToolBar>
 	<StatusBar>
 		<ColumnCaption>열 머리</ColumnCaption>
@@ -176,38 +182,40 @@
 	</SubMenu>
 	<OptionsPanel>
 		<Header>
-			<Header>HEADER</Header>
-			<Title>#TITLE</Title>
-			<Artist>#ARTIST</Artist>
-			<Genre>#GENRE</Genre>
-			<BPM>#BPM</BPM>
-			<Player>#PLAYER</Player>
-			<Rank>#RANK</Rank>
-			<PlayLevel>#LEVEL</PlayLevel>
-			<SubTitle>#SUBTITLE</SubTitle>
-			<SubArtist>#SUBARTIST</SubArtist>
-			<StageFile>#STAGEFILE</StageFile>
-			<Banner>#BANNER</Banner>
-			<BackBMP>#BACKBMP</BackBMP>
-			<Difficulty>#DIFFICULTY</Difficulty>
-			<ExRank>#DEFEXRANK</ExRank>
-			<Total>#TOTAL</Total>
-			<Comment>#COMMENT</Comment>
-			<LnObj>#LNOBJ</LnObj>
-			<Player1>1 - Single</Player1>
-			<Player2>2 - Couple</Player2>
-			<Player3>3 - Double / PMS</Player3>
-			<Rank0>0 - Very Hard</Rank0>
-			<Rank1>1 - Hard</Rank1>
-			<Rank2>2 - Normal</Rank2>
-			<Rank3>3 - Easy</Rank3>
-			<Rank4>4 - Very Easy</Rank4>
-			<Difficulty0>None</Difficulty0>
-			<Difficulty1>1 - Beginner / EZ</Difficulty1>
-			<Difficulty2>2 - Normal / NM</Difficulty2>
-			<Difficulty3>3 - Hyper / HD</Difficulty3>
-			<Difficulty4>4 - Another / MX</Difficulty4>
-			<Difficulty5>5 - Insane / SC</Difficulty5>
+			<Header>헤더</Header>
+			<Title>노래 제목</Title>
+			<Artist>아티스트명</Artist>
+			<Genre>장르</Genre>
+			<BPM>BPM</BPM>
+			<Player>플레이어</Player>
+			<Rank>판정 난이도</Rank>
+			<PlayLevel>레벨</PlayLevel>
+			<SubTitle>노래 부제</SubTitle>
+			<SubArtist>서브 아티스트</SubArtist>
+			<StageFile>아이캐치</StageFile>
+			<Banner>배너</Banner>
+			<BackBMP>Back BMP</BackBMP>
+			<Difficulty>난이도</Difficulty>
+			<ExRank>DefExRank</ExRank>
+			<Total>토탈값</Total>
+			<Comment>Comment</Comment>
+			<LnObj>LnObj</LnObj>
+			<LandMine>#WAV00</LandMine>
+			<MissBMP>#BMP00</MissBMP>
+			<Player1>1 - 솔로</Player1>
+			<Player2>2 - Couple Play</Player2>
+			<Player3>3 - 더블 플레이</Player3>
+			<Rank0>0 - 매우 어려움</Rank0>
+			<Rank1>1 - 어려움</Rank1>
+			<Rank2>2 - 보통</Rank2>
+			<Rank3>3 - 쉬움 (추천값)</Rank3>
+			<Rank4>4 - 매우 쉬움</Rank4>
+			<Difficulty0> 설정 안함 </Difficulty0>
+			<Difficulty1>1 - EZ / Beginner</Difficulty1>
+			<Difficulty2>2 - NM / Normal</Difficulty2>
+			<Difficulty3>3 - HD / Hyper</Difficulty3>
+			<Difficulty4>4 - MX / Another</Difficulty4>
+			<Difficulty5>5 - SC / Insane</Difficulty5>
 		</Header>
 		<Grid>
 			<Title>격자</Title>
@@ -232,6 +240,9 @@
 			<Browse>가져오기</Browse>
 			<Remove>삭제</Remove>
 		</WAV>
+		<BMP>
+			<Title>#BMP</Title>
+		</BMP>
 		<Beat>마디</Beat>
 		<Beat.Apply>적용</Beat.Apply>
 		<Expansion>확장명령</Expansion>
@@ -260,7 +271,7 @@
 		<BPMOverflowError>확장 BPM 값이 너무 큽니다. : </BPMOverflowError>
 		<STOPOverflowError>STOP 노트가 너무 많습니다. : </STOPOverflowError>
 		<SavedFileWillContainErrors>저장할 파일에 오류가 있습니다.</SavedFileWillContainErrors>
-		<FileAssociationPrompt>iBMSC를 {} 파일의 기본 프로그램으로 하시겠습니까?</FileAssociationPrompt>
+		<FileAssociationPrompt>μBMSC를 {} 파일의 기본 프로그램으로 하시겠습니까?</FileAssociationPrompt>
 		<FileAssociationError>관련 변경 오류 : </FileAssociationError>
 		<RestoreDefaultSettings>설정을 초기화 하시겠습니까? : </RestoreDefaultSettings>
 		<RestoreAutosavedFile>{} 자동으로 저장된 파일이 있습니다. 이걸로 되돌리시겠습니까?</RestoreAutosavedFile>
@@ -274,31 +285,44 @@
 		<PMS>Po-Mu Script (*.pms)</PMS>
 		<TXT>텍스트 파일 (*.txt)</TXT>
 		<SM>Step Mania files (*.sm)</SM>
-		<IBMSC>iBMSC files (*.ibmsc)</IBMSC>
+		<IBMSC>iBMSC 바이너리 포맷 (*.ibmsc)</IBMSC>
 		<XML>XML files (*.xml)</XML>
 		<THEME_XML>iBMSC 테마 (*.Theme.xml)</THEME_XML>
 		<TH>iBMSC 2.x 테마 파일 (*.Theme.xml)</TH>
 		<_audio>사용 가능한 오디오파일(*.wav, *.ogg, *.mp3, *.mid)</_audio>
 		<_wave>사용 가능한 음원 파일(*.wav, *.ogg, *.mp3)</_wave>
-		<WAV>Wave (*.wav)</WAV>
-		<OGG>Ogg (*.ogg)</OGG>
-		<MP3>MP3 (*.mp3)</MP3>
+		<WAV>Waveform Audio (*.wav)</WAV>
+		<OGG>Ogg Vorbis Audio (*.ogg)</OGG>
+		<MP3>MPEG Layer-3 Audio (*.mp3)</MP3>
+		<FLAC>Free Lossless Audio (*.flac)</FLAC>
 		<MID>MIDI files (*.mid)</MID>
-		<_image>사용 가능한 그림파일 (*.png, *.bmp, *.jpg, *.gif)</_image>
+		<_image>사용 가능한 그림 파일 (*.png, *.bmp, *.jpg, *.gif)</_image>
+		<_movie>사용 가능한 동영상 파일 (*.mpg, *.avi, *.mp4, *.wmv, *.webm)</_movie>
+		<BMP>Windows bitmap image (*.bmp)</BMP>
+		<PNG>Portable Network Graphic (*.png)</PNG>
+		<JPG>Joint Photographic Experts Group (*.jpg)</JPG>
+		<GIF>Graphics Interchange Format (*.gif)</GIF>
+		<MPG>Moving Picture Experts Group (*.mpg)</MPG>
+		<AVI>Audio Video Interleave (*.avi)</AVI>
+		<MP4>MPEG phase 4 (*.mp4)</MP4>
+		<WMV>Windows Media Video (*.wmv)</WMV>
+		<WEBM>WebM (*.webm)</WEBM>
 		<EXE>실행 파일 (*.exe)</EXE>
 	</FileType>
 	<Statistics>
 		<Title>통계</Title>
 		<lBPM>BPM</lBPM>
 		<lSTOP>STOP</lSTOP>
+		<lSCROLL>SCROLL</lSCROLL>
 		<lA>1P</lA>
 		<lD>2P</lD>
 		<lBGM>BGM</lBGM>
-		<lTotal>Total</lTotal>
+		<lTotal>합계</lTotal>
 		<lShort>노트</lShort>
 		<lLong>롱노트</lLong>
 		<lLnObj>롱노트끝</lLnObj>
-		<lHidden>숨김노트</lHidden>
+		<lHidden>숨김놋</lHidden>
+		<lLandMine>지뢰놋</lLandMine>
 		<lErrors>오류</lErrors>
 	</Statistics>
 	<PlayerOptions>

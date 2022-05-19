@@ -276,7 +276,7 @@
 		<STOPOverflowError>Numbers of STOPs has exceeded supported maximum:</STOPOverflowError>
 		<SCROLLOverflowError>Numbers of SCROLLs has exceeded supported maximum:</SCROLLOverflowError>
 		<SavedFileWillContainErrors>The saved file will contain errors.</SavedFileWillContainErrors>
-		<FileAssociationPrompt>Do you want to set iBMSC as default program to all {} files?</FileAssociationPrompt>
+		<FileAssociationPrompt>Do you want to set μBMSC as default program to all {} files?</FileAssociationPrompt>
 		<FileAssociationError>Error changing file type association:</FileAssociationError>
 		<RestoreDefaultSettings>Restore default settings?</RestoreDefaultSettings>
 		<RestoreAutosavedFile>{} autosaved file(s) have been found. Do you want to recover these files?</RestoreAutosavedFile>
