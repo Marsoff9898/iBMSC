@@ -242,6 +242,8 @@
 			<MoveDown>下へ</MoveDown>
 			<Browse>指定</Browse>
 			<Remove>削除</Remove>
+			<Clean>使用していない定義を削除</Clean>
+			<Align>定義枠を詰める</Align>
 		</WAV>
 		<BMP>
 			<Title>#BMP</Title>

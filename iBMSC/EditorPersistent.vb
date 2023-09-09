@@ -944,6 +944,8 @@ EndOfSub:
                     XMLLoadLocaleToolTipUniversal(eWAV.Item("MoveDown"), BWAVDown)
                     XMLLoadLocaleToolTipUniversal(eWAV.Item("Browse"), BWAVBrowse)
                     XMLLoadLocaleToolTipUniversal(eWAV.Item("Remove"), BWAVRemove)
+                    XMLLoadLocaleToolTipUniversal(eWAV.Item("Clean"), BWAVClean)
+                    XMLLoadLocaleToolTipUniversal(eWAV.Item("Align"), BWAVAlign)
                 End If
 
                 Dim eBMP As XmlElement = eOptionsPanel.Item("BMP")

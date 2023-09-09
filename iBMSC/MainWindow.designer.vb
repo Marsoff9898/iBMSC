@@ -79,6 +79,8 @@ Partial Class MainWindow
         Me.BWAVDown = New System.Windows.Forms.Button()
         Me.BWAVBrowse = New System.Windows.Forms.Button()
         Me.BWAVRemove = New System.Windows.Forms.Button()
+        Me.BWAVClean = New System.Windows.Forms.Button()
+        Me.BWAVAlign = New System.Windows.Forms.Button()
         Me.POWAVResizer = New System.Windows.Forms.Button()
         Me.POWAVPart2 = New System.Windows.Forms.TableLayoutPanel()
         Me.CWAVMultiSelect = New System.Windows.Forms.CheckBox()
@@ -1130,6 +1132,8 @@ Partial Class MainWindow
         Me.FlowLayoutPanel3.Controls.Add(Me.BWAVDown)
         Me.FlowLayoutPanel3.Controls.Add(Me.BWAVBrowse)
         Me.FlowLayoutPanel3.Controls.Add(Me.BWAVRemove)
+        Me.FlowLayoutPanel3.Controls.Add(Me.BWAVClean)
+        Me.FlowLayoutPanel3.Controls.Add(Me.BWAVAlign)
         Me.FlowLayoutPanel3.Location = New System.Drawing.Point(3, 3)
         Me.FlowLayoutPanel3.Name = "FlowLayoutPanel3"
         Me.FlowLayoutPanel3.Size = New System.Drawing.Size(96, 24)
@@ -1179,6 +1183,28 @@ Partial Class MainWindow
         Me.BWAVRemove.TabIndex = 31
         Me.ToolTipUniversal.SetToolTip(Me.BWAVRemove, "Remove")
         Me.BWAVRemove.UseVisualStyleBackColor = True
+        '
+        'BWAVClean
+        '
+        Me.BWAVClean.Image = Global.iBMSC.My.Resources.Resources.x16Find
+        Me.BWAVClean.Location = New System.Drawing.Point(96, 0)
+        Me.BWAVClean.Margin = New System.Windows.Forms.Padding(0)
+        Me.BWAVClean.Name = "BWAVClean"
+        Me.BWAVClean.Size = New System.Drawing.Size(24, 24)
+        Me.BWAVClean.TabIndex = 32
+        Me.ToolTipUniversal.SetToolTip(Me.BWAVClean, "Clean")
+        Me.BWAVClean.UseVisualStyleBackColor = True
+        '
+        'BWAVAlign
+        '
+        Me.BWAVAlign.Image = Global.iBMSC.My.Resources.Resources.x16MultiSelect
+        Me.BWAVAlign.Location = New System.Drawing.Point(120, 0)
+        Me.BWAVAlign.Margin = New System.Windows.Forms.Padding(0)
+        Me.BWAVAlign.Name = "BWAVAlign"
+        Me.BWAVAlign.Size = New System.Drawing.Size(24, 24)
+        Me.BWAVAlign.TabIndex = 33
+        Me.ToolTipUniversal.SetToolTip(Me.BWAVAlign, "Padding")
+        Me.BWAVAlign.UseVisualStyleBackColor = True
         '
         'POWAVResizer
         '
@@ -4826,6 +4852,8 @@ Partial Class MainWindow
     Friend WithEvents BWAVDown As System.Windows.Forms.Button
     Friend WithEvents BWAVBrowse As System.Windows.Forms.Button
     Friend WithEvents BWAVRemove As System.Windows.Forms.Button
+    Friend WithEvents BWAVClean As System.Windows.Forms.Button
+    Friend WithEvents BWAVAlign As System.Windows.Forms.Button
     Friend WithEvents BBMPUp As System.Windows.Forms.Button
     Friend WithEvents BBMPDown As System.Windows.Forms.Button
     Friend WithEvents BBMPBrowse As System.Windows.Forms.Button

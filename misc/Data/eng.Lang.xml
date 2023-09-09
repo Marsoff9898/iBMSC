@@ -242,6 +242,8 @@
 			<MoveDown>Move Down</MoveDown>
 			<Browse>Browse</Browse>
 			<Remove>Remove</Remove>
+			<Clean>Cleaning unused definitions</Clean>
+			<Alignment>Alignment definitions</Alignment>
 		</WAV>
 		<BMP>
 			<Title>#BMP</Title>

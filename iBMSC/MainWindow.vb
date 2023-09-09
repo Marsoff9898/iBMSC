@@ -4145,6 +4145,83 @@ Jump2:
         POStatusRefresh()
     End Sub
 
+    Private Sub BWAVClean_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BWAVClean.Click
+        Dim Flags(1295) As Boolean
+        ' 初期化
+        For xI1 As Integer = 0 To 1294
+            Flags(xI1) = False
+        Next
+
+        ' 検索
+        For xI1 As Integer = 0 To UBound(Notes)
+            If IsColumnSound(Notes(xI1).ColumnIndex) Then
+                Flags(Notes(xI1).Value / 10000 - 1) = True
+            End If
+        Next
+
+        ' 適用
+        For xI1 As Integer = 0 To 1294
+            If Not Flags(xI1) Then
+                hWAV(xI1 + 1) = ""
+                LWAV.Items.Item(xI1) = C10to36(xI1 + 1) & ": "
+                If IsSaved Then SetIsSaved(False)
+            End If
+        Next
+        If BeepWhileSaved Then Beep()
+
+        RefreshPanelAll()
+        POStatusRefresh()
+    End Sub
+
+    Private Sub BWAVAlign_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BWAVAlign.Click
+        Dim Flags(1295) As Boolean
+        Dim MoveFrom(1295) As Integer
+        Dim MoveTo(1295) As Integer
+
+        ' 初期化
+        Dim i As Integer = 0
+        For xI1 = 0 To 1294
+            MoveFrom(xI1) = -1
+            MoveTo(xI1) = xI1
+            Flags(xI1) = (hWAV(xI1 + 1) <> "")
+        Next
+        ' 検索
+        For xI1 As Integer = 0 To UBound(Notes)
+            If IsColumnSound(Notes(xI1).ColumnIndex) Then
+                Flags(Notes(xI1).Value / 10000 - 1) = True
+            End If
+        Next
+        For xI1 As Integer = 0 To 1294
+            If Flags(xI1) Then
+                MoveFrom(i) = xI1
+                MoveTo(xI1) = i
+                i += 1
+            End If
+        Next
+
+        ' 適用
+        For xI1 As Integer = 0 To 1294
+            If MoveFrom(xI1) >= 0 Then
+                hWAV(xI1 + 1) = hWAV(MoveFrom(xI1) + 1)
+            Else
+                hWAV(xI1 + 1) = ""
+            End If
+            LWAV.Items.Item(xI1) = C10to36(xI1 + 1) & ": " & hWAV(xI1 + 1)
+        Next
+
+        ' 改変
+        For xI1 As Integer = 0 To UBound(Notes)
+            If IsColumnSound(Notes(xI1).ColumnIndex) Then
+                Notes(xI1).Value = (MoveTo(Notes(xI1).Value / 10000 - 1) + 1) * 10000
+            End If
+        Next
+
+        If IsSaved Then SetIsSaved(False)
+        If BeepWhileSaved Then Beep()
+        RefreshPanelAll()
+        POStatusRefresh()
+    End Sub
+
     Private Sub BBMPUp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BBMPUp.Click
         If LBMP.SelectedIndex = -1 Then Return
 
