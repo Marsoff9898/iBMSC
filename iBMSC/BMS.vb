@@ -2,13 +2,23 @@
 
 Module BMS
     Public Function IsChannelLongNote(ByVal I As String) As Boolean
-        Dim xI As Integer = CInt(Val(I))
-        Return xI >= 50 And xI < 90
+        Dim LongStart = C36to10("50")
+        Dim LongEnd = C36to10("8Z")
+
+        Dim xI As Integer = C36to10(I)
+
+        Return xI > LongStart And xI < LongEnd
     End Function
 
     Public Function IsChannelHidden(ByVal I As String) As Boolean
-        Dim xI As Integer = CInt(Val(I))
-        Return (xI >= 30 And xI < 50) Or (xI >= 70 And xI < 90)
+        Dim HiddenStart = C36to10("30")
+        Dim HiddenEnd = C36to10("4Z")
+        Dim OptionStart = C36to10("70")
+        Dim OptionEnd = C36to10("8Z")
+
+        Dim xI As Integer = C36to10(I)
+
+        Return (xI > HiddenStart And xI < HiddenEnd) Or (xI > OptionStart And xI < OptionEnd)
     End Function
 
     Public Function IsChannelLandmine(ByVal I As String) As Boolean
